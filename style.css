@@ -843,8 +843,7 @@ body {
   }
   
   .booking {
-    padding-top: var(--space-2xl);
-    padding-bottom: var(--space-xl);
+    padding: var(--space-2xl) 0;
   }
   
   .hero__background {
@@ -861,7 +860,14 @@ body {
     margin: auto;
   }
   
-  .modal__header,
+  .modal__header {
+    position: sticky;
+    top: 0;
+    background: var(--color-background);
+    z-index: 10;
+    padding: var(--space-md);
+  }
+  
   .modal__body {
     padding: var(--space-md);
   }
