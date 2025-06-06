@@ -867,9 +867,12 @@ body {
   }
   
   .modal__content {
-    max-height: 95vh;
     width: 90vw;
+    max-width: 500px;
+    height: auto;
+    max-height: 85vh;
     margin: auto;
+    overflow-y: auto;
   }
   
   .modal__header {
