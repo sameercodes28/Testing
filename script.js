@@ -108,6 +108,11 @@
       // Close modal when clicking on backdrop
       elements.modal.addEventListener('click', handleModalBackdropClick);
     }
+    
+    if (elements.modalGallery) {
+      // Handle thumbnail clicks using event delegation
+      elements.modalGallery.addEventListener('click', handleThumbnailClick);
+    }
   }
 
   /**
@@ -333,7 +338,9 @@
              alt="${project.title} - Image ${index + 1}"
              loading="lazy"
              width="200"
-             height="150">`
+             height="150"
+             class="${index === 0 ? 'active-thumbnail' : ''}"
+             style="cursor: pointer;">`
       ).join('');
       elements.modalGallery.innerHTML = galleryHTML;
     }
@@ -352,7 +359,8 @@
       'input',
       'select',
       'textarea',
-      '[tabindex]:not([tabindex="-1"])'
+      '[tabindex]:not([tabindex="-1"])',
+      'img[style*="cursor: pointer"]'
     ];
     
     focusableElements = elements.modal.querySelectorAll(focusableSelectors.join(','));
@@ -389,6 +397,33 @@
   function handleModalBackdropClick(event) {
     if (event.target === elements.modal) {
       closeModal();
+    }
+  }
+
+  /**
+   * Handle thumbnail clicks in the modal gallery
+   * @param {Event} event - Click event
+   */
+  function handleThumbnailClick(event) {
+    // Check if the clicked element is an image
+    if (event.target.tagName === 'IMG') {
+      const clickedThumbnail = event.target;
+      const newImageSrc = clickedThumbnail.src;
+      
+      // Update the main modal image
+      if (elements.modalImage) {
+        elements.modalImage.src = newImageSrc;
+        elements.modalImage.alt = clickedThumbnail.alt;
+      }
+      
+      // Remove active class from all thumbnails
+      const allThumbnails = elements.modalGallery.querySelectorAll('img');
+      allThumbnails.forEach(thumbnail => {
+        thumbnail.classList.remove('active-thumbnail');
+      });
+      
+      // Add active class to clicked thumbnail
+      clickedThumbnail.classList.add('active-thumbnail');
     }
   }
 

@@ -563,6 +563,15 @@ body {
   object-fit: cover;
   border-radius: var(--border-radius);
   margin-bottom: 0;
+  transition: border var(--transition-fast), opacity var(--transition-fast);
+}
+
+.modal__gallery img:hover {
+  opacity: 0.8;
+}
+
+.active-thumbnail {
+  border: 2px solid var(--color-accent) !important;
 }
 
 /* ==========================================================================
