@@ -391,6 +391,46 @@ body {
 }
 
 /* ==========================================================================
+   Load More Button
+   ========================================================================== */
+
+.load-more__container {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-2xl);
+}
+
+.load-more__btn {
+  background: transparent;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: 44px;
+  display: none;
+}
+
+.load-more__btn:hover {
+  background: var(--color-accent);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.load-more__btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.load-more__btn.is-visible {
+  display: inline-block;
+}
+
+/* ==========================================================================
    About Section
    ========================================================================== */
 

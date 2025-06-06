@@ -15,6 +15,12 @@
   let currentImageIndex = 0;
   let translations = {};
   let currentLanguage = 'sv'; // Default to Swedish
+  
+  // Pagination state
+  let visibleProjectsCount = 0;
+  const projectsToShowDesktop = 9;
+  const projectsToShowMobile = 4;
+  let projectsIncrement = 0;
 
   // DOM element references (cached for performance)
   const elements = {
@@ -61,6 +67,7 @@
     elements.cookieBanner = document.getElementById('cookie-consent-banner');
     elements.cookieAcceptBtn = document.getElementById('cookie-accept-btn');
     elements.languageToggle = document.getElementById('language-toggle');
+    elements.loadMoreBtn = document.getElementById('load-more-btn');
   }
 
   /**
@@ -90,6 +97,9 @@
     
     // Language system
     setupLanguageSystem();
+    
+    // Load more functionality
+    setupLoadMoreButton();
   }
 
   /**
@@ -215,6 +225,14 @@
   }
 
   /**
+   * Check if current device is mobile
+   * @returns {boolean} - Whether device is mobile
+   */
+  function isMobile() {
+    return window.innerWidth < 768;
+  }
+
+  /**
    * Load projects from JSON file
    */
   async function loadProjects() {
@@ -228,7 +246,14 @@
       }
       
       projects = await response.json();
+      
+      // Set initial pagination values
+      const initialCount = isMobile() ? projectsToShowMobile : projectsToShowDesktop;
+      projectsIncrement = isMobile() ? projectsToShowMobile : projectsToShowDesktop;
+      visibleProjectsCount = Math.min(initialCount, projects.length);
+      
       renderProjects();
+      updateLoadMoreButton();
       hideLoadingState();
       
     } catch (error) {
@@ -293,12 +318,15 @@
   }
 
   /**
-   * Render projects grid
+   * Render projects grid (initial load or full re-render)
    */
   function renderProjects() {
     if (!elements.projectsGrid || !projects.length) return;
     
-    const projectsHTML = projects.map(project => {
+    // Get the projects to show (sliced array)
+    const projectsToShow = projects.slice(0, visibleProjectsCount);
+    
+    const projectsHTML = projectsToShow.map(project => {
       const title = getLocalizedText(project.title);
       const altText = getLocalizedText(project.altText);
       
@@ -322,6 +350,43 @@
     elements.projectsGrid.innerHTML = projectsHTML;
     
     // Add click listeners to project cards
+    setupProjectCardListeners();
+  }
+
+  /**
+   * Append new projects to the grid (for Load More functionality)
+   */
+  function appendProjects() {
+    if (!elements.projectsGrid || !projects.length) return;
+    
+    const startIndex = visibleProjectsCount - projectsIncrement;
+    const endIndex = visibleProjectsCount;
+    const newProjects = projects.slice(startIndex, endIndex);
+    
+    const projectsHTML = newProjects.map(project => {
+      const title = getLocalizedText(project.title);
+      const altText = getLocalizedText(project.altText);
+      
+      return `
+        <button type="button" 
+                class="project-card" 
+                data-project-id="${project.id}"
+                aria-label="View details for ${title}">
+          <img src="${project.mainImage}" 
+               alt="${altText}"
+               class="project-card__image"
+               loading="lazy"
+               width="400"
+               height="300">
+          <h3 class="project-card__title">${escapeHtml(title)}</h3>
+          <p class="project-card__year">${escapeHtml(project.year)}</p>
+        </button>
+      `;
+    }).join('');
+    
+    elements.projectsGrid.insertAdjacentHTML('beforeend', projectsHTML);
+    
+    // Add click listeners to new project cards
     setupProjectCardListeners();
   }
 
@@ -827,6 +892,7 @@
     // Re-render projects with new language
     if (projects.length > 0) {
       renderProjects();
+      updateLoadMoreButton();
     }
 
     // Update modal content if it's open
@@ -856,6 +922,41 @@
         renderPage();
       });
     }
+  }
+
+  /**
+   * Update Load More button visibility
+   */
+  function updateLoadMoreButton() {
+    if (!elements.loadMoreBtn) return;
+    
+    if (visibleProjectsCount < projects.length) {
+      elements.loadMoreBtn.classList.add('is-visible');
+    } else {
+      elements.loadMoreBtn.classList.remove('is-visible');
+    }
+  }
+
+  /**
+   * Set up Load More button functionality
+   */
+  function setupLoadMoreButton() {
+    if (!elements.loadMoreBtn) return;
+    
+    elements.loadMoreBtn.addEventListener('click', () => {
+      // Calculate how many more projects to show
+      const remainingProjects = projects.length - visibleProjectsCount;
+      const projectsToAdd = Math.min(projectsIncrement, remainingProjects);
+      
+      // Update visible count
+      visibleProjectsCount += projectsToAdd;
+      
+      // Append new projects
+      appendProjects();
+      
+      // Update button visibility
+      updateLoadMoreButton();
+    });
   }
 
   /**
