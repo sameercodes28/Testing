@@ -1,0 +1,134 @@
+{
+  "navigation": {
+    "projects": {
+      "en": "Projects",
+      "sv": "Projekt"
+    },
+    "about": {
+      "en": "About",
+      "sv": "Om mig"
+    },
+    "booking": {
+      "en": "Book a Consultation",
+      "sv": "Boka konsultation"
+    },
+    "languageToggle": {
+      "en": "EN",
+      "sv": "SV"
+    }
+  },
+  "sections": {
+    "heroTitle": {
+      "en": "We design spaces that are not only seen, but felt.",
+      "sv": "Vi designar utrymmen som inte bara syns, utan känns."
+    },
+    "projectsTitle": {
+      "en": "Projects",
+      "sv": "Projekt"
+    },
+    "aboutTitle": {
+      "en": "About",
+      "sv": "Om mig"
+    },
+    "aboutBio1": {
+      "en": "Karin Gunnerek is a Stockholm-based architect renowned for her minimalist aesthetic and commitment to sustainable, human-centric design. After graduating with honors from the KTH School of Architecture, Karin founded her practice in 2015 with a vision to create spaces that blend functionality with quiet elegance.",
+      "sv": "Karin Gunnerek är en Stockholmsbaserad arkitekt känd för sin minimalistiska estetik och engagemang för hållbar, människocentrerad design. Efter att ha tagit examen med utmärkelser från KTH:s arkitekturskola grundade Karin sin praktik 2015 med en vision att skapa utrymmen som blandar funktionalitet med tyst elegans."
+    },
+    "aboutBio2": {
+      "en": "Her work has been featured in numerous design publications and is celebrated for its thoughtful use of natural light and materials. She believes that great architecture is a dialogue between the environment, the structure, and the inhabitants.",
+      "sv": "Hennes arbete har presenterats i många designpublikationer och hyllas för dess genomtänkta användning av naturligt ljus och material. Hon tror att stor arkitektur är en dialog mellan miljön, strukturen och invånarna."
+    },
+    "bookingTitle": {
+      "en": "Book a Consultation",
+      "sv": "Boka en konsultation"
+    },
+    "bookingPlaceholder": {
+      "en": "Calendly widget will be embedded here",
+      "sv": "Calendly-widget kommer att bäddas in här"
+    }
+  },
+  "modal": {
+    "closeButton": {
+      "en": "Close project details",
+      "sv": "Stäng projektdetaljer"
+    },
+    "prevButton": {
+      "en": "Previous image",
+      "sv": "Föregående bild"
+    },
+    "nextButton": {
+      "en": "Next image",
+      "sv": "Nästa bild"
+    },
+    "dotButton": {
+      "en": "Go to image",
+      "sv": "Gå till bild"
+    }
+  },
+  "footer": {
+    "copyright": {
+      "en": "© 2025 Karin Gunnerek. All rights reserved.",
+      "sv": "© 2025 Karin Gunnerek. Alla rättigheter förbehållna."
+    },
+    "privacyPolicy": {
+      "en": "Privacy Policy",
+      "sv": "Integritetspolicy"
+    },
+    "termsOfService": {
+      "en": "Terms of Service",
+      "sv": "Användarvillkor"
+    }
+  },
+  "backToTop": {
+    "label": {
+      "en": "Back to top",
+      "sv": "Tillbaka till toppen"
+    }
+  },
+  "cookieBanner": {
+    "text": {
+      "en": "This website uses cookies to analyze site usage and improve your experience.",
+      "sv": "Denna webbplats använder cookies för att analysera webbplatsanvändning och förbättra din upplevelse."
+    },
+    "linkText": {
+      "en": "Learn more in our Privacy Policy",
+      "sv": "Läs mer i vår integritetspolicy"
+    },
+    "acceptButton": {
+      "en": "Accept",
+      "sv": "Acceptera"
+    }
+  },
+  "accessibility": {
+    "skipToContent": {
+      "en": "Skip to main content",
+      "sv": "Hoppa till huvudinnehåll"
+    },
+    "mainNavigation": {
+      "en": "Main navigation",
+      "sv": "Huvudnavigering"
+    },
+    "legalNavigation": {
+      "en": "Legal navigation",
+      "sv": "Juridisk navigering"
+    },
+    "projectPortfolio": {
+      "en": "Project portfolio",
+      "sv": "Projektportfölj"
+    },
+    "imageAltPrefix": {
+      "en": "Image",
+      "sv": "Bild"
+    }
+  },
+  "comments": {
+    "headshotComment": {
+      "en": "CLIENT ACTION REQUIRED: Replace with final professional headshot image",
+      "sv": "KUNDÅTGÄRD KRÄVS: Ersätt med slutlig professionell porträttbild"
+    },
+    "calendlyComment": {
+      "en": "CLIENT ACTION REQUIRED: Replace this placeholder with Calendly embed code",
+      "sv": "KUNDÅTGÄRD KRÄVS: Ersätt denna platshållare med Calendly-inbäddningskod"
+    }
+  }
+}

@@ -114,13 +114,13 @@
       <!-- Navigation menu -->
       <ul class="nav__menu">
         <li>
-          <a href="#projects" class="nav__link">Projects</a>
+          <a href="#projects" class="nav__link" data-i18n-key="navigation.projects">Projects</a>
         </li>
         <li>
-          <a href="#about" class="nav__link">About</a>
+          <a href="#about" class="nav__link" data-i18n-key="navigation.about">About</a>
         </li>
         <li>
-          <a href="#booking" class="nav__link nav__link--cta">Book a Consultation</a>
+          <a href="#booking" class="nav__link nav__link--cta" data-i18n-key="navigation.booking">Book a Consultation</a>
         </li>
       </ul>
     </div>
@@ -134,14 +134,14 @@
         <!-- Background image placeholder - will be styled via CSS -->
       </div>
       <div class="hero__content">
-        <h1 id="hero-title" class="hero__title">We design spaces that are not only seen, but felt.</h1>
+        <h1 id="hero-title" class="hero__title" data-i18n-key="sections.heroTitle">We design spaces that are not only seen, but felt.</h1>
       </div>
     </section>
     
     <!-- Projects section -->
     <section id="projects" class="projects" aria-labelledby="projects-title">
       <div class="container">
-        <h2 id="projects-title" class="section__title">Projects</h2>
+        <h2 id="projects-title" class="section__title" data-i18n-key="sections.projectsTitle">Projects</h2>
         <div id="projects-grid" class="projects__grid" role="region" aria-label="Project portfolio">
           <!-- Projects will be populated by JavaScript -->
         </div>
@@ -162,11 +162,11 @@
                  height="500">
           </div>
           <div class="about__text">
-            <h2 id="about-title" class="section__title">About</h2>
-            <p class="about__bio">
+            <h2 id="about-title" class="section__title" data-i18n-key="sections.aboutTitle">About</h2>
+            <p class="about__bio" data-i18n-key="sections.aboutBio1">
               Karin Gunnerek is a Stockholm-based architect renowned for her minimalist aesthetic and commitment to sustainable, human-centric design. After graduating with honors from the KTH School of Architecture, Karin founded her practice in 2015 with a vision to create spaces that blend functionality with quiet elegance.
             </p>
-            <p class="about__bio">
+            <p class="about__bio" data-i18n-key="sections.aboutBio2">
               Her work has been featured in numerous design publications and is celebrated for its thoughtful use of natural light and materials. She believes that great architecture is a dialogue between the environment, the structure, and the inhabitants.
             </p>
           </div>
@@ -177,10 +177,10 @@
     <!-- Booking section -->
     <section id="booking" class="booking" aria-labelledby="booking-title">
       <div class="container">
-        <h2 id="booking-title" class="section__title">Book a Consultation</h2>
+        <h2 id="booking-title" class="section__title" data-i18n-key="sections.bookingTitle">Book a Consultation</h2>
         <div id="calendly-widget" class="booking__widget">
           <!-- CLIENT ACTION REQUIRED: Replace this placeholder with Calendly embed code -->
-          <p class="booking__placeholder">Calendly widget will be embedded here</p>
+          <p class="booking__placeholder" data-i18n-key="sections.bookingPlaceholder">Calendly widget will be embedded here</p>
         </div>
       </div>
     </section>
@@ -191,7 +191,7 @@
     <div class="modal__content">
       <header class="modal__header">
         <h3 id="modal-title" class="modal__title"></h3>
-        <button type="button" class="modal__close" aria-label="Close project details" data-close-modal>
+        <button type="button" class="modal__close" data-i18n-aria="modal.closeButton" aria-label="Close project details" data-close-modal>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18 6L6 18M6 6l12 12"/>
           </svg>
@@ -207,12 +207,12 @@
         <div class="carousel-container">
           <div class="carousel-main-image">
             <img id="carousel-image" src="" alt="" loading="lazy" width="800" height="600">
-            <button class="carousel-btn carousel-btn--prev" aria-label="Previous image">
+            <button class="carousel-btn carousel-btn--prev" data-i18n-aria="modal.prevButton" aria-label="Previous image">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/>
               </svg>
             </button>
-            <button class="carousel-btn carousel-btn--next" aria-label="Next image">
+            <button class="carousel-btn carousel-btn--next" data-i18n-aria="modal.nextButton" aria-label="Next image">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
               </svg>
@@ -228,17 +228,18 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__content">
-        <p class="footer__copyright">© 2025 Karin Gunnerek. All rights reserved.</p>
-        <nav class="footer__nav" aria-label="Legal navigation">
-          <a href="privacy.html" class="footer__link">Privacy Policy</a>
-          <a href="terms.html" class="footer__link">Terms of Service</a>
+        <p class="footer__copyright" data-i18n-key="footer.copyright">© 2025 Karin Gunnerek. All rights reserved.</p>
+        <nav class="footer__nav" data-i18n-aria="accessibility.legalNavigation" aria-label="Legal navigation">
+          <a href="privacy.html" class="footer__link" data-i18n-key="footer.privacyPolicy">Privacy Policy</a>
+          <a href="terms.html" class="footer__link" data-i18n-key="footer.termsOfService">Terms of Service</a>
+          <button id="language-toggle" class="footer__language-toggle" data-i18n-key="navigation.languageToggle" aria-label="Switch language">EN</button>
         </nav>
       </div>
     </div>
   </footer>
   
   <!-- Back to Top Button -->
-  <button id="back-to-top-btn" aria-label="Back to top">
+  <button id="back-to-top-btn" data-i18n-aria="backToTop.label" aria-label="Back to top">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 15l-6-6-6 6"/>
     </svg>
@@ -248,10 +249,10 @@
   <div id="cookie-consent-banner">
     <div class="cookie-banner__content">
       <p class="cookie-banner__text">
-        This website uses cookies to analyze site usage and improve your experience. 
-        <a href="privacy.html" class="cookie-banner__link">Learn more in our Privacy Policy</a>.
+        <span data-i18n-key="cookieBanner.text">This website uses cookies to analyze site usage and improve your experience.</span> 
+        <a href="privacy.html" class="cookie-banner__link" data-i18n-key="cookieBanner.linkText">Learn more in our Privacy Policy</a>.
       </p>
-      <button id="cookie-accept-btn" class="cookie-banner__accept">Accept</button>
+      <button id="cookie-accept-btn" class="cookie-banner__accept" data-i18n-key="cookieBanner.acceptButton">Accept</button>
     </div>
   </div>
   

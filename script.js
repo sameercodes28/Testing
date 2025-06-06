@@ -13,6 +13,8 @@
   let lastFocusedElement = null;
   let currentProject = null;
   let currentImageIndex = 0;
+  let translations = {};
+  let currentLanguage = 'sv'; // Default to Swedish
 
   // DOM element references (cached for performance)
   const elements = {
@@ -58,6 +60,7 @@
     elements.footer = document.querySelector('.footer');
     elements.cookieBanner = document.getElementById('cookie-consent-banner');
     elements.cookieAcceptBtn = document.getElementById('cookie-accept-btn');
+    elements.languageToggle = document.getElementById('language-toggle');
   }
 
   /**
@@ -84,6 +87,9 @@
     
     // Cookie consent
     setupCookieConsent();
+    
+    // Language system
+    setupLanguageSystem();
   }
 
   /**
@@ -232,6 +238,25 @@
   }
 
   /**
+   * Load translations from JSON file
+   */
+  async function loadTranslations() {
+    try {
+      const response = await fetch('ui-strings.json');
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      translations = await response.json();
+      
+    } catch (error) {
+      console.error('Error loading translations:', error);
+      translations = {}; // Fallback to empty object
+    }
+  }
+
+  /**
    * Show loading state in projects grid
    */
   function showLoadingState() {
@@ -273,21 +298,26 @@
   function renderProjects() {
     if (!elements.projectsGrid || !projects.length) return;
     
-    const projectsHTML = projects.map(project => `
-      <button type="button" 
-              class="project-card" 
-              data-project-id="${project.id}"
-              aria-label="View details for ${project.title}">
-        <img src="${project.mainImage}" 
-             alt="${project.altText}"
-             class="project-card__image"
-             loading="lazy"
-             width="400"
-             height="300">
-        <h3 class="project-card__title">${escapeHtml(project.title)}</h3>
-        <p class="project-card__year">${escapeHtml(project.year)}</p>
-      </button>
-    `).join('');
+    const projectsHTML = projects.map(project => {
+      const title = getLocalizedText(project.title);
+      const altText = getLocalizedText(project.altText);
+      
+      return `
+        <button type="button" 
+                class="project-card" 
+                data-project-id="${project.id}"
+                aria-label="View details for ${title}">
+          <img src="${project.mainImage}" 
+               alt="${altText}"
+               class="project-card__image"
+               loading="lazy"
+               width="400"
+               height="300">
+          <h3 class="project-card__title">${escapeHtml(title)}</h3>
+          <p class="project-card__year">${escapeHtml(project.year)}</p>
+        </button>
+      `;
+    }).join('');
     
     elements.projectsGrid.innerHTML = projectsHTML;
     
@@ -360,7 +390,7 @@
    */
   function populateModalContent(project) {
     if (elements.modalTitle) {
-      elements.modalTitle.textContent = project.title;
+      elements.modalTitle.textContent = getLocalizedText(project.title);
     }
     
     if (elements.modalYear) {
@@ -368,7 +398,7 @@
     }
     
     if (elements.modalDescription) {
-      elements.modalDescription.textContent = project.description;
+      elements.modalDescription.textContent = getLocalizedText(project.description);
     }
   }
 
@@ -464,8 +494,11 @@
     if (!currentProject || !elements.carouselImage) return;
     
     const imageUrl = currentProject.gallery[currentImageIndex];
+    const projectTitle = getLocalizedText(currentProject.title);
+    const imageLabel = getTranslation('accessibility.imageAltPrefix') || 'Image';
+    
     elements.carouselImage.src = imageUrl;
-    elements.carouselImage.alt = `${currentProject.title} - Image ${currentImageIndex + 1}`;
+    elements.carouselImage.alt = `${projectTitle} - ${imageLabel} ${currentImageIndex + 1}`;
   }
 
   /**
@@ -475,10 +508,12 @@
   function generateCarouselDots(totalImages) {
     if (!elements.carouselDots) return;
     
+    const dotLabel = getTranslation('modal.dotButton') || 'Go to image';
+    
     const dotsHTML = Array.from({ length: totalImages }, (_, index) => 
       `<button class="carousel-dot ${index === 0 ? 'active-dot' : ''}" 
                data-index="${index}" 
-               aria-label="Go to image ${index + 1}"></button>`
+               aria-label="${dotLabel} ${index + 1}"></button>`
     ).join('');
     
     elements.carouselDots.innerHTML = dotsHTML;
@@ -710,19 +745,138 @@
   }
 
   /**
+   * Get current language from localStorage or default to Swedish
+   * @returns {string} - Current language code
+   */
+  function getCurrentLanguage() {
+    return localStorage.getItem('karin_language') || 'sv';
+  }
+
+  /**
+   * Set current language and save to localStorage
+   * @param {string} lang - Language code
+   */
+  function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('karin_language', lang);
+  }
+
+  /**
+   * Get localized text from a text object
+   * @param {Object|string} textObj - Text object with language keys or plain string
+   * @returns {string} - Localized text
+   */
+  function getLocalizedText(textObj) {
+    if (typeof textObj === 'string') return textObj;
+    if (typeof textObj === 'object' && textObj !== null) {
+      return textObj[currentLanguage] || textObj['en'] || '';
+    }
+    return '';
+  }
+
+  /**
+   * Get translation from translations object
+   * @param {string} key - Translation key (e.g., 'navigation.projects')
+   * @returns {string} - Translated text
+   */
+  function getTranslation(key) {
+    const keys = key.split('.');
+    let value = translations;
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object') {
+        value = value[k];
+      } else {
+        return '';
+      }
+    }
+    
+    return getLocalizedText(value);
+  }
+
+  /**
+   * Update all page content based on current language
+   */
+  function renderPage() {
+    // Update all elements with data-i18n-key attributes
+    const i18nElements = document.querySelectorAll('[data-i18n-key]');
+    i18nElements.forEach(element => {
+      const key = element.getAttribute('data-i18n-key');
+      const translatedText = getTranslation(key);
+      if (translatedText) {
+        element.textContent = translatedText;
+      }
+    });
+
+    // Update all elements with data-i18n-aria attributes
+    const ariaElements = document.querySelectorAll('[data-i18n-aria]');
+    ariaElements.forEach(element => {
+      const key = element.getAttribute('data-i18n-aria');
+      const translatedText = getTranslation(key);
+      if (translatedText) {
+        element.setAttribute('aria-label', translatedText);
+      }
+    });
+
+    // Update language toggle button
+    if (elements.languageToggle) {
+      const oppositeLanguage = currentLanguage === 'sv' ? 'en' : 'sv';
+      elements.languageToggle.textContent = oppositeLanguage.toUpperCase();
+    }
+
+    // Re-render projects with new language
+    if (projects.length > 0) {
+      renderProjects();
+    }
+
+    // Update modal content if it's open
+    if (currentProject && elements.modal && elements.modal.open) {
+      populateModalContent(currentProject);
+      // Update carousel with new language
+      if (currentProject.gallery && currentProject.gallery.length > 0) {
+        updateCarouselImage();
+        generateCarouselDots(currentProject.gallery.length);
+        updateCarouselDots();
+      }
+    }
+  }
+
+  /**
+   * Set up language switching system
+   */
+  function setupLanguageSystem() {
+    // Set initial language from localStorage or default
+    currentLanguage = getCurrentLanguage();
+    
+    // Set up language toggle button
+    if (elements.languageToggle) {
+      elements.languageToggle.addEventListener('click', () => {
+        const newLanguage = currentLanguage === 'sv' ? 'en' : 'sv';
+        setLanguage(newLanguage);
+        renderPage();
+      });
+    }
+  }
+
+  /**
    * Initialize application when DOM is ready
    */
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', async function() {
       if (isModernBrowser()) {
+        await loadTranslations();
         init();
+        renderPage(); // Render with current language
       } else {
         showBrowserFallback();
       }
     });
   } else {
     if (isModernBrowser()) {
-      init();
+      loadTranslations().then(() => {
+        init();
+        renderPage(); // Render with current language
+      });
     } else {
       showBrowserFallback();
     }

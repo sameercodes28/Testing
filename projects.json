@@ -1,11 +1,20 @@
 [
   {
     "id": "serene-courtyard-house",
-    "title": "Serene Courtyard House",
+    "title": {
+      "en": "Serene Courtyard House",
+      "sv": "Lugnt Innergårdshus"
+    },
     "year": "2023",
-    "description": "A minimalist residential project that seamlessly blends indoor and outdoor living spaces. The design features clean lines, natural materials, and abundant natural light flowing through strategically placed windows. The central courtyard serves as the heart of the home, creating a private sanctuary while maintaining visual connections throughout the living spaces.",
+    "description": {
+      "en": "A minimalist residential project that seamlessly blends indoor and outdoor living spaces. The design features clean lines, natural materials, and abundant natural light flowing through strategically placed windows. The central courtyard serves as the heart of the home, creating a private sanctuary while maintaining visual connections throughout the living spaces.",
+      "sv": "Ett minimalistiskt bostadsprojekt som sömlöst blandar inne- och utemiljöer. Designen präglas av rena linjer, naturliga material och rikligt naturligt ljus som strömmar genom strategiskt placerade fönster. Den centrala innergården fungerar som hemmets hjärta och skapar en privat tillflyktsort samtidigt som visuella kopplingar bibehålls genom hela bostaden."
+    },
     "mainImage": "https://picsum.photos/800/600?random=1",
-    "altText": "Modern minimalist house with large glass windows and central courtyard featuring natural stone and wood materials",
+    "altText": {
+      "en": "Modern minimalist house with large glass windows and central courtyard featuring natural stone and wood materials",
+      "sv": "Modernt minimalistiskt hus med stora glasfönster och central innergård med natursten och trämaterial"
+    },
     "tags": ["Residential", "Minimalist", "Sustainable"],
     "gallery": [
       "https://picsum.photos/800/600?random=1",
@@ -16,11 +25,20 @@
   },
   {
     "id": "nordic-wellness-center",
-    "title": "Nordic Wellness Center",
+    "title": {
+      "en": "Nordic Wellness Center",
+      "sv": "Nordiskt Välmåendecenter"
+    },
     "year": "2022",
-    "description": "A contemporary wellness facility designed to promote holistic well-being through thoughtful spatial arrangements and natural material choices. The building incorporates sustainable design principles with extensive use of locally sourced timber and stone. Large skylights and floor-to-ceiling windows create a strong connection with the surrounding forest landscape.",
+    "description": {
+      "en": "A contemporary wellness facility designed to promote holistic well-being through thoughtful spatial arrangements and natural material choices. The building incorporates sustainable design principles with extensive use of locally sourced timber and stone. Large skylights and floor-to-ceiling windows create a strong connection with the surrounding forest landscape.",
+      "sv": "En modern välmåendeanläggning designad för att främja holistiskt välbefinnande genom genomtänkta rumsarrangemang och naturliga materialval. Byggnaden inkorporerar hållbara designprinciper med omfattande användning av lokalt sourceat virke och sten. Stora takfönster och golvtak-fönster skapar en stark koppling till det omgivande skogslandskapet."
+    },
     "mainImage": "https://picsum.photos/800/600?random=5",
-    "altText": "Contemporary wellness center with timber facade and large windows overlooking forest landscape",
+    "altText": {
+      "en": "Contemporary wellness center with timber facade and large windows overlooking forest landscape",
+      "sv": "Modernt välmåendecenter med träfasad och stora fönster som blickar ut över skogslandskap"
+    },
     "tags": ["Commercial", "Wellness", "Timber"],
     "gallery": [
       "https://picsum.photos/800/600?random=5",
@@ -31,11 +49,20 @@
   },
   {
     "id": "urban-compact-living",
-    "title": "Urban Compact Living",
+    "title": {
+      "en": "Urban Compact Living",
+      "sv": "Urbant Kompakt Boende"
+    },
     "year": "2023",
-    "description": "An innovative approach to small-space living in urban environments. This project demonstrates how intelligent design can maximize functionality without compromising on aesthetics. Multi-functional furniture, hidden storage solutions, and carefully planned sight lines create a sense of spaciousness within a compact footprint. The neutral color palette and natural materials enhance the feeling of calm and order.",
+    "description": {
+      "en": "An innovative approach to small-space living in urban environments. This project demonstrates how intelligent design can maximize functionality without compromising on aesthetics. Multi-functional furniture, hidden storage solutions, and carefully planned sight lines create a sense of spaciousness within a compact footprint. The neutral color palette and natural materials enhance the feeling of calm and order.",
+      "sv": "En innovativ approach till småytesbostäder i urbana miljöer. Detta projekt visar hur intelligent design kan maximera funktionalitet utan att kompromissa med estetiken. Multifunktionella möbler, dolda förvaringslösningar och noggrant planerade siktlinjer skapar en känsla av rymlighet inom ett kompakt fotavtryck. Den neutrala färgpaletten och naturliga materialen förstärker känslan av lugn och ordning."
+    },
     "mainImage": "https://picsum.photos/800/600?random=9",
-    "altText": "Compact urban apartment interior with multi-functional furniture and clean white surfaces",
+    "altText": {
+      "en": "Compact urban apartment interior with multi-functional furniture and clean white surfaces",
+      "sv": "Kompakt urban lägenhet interiör med multifunktionella möbler och rena vita ytor"
+    },
     "tags": ["Residential", "Urban", "Compact"],
     "gallery": [
       "https://picsum.photos/800/600?random=9",
@@ -46,11 +73,20 @@
   },
   {
     "id": "sustainable-office-complex",
-    "title": "Sustainable Office Complex",
+    "title": {
+      "en": "Sustainable Office Complex",
+      "sv": "Hållbart Kontorskomplex"
+    },
     "year": "2024",
-    "description": "A forward-thinking office development that prioritizes environmental responsibility and employee well-being. The building features green roofs, rainwater harvesting systems, and energy-efficient facades that respond to seasonal changes. Open-plan spaces are balanced with quiet zones and collaborative areas, all designed to foster creativity and productivity while maintaining a strong connection to nature.",
+    "description": {
+      "en": "A forward-thinking office development that prioritizes environmental responsibility and employee well-being. The building features green roofs, rainwater harvesting systems, and energy-efficient facades that respond to seasonal changes. Open-plan spaces are balanced with quiet zones and collaborative areas, all designed to foster creativity and productivity while maintaining a strong connection to nature.",
+      "sv": "En framsynt kontorsutveckling som prioriterar miljöansvar och medarbetarnas välbefinnande. Byggnaden har gröna tak, regnvattenuppsamlingssystem och energieffektiva fasader som reagerar på säsongsförändringar. Öppna planlösningar balanseras med tysta zoner och samarbetsområden, alla designade för att främja kreativitet och produktivitet samtidigt som en stark koppling till naturen bibehålls."
+    },
     "mainImage": "https://picsum.photos/800/600?random=13",
-    "altText": "Modern office building with green roof and sustainable facade featuring solar panels and natural ventilation",
+    "altText": {
+      "en": "Modern office building with green roof and sustainable facade featuring solar panels and natural ventilation",
+      "sv": "Modern kontorsbyggnad med grönt tak och hållbar fasad med solpaneler och naturlig ventilation"
+    },
     "tags": ["Commercial", "Sustainable", "Modern"],
     "gallery": [
       "https://picsum.photos/800/600?random=13",
