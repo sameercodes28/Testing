@@ -1,7 +1,8 @@
 /**
  * Karin Gunnerek Portfolio - JavaScript
- * Handles navigation, project loading, and modal interactions
- * with full accessibility support and error handling
+ * Handles navigation, project loading, modal interactions, multi-language system,
+ * load more pagination, image carousel, scroll animations, back-to-top functionality,
+ * and cookie consent system with full accessibility support and error handling
  */
 
 (function() {
@@ -233,7 +234,27 @@
   }
 
   /**
-   * Load projects from JSON file
+   * Load translations from JSON file for multi-language support
+   * @returns {Promise<void>} - Promise that resolves when translations are loaded
+   */
+  async function loadTranslations() {
+    try {
+      const response = await fetch('ui-strings.json');
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      translations = await response.json();
+      
+    } catch (error) {
+      console.error('Error loading translations:', error);
+      translations = {}; // Fallback to empty object
+    }
+  }
+
+  /**
+   * Load projects from JSON file with pagination support
    */
   async function loadProjects() {
     try {
@@ -359,7 +380,7 @@
   function appendProjects() {
     if (!elements.projectsGrid || !projects.length) return;
     
-    const startIndex = visibleProjectsCount - projectsIncrement;
+    const startIndex = Math.max(0, visibleProjectsCount - projectsIncrement);
     const endIndex = visibleProjectsCount;
     const newProjects = projects.slice(startIndex, endIndex);
     
@@ -391,13 +412,26 @@
   }
 
   /**
-   * Set up event listeners for project cards
+   * Set up event listeners for project cards using event delegation
+   * Uses event delegation pattern for better performance with dynamic content
    */
   function setupProjectCardListeners() {
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-      card.addEventListener('click', handleProjectCardClick);
-    });
+    // Use event delegation for better performance
+    if (elements.projectsGrid) {
+      elements.projectsGrid.removeEventListener('click', handleProjectGridClick);
+      elements.projectsGrid.addEventListener('click', handleProjectGridClick);
+    }
+  }
+
+  /**
+   * Handle clicks on project grid using event delegation
+   * @param {Event} event - Click event
+   */
+  function handleProjectGridClick(event) {
+    const projectCard = event.target.closest('.project-card');
+    if (projectCard) {
+      handleProjectCardClick({ currentTarget: projectCard });
+    }
   }
 
   /**
@@ -415,6 +449,7 @@
 
   /**
    * Open modal with project details
+   * Uses full-screen on mobile devices and centered overlay on desktop
    * @param {Object} project - Project data
    */
   function openModal(project) {
@@ -537,7 +572,7 @@
    * @param {Object} project - Project data
    */
   function initializeCarousel(project) {
-    if (!project.gallery || !project.gallery.length) return;
+    if (!project.gallery?.length) return;
     
     // Set initial image
     updateCarouselImage();
@@ -551,7 +586,7 @@
    * @param {number} direction - Direction to navigate (-1 for previous, 1 for next)
    */
   function navigateCarousel(direction) {
-    if (!currentProject || !currentProject.gallery || !currentProject.gallery.length) return;
+    if (!currentProject?.gallery?.length) return;
     
     const totalImages = currentProject.gallery.length;
     currentImageIndex = (currentImageIndex + direction + totalImages) % totalImages;
@@ -844,7 +879,7 @@
   function getLocalizedText(textObj) {
     if (typeof textObj === 'string') return textObj;
     if (typeof textObj === 'object' && textObj !== null) {
-      return textObj[currentLanguage] || textObj['en'] || '';
+      return textObj[currentLanguage] ?? textObj['en'] ?? '';
     }
     return '';
   }
@@ -871,6 +906,7 @@
 
   /**
    * Update all page content based on current language
+   * Updates i18n elements, aria labels, language toggle, projects grid, and modal content
    */
   function renderPage() {
     // Update all elements with data-i18n-key attributes

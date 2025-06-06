@@ -149,6 +149,10 @@ body {
   padding: 0 var(--space-md);
 }
 
+.main-content {
+  padding-top: var(--nav-height);
+}
+
 @media (min-width: 768px) {
   .container {
     padding: 0 var(--space-lg);
@@ -391,7 +395,8 @@ body {
 }
 
 /* ==========================================================================
-   Load More Button
+   Load More Button - Pagination System
+   Handles progressive loading of projects with responsive increments
    ========================================================================== */
 
 .load-more__container {
@@ -501,7 +506,9 @@ body {
 }
 
 /* ==========================================================================
-   Modal
+   Modal - Cross-Device System
+   Desktop: Centered overlay with backdrop blur
+   Mobile: Full-screen experience for better usability
    ========================================================================== */
 
 .modal {
@@ -818,7 +825,8 @@ body {
 }
 
 /* ==========================================================================
-   Responsive Design
+   Mobile-First Responsive Design
+   Mobile styles are defined first, then enhanced for larger screens
    ========================================================================== */
 
 @media (max-width: 767px) {
@@ -908,7 +916,8 @@ body {
 }
 
 /* ==========================================================================
-   Scroll Animations
+   Scroll Animations - Intersection Observer Based
+   Fade-in animations triggered by viewport intersection
    ========================================================================== */
 
 section {

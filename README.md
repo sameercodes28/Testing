@@ -2,7 +2,9 @@
 
 ## Overview
 
-A professional, bilingual (Swedish/English), single-page portfolio website showcasing the architectural work of Karin Gunnerek. The site features a data-driven project gallery, advanced UX features including smooth animations and modal interactions, multi-language support with Swedish as the default, and an integrated Calendly booking system. Built with modern web standards and optimized for performance, accessibility, and mobile devices.
+A professional, bilingual (Swedish/English), single-page portfolio website showcasing the architectural work of Karin Gunnerek. The site features a data-driven project gallery, advanced UX features including smooth animations and modal interactions, multi-language support with Swedish as the default, load more pagination, cross-device modal system, and an integrated Calendly booking system. Built with modern web standards and optimized for performance, accessibility, and mobile devices.
+
+**Live Site:** [karingunnerek.se](https://karingunnerek.se) *(when deployed)*
 
 ## Tech Stack
 
@@ -12,6 +14,17 @@ A professional, bilingual (Swedish/English), single-page portfolio website showc
 - **JSON** - Data-driven content management
 - **Calendly** - Integrated booking system
 - **GitHub Pages** - Hosting and deployment
+
+## Key Features
+
+✅ **Multi-Language Support** - Swedish (default) and English with localStorage persistence  
+✅ **Load More Pagination** - Progressive project loading for better performance  
+✅ **Cross-Device Modal System** - Centered on desktop, full-screen on mobile  
+✅ **Image Carousel** - Gallery navigation with keyboard support  
+✅ **Scroll Animations** - Intersection Observer-based fade-in effects  
+✅ **Mobile-First Design** - Optimized for all device sizes  
+✅ **Accessibility Compliant** - WCAG 2.1 AA standards with full keyboard navigation  
+✅ **Performance Optimized** - Lazy loading, minified assets, and efficient DOM manipulation  
 
 ## Content Management Guide
 
@@ -57,12 +70,31 @@ All projects are managed in the `projects.json` file. To add a new project:
 - The `gallery` array contains all images shown in the project modal
 - Add a comma after the previous project's closing `}` when adding a new project
 
+### How to Update UI Text and Translations
+
+All interface text is managed in the `ui-strings.json` file:
+
+1. Open `ui-strings.json`
+2. Find the section you want to modify (navigation, sections, modal, footer, etc.)
+3. Update the English and Swedish text for the desired keys
+
+```json
+{
+  "navigation": {
+    "projects": {
+      "en": "Projects",
+      "sv": "Projekt"
+    }
+  }
+}
+```
+
 ### How to Change Images
 
 #### Hero Image
 The hero background image is controlled in the `style.css` file:
 1. Open `style.css`
-2. Find the `.hero__background` class (around line 280)
+2. Find the `.hero__background` class (around line 282)
 3. Change the `background-image: url('...')` property to your new image path
 
 ```css
@@ -74,7 +106,7 @@ The hero background image is controlled in the `style.css` file:
 #### About Me Photo
 The profile photo is in the `index.html` file:
 1. Open `index.html`
-2. Find the "About" section (around line 157)
+2. Find the "About" section (around line 154)
 3. Change the `src` attribute of the `<img>` tag with class `about__headshot`
 
 ```html
@@ -118,7 +150,7 @@ The booking system is powered by Calendly and embedded in the website:
 
 1. **To change the calendar settings:** Log into your Calendly account at [calendly.com](https://calendly.com)
 2. **If the event URL changes:** Update the embed code in `index.html`
-   - Find the `calendly-widget` div (around line 177)
+   - Find the `calendly-widget` div (around line 180)
    - Replace the `data-url` attribute with your new Calendly event URL
 
 ```html
@@ -192,50 +224,51 @@ git commit -m "Fix mobile navigation spacing issue"
 git push
 ```
 
-## Recent Updates & Improvements
+## Performance Features
 
-### Version 1.1 - Mobile & Modal Enhancements (January 2025)
+### Load More Pagination
+- **Desktop:** Shows 9 projects initially, loads 9 more each time
+- **Mobile:** Shows 4 projects initially, loads 4 more each time
+- **Auto-hide:** Button disappears when all projects are loaded
+- **Progressive enhancement:** Works without JavaScript (shows all projects)
 
-This update includes comprehensive improvements to mobile experience and modal functionality:
+### Image Optimization
+- **Lazy loading:** Images load only when entering viewport
+- **Responsive images:** Optimized sizing for different screen sizes
+- **Format optimization:** WebP preferred, JPEG fallback
 
-#### Mobile Navigation Optimizations
-- **Reduced spacing:** Navigation items now use `var(--space-xs)` gap for better fit
-- **Compact CTA button:** Reduced padding to `var(--space-xs) 0.75rem` to prevent cutoff
-- **Optimized typography:** Font sizes reduced to `0.85rem` for links, `1rem` for logo
-- **Solid background:** Opaque navigation bar on mobile for better readability
+### Cross-Device Modal System
+- **Desktop:** Centered modal with backdrop blur (900px max-width)
+- **Mobile:** Full-screen modal with app-like interface
+- **Accessibility:** Focus trapping, keyboard navigation, screen reader support
+- **Performance:** Scroll lock prevents body scrolling
 
-#### Project Modal System
-- **Cross-device compatibility:** Perfect centering on desktop, full-screen on mobile
-- **Desktop experience:** Flexbox-centered modal with 900px max-width and 90vh max-height
-- **Mobile experience:** Full-screen modal with app-like interface and sticky header
-- **Scroll lock:** Robust body scroll prevention using class-based system (`body.modal-open`)
-- **Smooth transitions:** Enhanced animations and focus management
+## Accessibility Features
 
-#### Load More Pagination
-- **Performance optimization:** Initial load shows 9 projects on desktop, 4 on mobile
-- **Progressive loading:** Smooth content addition without full page re-render
-- **Responsive design:** Different increment sizes based on device type
-- **Smart button management:** Auto-hide when all projects loaded
+### Keyboard Navigation
+- **Tab navigation:** All interactive elements accessible via keyboard
+- **Modal focus trapping:** Focus stays within modal when open
+- **Skip links:** Jump to main content for screen readers
+- **Arrow key navigation:** Carousel images can be navigated with left/right arrows
 
-#### Hero Section Adjustments
-- **Desktop optimization:** Reduced height from 100vh to 65vh for better content balance
-- **Mobile optimization:** Maintained 60vh height for optimal mobile experience
-- **Improved proportions:** More content visible above the fold on larger screens
+### Screen Reader Support
+- **Semantic HTML:** Proper heading structure and landmark roles
+- **ARIA labels:** Descriptive labels for interactive elements
+- **Alt text:** All images have descriptive alternative text
+- **Language attributes:** Proper language switching support
 
-#### Profile Photo Enhancements
-- **Mobile circular design:** 150px circular profile photo on mobile devices
-- **Responsive sizing:** Maintains large rectangular image on desktop
-- **Quality preservation:** Added `object-fit: cover` to prevent distortion
+### Visual Accessibility
+- **High contrast:** Colors meet WCAG AA standards
+- **Scalable text:** Layout adapts to user font size preferences
+- **Focus indicators:** Clear visual focus states for all interactive elements
+- **Reduced motion:** Respects user's motion preferences
 
-#### Back to Top Button
-- **Smart positioning:** Auto-adjusts position when footer is visible
-- **Mobile optimization:** Moves 90px upward when footer enters viewport
-- **Smooth animations:** Enhanced transitions with proper transform properties
+## Browser Compatibility
 
-#### Active Navigation States
-- **CTA button protection:** Active state styling excludes call-to-action button
-- **Text visibility:** "Book a Consultation" button text always remains visible
-- **Professional highlighting:** Only standard navigation links change color when active
+- **Modern browsers:** Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- **Mobile browsers:** iOS Safari 14+, Chrome Mobile 90+
+- **Graceful degradation:** Core functionality works in older browsers
+- **Progressive enhancement:** Advanced features enhance experience in modern browsers
 
 ## Core Architectural Principles
 
@@ -259,9 +292,10 @@ This update includes comprehensive improvements to mobile experience and modal f
 - **Target:** Lighthouse scores >95 in all categories (Performance, Accessibility, Best Practices, SEO)
 - **Optimization techniques:**
   - Image lazy loading with `loading="lazy"`
-  - Pagination system for large project collections
-  - Efficient DOM manipulation and event handling
+  - Load more pagination system for large project collections
+  - Efficient DOM manipulation and event delegation
   - Progressive enhancement approach
+  - Minified CSS and JavaScript assets
   - Compressed images and optimized file formats
 
 ### Accessibility (WCAG 2.1 AA)
@@ -289,7 +323,7 @@ This update includes comprehensive improvements to mobile experience and modal f
 - **Error handling:** Graceful degradation for missing content or failed requests
 - **Browser compatibility:** Modern standards with progressive enhancement
 - **Mobile-first responsive design:** Optimized for all device sizes
-- **Class-based state management:** Clean CSS architecture with semantic class names
+- **Event delegation:** Efficient event handling for dynamic content
 
 ### Multi-Language Support
 - **Swedish default:** Primary language for target audience
@@ -301,20 +335,29 @@ This update includes comprehensive improvements to mobile experience and modal f
 
 ### Modal System Architecture
 - **Responsive design:** Desktop-centered vs mobile full-screen approach
-- **Class-based scroll lock:** Robust body scroll prevention system
+- **Scroll lock:** Robust body scroll prevention system
 - **Focus management:** Proper keyboard navigation and focus trapping
 - **Sticky headers:** Mobile modal headers remain visible during scrolling
 - **Image galleries:** Smooth carousel navigation with keyboard support
+- **Cross-device optimization:** Different interaction patterns for desktop and mobile
 
 ---
 
-**Last Updated:** January 2025
-**Version:** 1.1 - Mobile & Modal Enhancements
+**Last Updated:** January 2025  
+**Version:** 2.0 - Production Ready  
 **Maintained by:** Karin Gunnerek Architecture
 
-### Changelog
+## Changelog
 
-#### Version 1.1 (January 2025)
+### Version 2.0 (January 2025) - Production Ready
+- ✅ Complete HTML validation and accessibility improvements
+- ✅ Modern ES6+ JavaScript with event delegation and optional chaining
+- ✅ Updated comprehensive documentation and code comments
+- ✅ Minified production assets for optimal performance
+- ✅ Cross-browser compatibility improvements
+- ✅ Final production-ready optimization pass
+
+### Version 1.1 (January 2025) - Mobile & Modal Enhancements
 - ✅ Comprehensive mobile navigation optimizations
 - ✅ Cross-device modal system with desktop centering and mobile full-screen
 - ✅ Load More pagination for better performance
@@ -325,7 +368,7 @@ This update includes comprehensive improvements to mobile experience and modal f
 - ✅ Enhanced accessibility and keyboard navigation
 - ✅ Robust scroll lock system for modals
 
-#### Version 1.0 (December 2024)
+### Version 1.0 (December 2024) - Initial Release
 - ✅ Initial bilingual portfolio website
 - ✅ Data-driven project management system
 - ✅ Multi-language support (Swedish/English)
@@ -333,3 +376,11 @@ This update includes comprehensive improvements to mobile experience and modal f
 - ✅ Core accessibility features (WCAG 2.1 AA)
 - ✅ Performance optimizations (Lighthouse >95)
 - ✅ GDPR-compliant cookie system
+
+## Support
+
+For technical support or questions about this website:
+- **Documentation:** This README file contains comprehensive guidance
+- **Issues:** Contact the developer for any technical problems
+- **Content Updates:** Follow the Content Management Guide above
+- **Legal Pages:** Consult with legal professionals for privacy policy and terms of service updates
