@@ -872,6 +872,7 @@ body {
   
   .modal {
     padding: 0;
+    display: block;
   }
   
   .modal__content {
