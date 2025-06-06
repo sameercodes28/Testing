@@ -820,11 +820,19 @@ body {
 
 @media (max-width: 767px) {
   .nav__menu {
-    gap: var(--space-sm);
+    gap: var(--space-xs);
   }
   
   .nav__link--cta {
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--space-xs) 0.75rem;
+  }
+  
+  .nav__link {
+    font-size: 0.85rem;
+  }
+  
+  .nav__logo {
+    font-size: 1rem;
   }
   
   .nav {
