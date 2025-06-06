@@ -191,6 +191,7 @@ body {
 .nav__logo {
   color: var(--color-primary);
   text-decoration: none;
+  font-size: 1rem;
   font-weight: var(--font-weight-medium);
   transition: opacity var(--transition-fast);
   display: flex;
