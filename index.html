@@ -41,6 +41,57 @@
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
   
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://karingunnerek.se/#person",
+        "name": "Karin Gunnerek",
+        "jobTitle": "Architect",
+        "description": "Stockholm-based architect renowned for minimalist aesthetic and commitment to sustainable, human-centric design.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Skövde",
+          "addressCountry": "Sweden"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Karin Gunnerek Architecture",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Skövde",
+            "addressCountry": "Sweden"
+          }
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "KTH School of Architecture"
+        },
+        "knowsAbout": ["Architecture", "Sustainable Design", "Minimalist Design", "Residential Architecture", "Commercial Architecture"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://karingunnerek.se/#website",
+        "url": "https://karingunnerek.se/",
+        "name": "Karin Gunnerek | Architect Portfolio",
+        "description": "Portfolio website showcasing the architectural work of Karin Gunnerek, a Skövde-based architect specializing in minimalist, sustainable design.",
+        "author": {
+          "@id": "https://karingunnerek.se/#person"
+        },
+        "inLanguage": "en-SE",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://karingunnerek.se/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+  
   <!-- Google Analytics placeholder -->
   <!-- TODO: Add Google Analytics tracking code here -->
 </head>
@@ -148,14 +199,26 @@
       </header>
       
       <div class="modal__body">
-        <div class="modal__image">
-          <img id="modal-image" src="" alt="" loading="lazy" width="800" height="600">
-        </div>
         <div class="modal__details">
           <p id="modal-year" class="modal__year"></p>
-          <div id="modal-tags" class="modal__tags"></div>
           <p id="modal-description" class="modal__description"></p>
-          <div id="modal-gallery" class="modal__gallery"></div>
+        </div>
+        
+        <div class="carousel-container">
+          <div class="carousel-main-image">
+            <img id="carousel-image" src="" alt="" loading="lazy" width="800" height="600">
+            <button class="carousel-btn carousel-btn--prev" aria-label="Previous image">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <button class="carousel-btn carousel-btn--next" aria-label="Next image">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+          <div class="carousel-dots" id="carousel-dots"></div>
         </div>
       </div>
     </div>
@@ -173,6 +236,24 @@
       </div>
     </div>
   </footer>
+  
+  <!-- Back to Top Button -->
+  <button id="back-to-top-btn" aria-label="Back to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+  
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-consent-banner">
+    <div class="cookie-banner__content">
+      <p class="cookie-banner__text">
+        This website uses cookies to analyze site usage and improve your experience. 
+        <a href="privacy.html" class="cookie-banner__link">Learn more in our Privacy Policy</a>.
+      </p>
+      <button id="cookie-accept-btn" class="cookie-banner__accept">Accept</button>
+    </div>
+  </div>
   
   <!-- Scripts -->
   <script src="script.js" defer></script>

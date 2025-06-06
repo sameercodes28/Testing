@@ -11,6 +11,8 @@
   let projects = [];
   let focusableElements = [];
   let lastFocusedElement = null;
+  let currentProject = null;
+  let currentImageIndex = 0;
 
   // DOM element references (cached for performance)
   const elements = {
@@ -44,11 +46,18 @@
     elements.modalTitle = document.getElementById('modal-title');
     elements.modalImage = document.getElementById('modal-image');
     elements.modalYear = document.getElementById('modal-year');
-    elements.modalTags = document.getElementById('modal-tags');
     elements.modalDescription = document.getElementById('modal-description');
     elements.modalGallery = document.getElementById('modal-gallery');
     elements.closeButton = document.querySelector('[data-close-modal]');
     elements.navLinks = document.querySelectorAll('.nav__link');
+    elements.carouselImage = document.getElementById('carousel-image');
+    elements.carouselDots = document.getElementById('carousel-dots');
+    elements.carouselPrev = document.querySelector('.carousel-btn--prev');
+    elements.carouselNext = document.querySelector('.carousel-btn--next');
+    elements.backToTopBtn = document.getElementById('back-to-top-btn');
+    elements.footer = document.querySelector('.footer');
+    elements.cookieBanner = document.getElementById('cookie-consent-banner');
+    elements.cookieAcceptBtn = document.getElementById('cookie-accept-btn');
   }
 
   /**
@@ -63,6 +72,18 @@
     
     // Keyboard navigation
     setupKeyboardNavigation();
+    
+    // Scroll spy for active navigation
+    setupScrollSpyObserver();
+    
+    // Scroll animations
+    setupScrollAnimations();
+    
+    // Back to top button
+    setupBackToTopButton();
+    
+    // Cookie consent
+    setupCookieConsent();
   }
 
   /**
@@ -109,9 +130,17 @@
       elements.modal.addEventListener('click', handleModalBackdropClick);
     }
     
-    if (elements.modalGallery) {
-      // Handle thumbnail clicks using event delegation
-      elements.modalGallery.addEventListener('click', handleThumbnailClick);
+    // Carousel controls
+    if (elements.carouselPrev) {
+      elements.carouselPrev.addEventListener('click', () => navigateCarousel(-1));
+    }
+    
+    if (elements.carouselNext) {
+      elements.carouselNext.addEventListener('click', () => navigateCarousel(1));
+    }
+    
+    if (elements.carouselDots) {
+      elements.carouselDots.addEventListener('click', handleDotClick);
     }
   }
 
@@ -131,6 +160,21 @@
     if (event.key === 'Escape' && elements.modal && elements.modal.open) {
       closeModal();
       return;
+    }
+    
+    // Carousel navigation with arrow keys (only when modal is open)
+    if (elements.modal && elements.modal.open && currentProject) {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        navigateCarousel(-1);
+        return;
+      }
+      
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        navigateCarousel(1);
+        return;
+      }
     }
     
     // Tab trapping in modal
@@ -284,8 +328,15 @@
     // Store the currently focused element to restore later
     lastFocusedElement = document.activeElement;
     
+    // Store current project and reset image index
+    currentProject = project;
+    currentImageIndex = 0;
+    
     // Populate modal content
     populateModalContent(project);
+    
+    // Initialize carousel
+    initializeCarousel(project);
     
     // Show modal
     elements.modal.showModal();
@@ -312,37 +363,12 @@
       elements.modalTitle.textContent = project.title;
     }
     
-    if (elements.modalImage) {
-      elements.modalImage.src = project.mainImage;
-      elements.modalImage.alt = project.altText;
-    }
-    
     if (elements.modalYear) {
       elements.modalYear.textContent = project.year;
     }
     
-    if (elements.modalTags) {
-      const tagsHTML = project.tags.map(tag => 
-        `<span class="modal__tag">${escapeHtml(tag)}</span>`
-      ).join('');
-      elements.modalTags.innerHTML = tagsHTML;
-    }
-    
     if (elements.modalDescription) {
       elements.modalDescription.textContent = project.description;
-    }
-    
-    if (elements.modalGallery && project.gallery) {
-      const galleryHTML = project.gallery.map((imageUrl, index) => 
-        `<img src="${imageUrl}" 
-             alt="${project.title} - Image ${index + 1}"
-             loading="lazy"
-             width="200"
-             height="150"
-             class="${index === 0 ? 'active-thumbnail' : ''}"
-             style="cursor: pointer;">`
-      ).join('');
-      elements.modalGallery.innerHTML = galleryHTML;
     }
   }
 
@@ -359,8 +385,7 @@
       'input',
       'select',
       'textarea',
-      '[tabindex]:not([tabindex="-1"])',
-      'img[style*="cursor: pointer"]'
+      '[tabindex]:not([tabindex="-1"])'
     ];
     
     focusableElements = elements.modal.querySelectorAll(focusableSelectors.join(','));
@@ -375,6 +400,10 @@
     
     // Hide modal
     elements.modal.close();
+    
+    // Clear carousel state
+    currentProject = null;
+    currentImageIndex = 0;
     
     // Restore focus to the element that opened the modal
     if (lastFocusedElement) {
@@ -401,29 +430,88 @@
   }
 
   /**
-   * Handle thumbnail clicks in the modal gallery
+   * Initialize carousel with project images
+   * @param {Object} project - Project data
+   */
+  function initializeCarousel(project) {
+    if (!project.gallery || !project.gallery.length) return;
+    
+    // Set initial image
+    updateCarouselImage();
+    
+    // Generate dots
+    generateCarouselDots(project.gallery.length);
+  }
+
+  /**
+   * Navigate carousel in specified direction
+   * @param {number} direction - Direction to navigate (-1 for previous, 1 for next)
+   */
+  function navigateCarousel(direction) {
+    if (!currentProject || !currentProject.gallery || !currentProject.gallery.length) return;
+    
+    const totalImages = currentProject.gallery.length;
+    currentImageIndex = (currentImageIndex + direction + totalImages) % totalImages;
+    
+    updateCarouselImage();
+    updateCarouselDots();
+  }
+
+  /**
+   * Update the main carousel image
+   */
+  function updateCarouselImage() {
+    if (!currentProject || !elements.carouselImage) return;
+    
+    const imageUrl = currentProject.gallery[currentImageIndex];
+    elements.carouselImage.src = imageUrl;
+    elements.carouselImage.alt = `${currentProject.title} - Image ${currentImageIndex + 1}`;
+  }
+
+  /**
+   * Generate carousel dot indicators
+   * @param {number} totalImages - Number of images in the gallery
+   */
+  function generateCarouselDots(totalImages) {
+    if (!elements.carouselDots) return;
+    
+    const dotsHTML = Array.from({ length: totalImages }, (_, index) => 
+      `<button class="carousel-dot ${index === 0 ? 'active-dot' : ''}" 
+               data-index="${index}" 
+               aria-label="Go to image ${index + 1}"></button>`
+    ).join('');
+    
+    elements.carouselDots.innerHTML = dotsHTML;
+  }
+
+  /**
+   * Update active state of carousel dots
+   */
+  function updateCarouselDots() {
+    if (!elements.carouselDots) return;
+    
+    const dots = elements.carouselDots.querySelectorAll('.carousel-dot');
+    dots.forEach((dot, index) => {
+      if (index === currentImageIndex) {
+        dot.classList.add('active-dot');
+      } else {
+        dot.classList.remove('active-dot');
+      }
+    });
+  }
+
+  /**
+   * Handle clicks on carousel dots
    * @param {Event} event - Click event
    */
-  function handleThumbnailClick(event) {
-    // Check if the clicked element is an image
-    if (event.target.tagName === 'IMG') {
-      const clickedThumbnail = event.target;
-      const newImageSrc = clickedThumbnail.src;
-      
-      // Update the main modal image
-      if (elements.modalImage) {
-        elements.modalImage.src = newImageSrc;
-        elements.modalImage.alt = clickedThumbnail.alt;
+  function handleDotClick(event) {
+    if (event.target.classList.contains('carousel-dot')) {
+      const index = parseInt(event.target.getAttribute('data-index'), 10);
+      if (!isNaN(index)) {
+        currentImageIndex = index;
+        updateCarouselImage();
+        updateCarouselDots();
       }
-      
-      // Remove active class from all thumbnails
-      const allThumbnails = elements.modalGallery.querySelectorAll('img');
-      allThumbnails.forEach(thumbnail => {
-        thumbnail.classList.remove('active-thumbnail');
-      });
-      
-      // Add active class to clicked thumbnail
-      clickedThumbnail.classList.add('active-thumbnail');
     }
   }
 
@@ -465,6 +553,160 @@
     if (elements.projectsGrid) {
       elements.projectsGrid.appendChild(fallbackMessage);
     }
+  }
+
+  /**
+   * Set up scroll spy observer for active navigation highlighting
+   */
+  function setupScrollSpyObserver() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav__link');
+    
+    if (!sections.length || !navLinks.length) return;
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          
+          // Remove active class from all nav links
+          navLinks.forEach(link => {
+            link.classList.remove('active-nav-link');
+          });
+          
+          // Add active class to corresponding nav link
+          const activeLink = document.querySelector(`.nav__link[href="#${sectionId}"]`);
+          if (activeLink) {
+            activeLink.classList.add('active-nav-link');
+          }
+        }
+      });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  }
+
+  /**
+   * Set up scroll animations with intersection observer
+   */
+  function setupScrollAnimations() {
+    const animatedSections = document.querySelectorAll('section');
+    
+    if (!animatedSections.length) return;
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -10% 0px',
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // Stop observing once animated to prevent re-animation on scroll up
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    animatedSections.forEach(section => {
+      observer.observe(section);
+    });
+  }
+
+  /**
+   * Set up back to top button functionality
+   */
+  function setupBackToTopButton() {
+    if (!elements.backToTopBtn || !elements.footer) return;
+    
+    // Set up intersection observer for footer
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          elements.backToTopBtn.classList.add('is-visible');
+        } else {
+          elements.backToTopBtn.classList.remove('is-visible');
+        }
+      });
+    }, observerOptions);
+    
+    observer.observe(elements.footer);
+    
+    // Add click handler for scroll to top
+    elements.backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  /**
+   * Set up cookie consent functionality
+   */
+  function setupCookieConsent() {
+    if (!elements.cookieBanner || !elements.cookieAcceptBtn) return;
+    
+    // Check if consent cookie exists
+    const consentCookie = getCookie('karin_cookie_consent');
+    
+    if (!consentCookie) {
+      // Show banner if no consent cookie
+      setTimeout(() => {
+        elements.cookieBanner.classList.add('is-visible');
+      }, 1000); // Delay for better UX
+    }
+    
+    // Handle accept button click
+    elements.cookieAcceptBtn.addEventListener('click', () => {
+      // Set consent cookie for 365 days
+      setCookie('karin_cookie_consent', 'true', 365);
+      
+      // Hide banner
+      elements.cookieBanner.classList.remove('is-visible');
+    });
+  }
+
+  /**
+   * Get cookie value by name
+   * @param {string} name - Cookie name
+   * @returns {string|null} - Cookie value or null if not found
+   */
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return parts.pop().split(';').shift();
+    }
+    return null;
+  }
+
+  /**
+   * Set cookie with name, value, and expiry days
+   * @param {string} name - Cookie name
+   * @param {string} value - Cookie value
+   * @param {number} days - Expiry in days
+   */
+  function setCookie(name, value, days) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
   }
 
   /**
