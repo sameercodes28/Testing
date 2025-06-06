@@ -255,7 +255,7 @@ body {
   color: white;
 }
 
-.active-nav-link {
+.nav__link.active-nav-link:not(.nav__link--cta) {
   color: var(--color-accent) !important;
 }
 
@@ -830,6 +830,11 @@ body {
     padding: var(--space-xs) var(--space-sm);
   }
   
+  .nav {
+    background: var(--color-background);
+    backdrop-filter: none;
+  }
+  
   .hero {
     height: 60vh;
   }
@@ -946,7 +951,7 @@ section.is-visible {
 }
 
 #back-to-top-btn.is-above-footer {
-  transform: translateY(-70px);
+  transform: translateY(-90px);
 }
 
 /* ==========================================================================
