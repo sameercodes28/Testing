@@ -447,6 +447,9 @@
     // Hide page content from screen readers
     document.body.setAttribute('aria-hidden', 'true');
     elements.modal.removeAttribute('aria-hidden');
+    
+    // Prevent body scroll on mobile
+    document.body.style.overflow = 'hidden';
   }
 
   /**
@@ -509,6 +512,9 @@
     // Restore page content for screen readers
     document.body.removeAttribute('aria-hidden');
     elements.modal.setAttribute('aria-hidden', 'true');
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
     
     // Clear focus trapping
     focusableElements = [];

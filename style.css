@@ -823,7 +823,23 @@ body {
 
 @media (max-width: 767px) {
   .nav__menu {
-    gap: var(--space-md);
+    gap: var(--space-sm);
+  }
+  
+  .nav__link--cta {
+    padding: var(--space-xs) var(--space-sm);
+  }
+  
+  .projects {
+    padding: var(--space-2xl) 0;
+  }
+  
+  .about {
+    padding: var(--space-2xl) 0;
+  }
+  
+  .booking {
+    padding: var(--space-2xl) 0;
   }
   
   .hero__background {
@@ -836,6 +852,8 @@ body {
   
   .modal__content {
     max-height: 95vh;
+    width: 90vw;
+    margin: auto;
   }
   
   .modal__header,
