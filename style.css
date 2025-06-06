@@ -830,6 +830,10 @@ body {
     padding: var(--space-xs) var(--space-sm);
   }
   
+  .hero {
+    height: 60vh;
+  }
+  
   .projects {
     padding: var(--space-2xl) 0;
   }
@@ -839,7 +843,8 @@ body {
   }
   
   .booking {
-    padding: var(--space-2xl) 0;
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-xl);
   }
   
   .hero__background {
