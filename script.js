@@ -748,8 +748,10 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           elements.backToTopBtn.classList.add('is-visible');
+          elements.backToTopBtn.classList.add('is-above-footer');
         } else {
           elements.backToTopBtn.classList.remove('is-visible');
+          elements.backToTopBtn.classList.remove('is-above-footer');
         }
       });
     }, observerOptions);

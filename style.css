@@ -945,6 +945,10 @@ section.is-visible {
   outline-offset: 2px;
 }
 
+#back-to-top-btn.is-above-footer {
+  transform: translateY(-70px);
+}
+
 /* ==========================================================================
    Cookie Consent Banner
    ========================================================================== */
