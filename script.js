@@ -434,6 +434,7 @@
     initializeCarousel(project);
     
     // Show modal
+    document.body.classList.add('modal-open');
     elements.modal.showModal();
     
     // Set up focus trapping
@@ -497,6 +498,7 @@
     if (!elements.modal) return;
     
     // Hide modal
+    document.body.classList.remove('modal-open');
     elements.modal.close();
     
     // Clear carousel state
