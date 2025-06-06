@@ -29,7 +29,7 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   
   <!-- Content Security Policy -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://picsum.photos data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' *.picsum.photos data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self';">
   
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,8 +83,7 @@
         <!-- Background image placeholder - will be styled via CSS -->
       </div>
       <div class="hero__content">
-        <h1 id="hero-title" class="hero__title">Karin Gunnerek</h1>
-        <p class="hero__subtitle">Architect</p>
+        <h1 id="hero-title" class="hero__title">We design spaces that are not only seen, but felt.</h1>
       </div>
     </section>
     
@@ -103,6 +102,7 @@
       <div class="container">
         <div class="about__content">
           <div class="about__image">
+            <!-- CLIENT ACTION REQUIRED: Replace with final professional headshot image -->
             <img src="https://picsum.photos/400/500?random=100" 
                  alt="Professional headshot of Karin Gunnerek, architect" 
                  class="about__headshot"
@@ -128,7 +128,7 @@
       <div class="container">
         <h2 id="booking-title" class="section__title">Book a Consultation</h2>
         <div id="calendly-widget" class="booking__widget">
-          <!-- Calendly embed code will be inserted here -->
+          <!-- CLIENT ACTION REQUIRED: Replace this placeholder with Calendly embed code -->
           <p class="booking__placeholder">Calendly widget will be embedded here</p>
         </div>
       </div>
@@ -160,6 +160,19 @@
       </div>
     </div>
   </dialog>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <p class="footer__copyright">© 2025 Karin Gunnerek. All rights reserved.</p>
+        <nav class="footer__nav" aria-label="Legal navigation">
+          <a href="privacy.html" class="footer__link">Privacy Policy</a>
+          <a href="terms.html" class="footer__link">Terms of Service</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
   
   <!-- Scripts -->
   <script src="script.js" defer></script>
