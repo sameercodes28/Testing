@@ -1010,48 +1010,23 @@
     });
   }
 
-  /**
-   * Set up hero audio toggle functionality
-   */
   function setupHeroAudioToggle() {
     if (!elements.heroAudioToggle || !elements.heroVideo) return;
-    
-    // Initialize with muted icon
-    updateAudioToggleIcon(true);
-    
+    updateAudioToggleIcon(elements.heroVideo.muted);
     elements.heroAudioToggle.addEventListener('click', () => {
-      // Toggle video muted state
       elements.heroVideo.muted = !elements.heroVideo.muted;
-      
-      // Update button icon and aria-label
       updateAudioToggleIcon(elements.heroVideo.muted);
     });
   }
 
-  /**
-   * Update the audio toggle button icon and accessibility label
-   * @param {boolean} isMuted - Whether the video is muted
-   */
   function updateAudioToggleIcon(isMuted) {
     if (!elements.heroAudioToggle) return;
-    
-    if (isMuted) {
-      // Muted icon (speaker with X)
-      elements.heroAudioToggle.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      `;
-      elements.heroAudioToggle.setAttribute('aria-label', 'Unmute video');
-    } else {
-      // Unmuted icon (speaker with sound waves)
-      elements.heroAudioToggle.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      `;
-      elements.heroAudioToggle.setAttribute('aria-label', 'Mute video');
-    }
+    const icon = isMuted ? 
+      `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>` : 
+      `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const label = isMuted ? 'Unmute video' : 'Mute video';
+    elements.heroAudioToggle.innerHTML = icon;
+    elements.heroAudioToggle.setAttribute('aria-label', label);
   }
 
   /**
