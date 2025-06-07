@@ -5,8 +5,8 @@
       "sv": "Projekt"
     },
     "about": {
-      "en": "About",
-      "sv": "Om mig"
+      "en": "About & Services",
+      "sv": "Om mig & Tjänster"
     },
     "booking": {
       "en": "Book a Consultation",
@@ -19,24 +19,24 @@
   },
   "sections": {
     "heroTitle": {
-      "en": "We design spaces that are not only seen, but felt.",
-      "sv": "Vi designar utrymmen som inte bara syns, utan känns."
+      "en": "Architecture in Skövde – Designing Sustainable Spaces",
+      "sv": "Arkitektur i Skövde – Designar Hållbara Utrymmen"
     },
     "projectsTitle": {
       "en": "Projects",
       "sv": "Projekt"
     },
     "aboutTitle": {
-      "en": "About",
-      "sv": "Om mig"
+      "en": "About & Services",
+      "sv": "Om mig & Tjänster"
     },
     "aboutBio1": {
-      "en": "Karin Gunnerek is a Stockholm-based architect renowned for her minimalist aesthetic and commitment to sustainable, human-centric design. After graduating with honors from the KTH School of Architecture, Karin founded her practice in 2015 with a vision to create spaces that blend functionality with quiet elegance.",
-      "sv": "Karin Gunnerek är en Stockholmsbaserad arkitekt känd för sin minimalistiska estetik och engagemang för hållbar, människocentrerad design. Efter att ha tagit examen med utmärkelser från KTH:s arkitekturskola grundade Karin sin praktik 2015 med en vision att skapa utrymmen som blandar funktionalitet med tyst elegans."
+      "en": "Karin Gunnerek is a Skövde-based architect specializing in sustainable design for residential and commercial projects across Västra Götaland. After graduating with honors from the KTH School of Architecture, Karin founded her practice in 2015 with a vision to create thoughtful spaces that harmonize with the local landscape and community needs.",
+      "sv": "Karin Gunnerek är en Skövde-baserad arkitekt som specialiserar sig på hållbar design för bostads- och kommersiella projekt över hela Västra Götaland. Efter att ha tagit examen med utmärkelser från KTH:s arkitekturskola grundade Karin sin praktik 2015 med en vision att skapa genomtänkta utrymmen som harmoniserar med det lokala landskapet och samhällets behov."
     },
     "aboutBio2": {
-      "en": "Her work has been featured in numerous design publications and is celebrated for its thoughtful use of natural light and materials. She believes that great architecture is a dialogue between the environment, the structure, and the inhabitants.",
-      "sv": "Hennes arbete har presenterats i många designpublikationer och hyllas för dess genomtänkta användning av naturligt ljus och material. Hon tror att stor arkitektur är en dialog mellan miljön, strukturen och invånarna."
+      "en": "Working closely with clients throughout Skaraborg and beyond, Karin's approach emphasizes sustainability, functionality, and connection to place. From initial concept development to building permits and project management, she guides each project with attention to environmental impact and long-term value.",
+      "sv": "Genom att arbeta nära kunder över hela Skaraborg och därutöver, betonar Karins tillvägagångssätt hållbarhet, funktionalitet och koppling till plats. Från första konceptutveckling till bygglov och projektledning vägleder hon varje projekt med uppmärksamhet på miljöpåverkan och långsiktigt värde."
     },
     "bookingTitle": {
       "en": "Book a Consultation",
@@ -45,6 +45,38 @@
     "bookingPlaceholder": {
       "en": "Calendly widget will be embedded here",
       "sv": "Calendly-widget kommer att bäddas in här"
+    },
+    "servicesTitle": {
+      "en": "Architectural Services",
+      "sv": "Arkitekttjänster"
+    },
+    "servicesIntro": {
+      "en": "Comprehensive architectural services for residential and commercial projects throughout Västra Götaland:",
+      "sv": "Omfattande arkitekttjänster för bostads- och kommersiella projekt över hela Västra Götaland:"
+    },
+    "serviceDesign": {
+      "en": "Concept Development & Design",
+      "sv": "Konceptutveckling & Design"
+    },
+    "serviceDesignDesc": {
+      "en": "From initial sketches to detailed architectural plans, creating spaces that reflect your vision while respecting local building traditions and environmental considerations.",
+      "sv": "Från första skisser till detaljerade arkitekturplaner, skapar utrymmen som speglar din vision samtidigt som de respekterar lokala byggnadstraditioner och miljöhänsyn."
+    },
+    "servicePermits": {
+      "en": "Building Permits & Documentation",
+      "sv": "Bygglov & Dokumentation"
+    },
+    "servicePermitsDesc": {
+      "en": "Complete building permit applications and construction documentation to ensure smooth project approval and execution.",
+      "sv": "Kompletta bygglovsansökningar och konstruktionsdokumentation för att säkerställa smidig projektgodkännande och genomförande."
+    },
+    "serviceManagement": {
+      "en": "Project Management",
+      "sv": "Projektledning"
+    },
+    "serviceManagementDesc": {
+      "en": "Coordinating with contractors, consultants, and local authorities to bring your architectural vision to life on time and within budget.",
+      "sv": "Koordinering med entreprenörer, konsulter och lokala myndigheter för att förverkliga din arkitektoniska vision i tid och inom budget."
     }
   },
   "modal": {

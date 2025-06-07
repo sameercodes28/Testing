@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-SE">
+<html lang="sv">
 <head>
   <!-- Character encoding and viewport -->
   <meta charset="UTF-8">
@@ -51,20 +51,39 @@
         "@id": "https://karingunnerek.se/#person",
         "name": "Karin Gunnerek",
         "jobTitle": "Architect",
-        "description": "Stockholm-based architect renowned for minimalist aesthetic and commitment to sustainable, human-centric design.",
+        "description": "Architect in Skövde specializing in sustainable design for residential and commercial projects across Västra Götaland.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Skövde",
+          "addressRegion": "Västra Götaland",
           "addressCountry": "Sweden"
         },
         "worksFor": {
           "@type": "Organization",
           "name": "Karin Gunnerek Architecture",
+          "@id": "https://karingunnerek.se/#organization",
+          "url": "https://karingunnerek.se/",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Skövde",
+            "addressRegion": "Västra Götaland",
             "addressCountry": "Sweden"
-          }
+          },
+          "areaServed": [
+            {
+              "@type": "Place",
+              "name": "Skövde"
+            },
+            {
+              "@type": "Place", 
+              "name": "Västra Götaland"
+            },
+            {
+              "@type": "Place",
+              "name": "Skaraborg"
+            }
+          ],
+          "serviceType": ["Architectural Design", "Building Permits", "Project Management", "Sustainable Architecture"]
         },
         "alumniOf": {
           "@type": "CollegeOrUniversity",
@@ -81,7 +100,7 @@
         "author": {
           "@id": "https://karingunnerek.se/#person"
         },
-        "inLanguage": "en-SE",
+        "inLanguage": "sv",
         "potentialAction": {
           "@type": "SearchAction",
           "target": "https://karingunnerek.se/?s={search_term_string}",
@@ -135,6 +154,7 @@
           </svg>
         </button>
       </div>
+      <h1 class="visually-hidden" data-i18n-key="sections.heroTitle">Architecture in Skövde – Designing Sustainable Spaces</h1>
     </section>
     
     <!-- Projects section -->
@@ -164,13 +184,33 @@
                  height="500">
           </div>
           <div class="about__text">
-            <h2 id="about-title" class="section__title" data-i18n-key="sections.aboutTitle">About</h2>
+            <h2 id="about-title" class="section__title" data-i18n-key="sections.aboutTitle">About & Services</h2>
             <p class="about__bio" data-i18n-key="sections.aboutBio1">
-              Karin Gunnerek is a Stockholm-based architect renowned for her minimalist aesthetic and commitment to sustainable, human-centric design. After graduating with honors from the KTH School of Architecture, Karin founded her practice in 2015 with a vision to create spaces that blend functionality with quiet elegance.
+              Karin Gunnerek is a Skövde-based architect specializing in sustainable design for residential and commercial projects across Västra Götaland. After graduating with honors from the KTH School of Architecture, Karin founded her practice in 2015 with a vision to create thoughtful spaces that harmonize with the local landscape and community needs.
             </p>
             <p class="about__bio" data-i18n-key="sections.aboutBio2">
-              Her work has been featured in numerous design publications and is celebrated for its thoughtful use of natural light and materials. She believes that great architecture is a dialogue between the environment, the structure, and the inhabitants.
+              Working closely with clients throughout Skaraborg and beyond, Karin's approach emphasizes sustainability, functionality, and connection to place. From initial concept development to building permits and project management, she guides each project with attention to environmental impact and long-term value.
             </p>
+            
+            <h3 class="services__title" data-i18n-key="sections.servicesTitle">Architectural Services</h3>
+            <p class="services__intro" data-i18n-key="sections.servicesIntro">Comprehensive architectural services for residential and commercial projects throughout Västra Götaland:</p>
+            
+            <div class="services__list">
+              <div class="service__item">
+                <h4 class="service__name" data-i18n-key="sections.serviceDesign">Concept Development & Design</h4>
+                <p class="service__description" data-i18n-key="sections.serviceDesignDesc">From initial sketches to detailed architectural plans, creating spaces that reflect your vision while respecting local building traditions and environmental considerations.</p>
+              </div>
+              
+              <div class="service__item">
+                <h4 class="service__name" data-i18n-key="sections.servicePermits">Building Permits & Documentation</h4>
+                <p class="service__description" data-i18n-key="sections.servicePermitsDesc">Complete building permit applications and construction documentation to ensure smooth project approval and execution.</p>
+              </div>
+              
+              <div class="service__item">
+                <h4 class="service__name" data-i18n-key="sections.serviceManagement">Project Management</h4>
+                <p class="service__description" data-i18n-key="sections.serviceManagementDesc">Coordinating with contractors, consultants, and local authorities to bring your architectural vision to life on time and within budget.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

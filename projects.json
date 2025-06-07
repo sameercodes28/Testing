@@ -1,98 +1,46 @@
 [
   {
-    "id": "serene-courtyard-house",
+    "id": "villa-sommaro-skovde",
     "title": {
-      "en": "Serene Courtyard House",
-      "sv": "Lugnt Innergårdshus"
-    },
-    "year": "2023",
-    "description": {
-      "en": "A minimalist residential project that seamlessly blends indoor and outdoor living spaces. The design features clean lines, natural materials, and abundant natural light flowing through strategically placed windows. The central courtyard serves as the heart of the home, creating a private sanctuary while maintaining visual connections throughout the living spaces.",
-      "sv": "Ett minimalistiskt bostadsprojekt som sömlöst blandar inne- och utemiljöer. Designen präglas av rena linjer, naturliga material och rikligt naturligt ljus som strömmar genom strategiskt placerade fönster. Den centrala innergården fungerar som hemmets hjärta och skapar en privat tillflyktsort samtidigt som visuella kopplingar bibehålls genom hela bostaden."
-    },
-    "mainImage": "https://picsum.photos/800/600?random=1",
-    "altText": {
-      "en": "Modern minimalist house with large glass windows and central courtyard featuring natural stone and wood materials",
-      "sv": "Modernt minimalistiskt hus med stora glasfönster och central innergård med natursten och trämaterial"
-    },
-    "tags": ["Residential", "Minimalist", "Sustainable"],
-    "gallery": [
-      "https://picsum.photos/800/600?random=1",
-      "https://picsum.photos/800/600?random=2",
-      "https://picsum.photos/800/600?random=3",
-      "https://picsum.photos/800/600?random=4"
-    ]
-  },
-  {
-    "id": "nordic-wellness-center",
-    "title": {
-      "en": "Nordic Wellness Center",
-      "sv": "Nordiskt Välmåendecenter"
-    },
-    "year": "2022",
-    "description": {
-      "en": "A contemporary wellness facility designed to promote holistic well-being through thoughtful spatial arrangements and natural material choices. The building incorporates sustainable design principles with extensive use of locally sourced timber and stone. Large skylights and floor-to-ceiling windows create a strong connection with the surrounding forest landscape.",
-      "sv": "En modern välmåendeanläggning designad för att främja holistiskt välbefinnande genom genomtänkta rumsarrangemang och naturliga materialval. Byggnaden inkorporerar hållbara designprinciper med omfattande användning av lokalt sourceat virke och sten. Stora takfönster och golvtak-fönster skapar en stark koppling till det omgivande skogslandskapet."
-    },
-    "mainImage": "https://picsum.photos/800/600?random=5",
-    "altText": {
-      "en": "Contemporary wellness center with timber facade and large windows overlooking forest landscape",
-      "sv": "Modernt välmåendecenter med träfasad och stora fönster som blickar ut över skogslandskap"
-    },
-    "tags": ["Commercial", "Wellness", "Timber"],
-    "gallery": [
-      "https://picsum.photos/800/600?random=5",
-      "https://picsum.photos/800/600?random=6",
-      "https://picsum.photos/800/600?random=7",
-      "https://picsum.photos/800/600?random=8"
-    ]
-  },
-  {
-    "id": "urban-compact-living",
-    "title": {
-      "en": "Urban Compact Living",
-      "sv": "Urbant Kompakt Boende"
-    },
-    "year": "2023",
-    "description": {
-      "en": "An innovative approach to small-space living in urban environments. This project demonstrates how intelligent design can maximize functionality without compromising on aesthetics. Multi-functional furniture, hidden storage solutions, and carefully planned sight lines create a sense of spaciousness within a compact footprint. The neutral color palette and natural materials enhance the feeling of calm and order.",
-      "sv": "En innovativ approach till småytesbostäder i urbana miljöer. Detta projekt visar hur intelligent design kan maximera funktionalitet utan att kompromissa med estetiken. Multifunktionella möbler, dolda förvaringslösningar och noggrant planerade siktlinjer skapar en känsla av rymlighet inom ett kompakt fotavtryck. Den neutrala färgpaletten och naturliga materialen förstärker känslan av lugn och ordning."
-    },
-    "mainImage": "https://picsum.photos/800/600?random=9",
-    "altText": {
-      "en": "Compact urban apartment interior with multi-functional furniture and clean white surfaces",
-      "sv": "Kompakt urban lägenhet interiör med multifunktionella möbler och rena vita ytor"
-    },
-    "tags": ["Residential", "Urban", "Compact"],
-    "gallery": [
-      "https://picsum.photos/800/600?random=9",
-      "https://picsum.photos/800/600?random=10",
-      "https://picsum.photos/800/600?random=11",
-      "https://picsum.photos/800/600?random=12"
-    ]
-  },
-  {
-    "id": "sustainable-office-complex",
-    "title": {
-      "en": "Sustainable Office Complex",
-      "sv": "Hållbart Kontorskomplex"
+      "en": "Villa Sommarro, Skövde",
+      "sv": "Villa Sommarro, Skövde"
     },
     "year": "2024",
     "description": {
-      "en": "A forward-thinking office development that prioritizes environmental responsibility and employee well-being. The building features green roofs, rainwater harvesting systems, and energy-efficient facades that respond to seasonal changes. Open-plan spaces are balanced with quiet zones and collaborative areas, all designed to foster creativity and productivity while maintaining a strong connection to nature.",
-      "sv": "En framsynt kontorsutveckling som prioriterar miljöansvar och medarbetarnas välbefinnande. Byggnaden har gröna tak, regnvattenuppsamlingssystem och energieffektiva fasader som reagerar på säsongsförändringar. Öppna planlösningar balanseras med tysta zoner och samarbetsområden, alla designade för att främja kreativitet och produktivitet samtidigt som en stark koppling till naturen bibehålls."
+      "en": "A new construction project for a private villa in the Sommarro area of Skövde. As an architect in Skövde, the focus was on sustainable materials and a design that harmonizes with the landscape of Västra Götaland. The process included everything from initial sketches to building permit drawings and construction management.",
+      "sv": "Ett nybyggnationsprojekt för en privat villa i området Sommarro, Skövde. Som arkitekt i Skövde låg fokus på hållbara material och en design som harmonierar med landskapet i Västra Götaland. Processen inkluderade allt från första skiss till bygglovsritningar och projektering."
     },
-    "mainImage": "https://picsum.photos/800/600?random=13",
+    "mainImage": "https://picsum.photos/800/600?random=1",
     "altText": {
-      "en": "Modern office building with green roof and sustainable facade featuring solar panels and natural ventilation",
-      "sv": "Modern kontorsbyggnad med grönt tak och hållbar fasad med solpaneler och naturlig ventilation"
+      "en": "Newly built modern villa in Skövde, designed by architect Karin Gunnerek.",
+      "sv": "Nybyggd modern villa i Skövde, ritad av arkitekt Karin Gunnerek."
     },
-    "tags": ["Commercial", "Sustainable", "Modern"],
+    "tags": ["Residential", "Villa", "Skövde", "Nybyggnation"],
     "gallery": [
-      "https://picsum.photos/800/600?random=13",
-      "https://picsum.photos/800/600?random=14",
-      "https://picsum.photos/800/600?random=15",
-      "https://picsum.photos/800/600?random=16"
+      "https://picsum.photos/800/600?random=1",
+      "https://picsum.photos/800/600?random=2"
+    ]
+  },
+  {
+    "id": "kanalparken-mariestad",
+    "title": {
+      "en": "Kanalparken Residential, Mariestad",
+      "sv": "Bostäder i Kanalparken, Mariestad"
+    },
+    "year": "2023",
+    "description": {
+      "en": "In collaboration with local property developers, this project involves designing new residential housing in the Kanalparken area of Mariestad. The architectural work focuses on creating attractive living spaces that contribute positively to the local community, a process I am passionate about. This is a great example of architectural work in the Skaraborg region.",
+      "sv": "I samarbete med lokala fastighetsutvecklare innefattar detta projekt ritningar för nya bostäder i Kanalparken i Mariestad. Det arkitektoniska arbetet fokuserar på att skapa attraktiva bostadsmiljöer som bidrar positivt till bygden, en process vi brinner för. Ett utmärkt exempel på arkitekturarbete i Skaraborgsregionen."
+    },
+    "mainImage": "https://picsum.photos/800/600?random=5",
+    "altText": {
+      "en": "Architectural drawing of new housing in Kanalparken, Mariestad.",
+      "sv": "Arkitektskiss av nya bostäder i Kanalparken, Mariestad."
+    },
+    "tags": ["Residential", "Mariestad", "Bostäder"],
+    "gallery": [
+      "https://picsum.photos/800/600?random=5",
+      "https://picsum.photos/800/600?random=6"
     ]
   }
 ]
