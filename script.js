@@ -1132,27 +1132,22 @@
   }
 
   /**
-   * Initialize application when DOM is ready
+   * Simplified and robust initialization.
+   * This ensures all code runs only after the HTML is fully parsed.
    */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', async function() {
-      if (isModernBrowser()) {
+  document.addEventListener('DOMContentLoaded', async () => {
+    if (isModernBrowser()) {
+      try {
         await loadTranslations();
         init();
-        renderPage(); // Render with current language
-      } else {
-        showBrowserFallback();
+        renderPage();
+      } catch (error) {
+        console.error("Initialization failed:", error);
+        showErrorState(); // Or some other UI feedback
       }
-    });
-  } else {
-    if (isModernBrowser()) {
-      loadTranslations().then(() => {
-        init();
-        renderPage(); // Render with current language
-      });
     } else {
       showBrowserFallback();
     }
-  }
+  });
 
 })();
