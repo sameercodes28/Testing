@@ -1011,29 +1011,113 @@
   }
 
   function setupHeroAudioToggle() {
-    if (!elements.heroAudioToggle || !elements.heroVideo) return;
+    if (!elements.heroAudioToggle || !elements.heroVideo) {
+      console.error("Audio toggle setup failed: Missing elements", {
+        heroAudioToggle: !!elements.heroAudioToggle,
+        heroVideo: !!elements.heroVideo
+      });
+      return;
+    }
+
+    const video = elements.heroVideo;
+    
+    // Debug video properties
+    console.log("Video setup:", {
+      muted: video.muted,
+      volume: video.volume,
+      paused: video.paused,
+      hasAudio: video.mozHasAudio !== false, // Firefox specific
+      readyState: video.readyState,
+      src: video.src || video.currentSrc
+    });
+
+    // Set initial volume to ensure it's audible
+    video.volume = 1.0;
 
     // Set the initial icon state
-    updateAudioToggleIcon(elements.heroVideo.muted);
+    updateAudioToggleIcon(video.muted);
 
     // Add the click event listener
-    elements.heroAudioToggle.addEventListener('click', () => {
-      const video = elements.heroVideo;
-      if (!video) return;
+    elements.heroAudioToggle.addEventListener('click', async () => {
+      console.log("Audio toggle clicked, current state:", {
+        muted: video.muted,
+        volume: video.volume,
+        paused: video.paused
+      });
 
-      // Toggle the muted state
-      video.muted = !video.muted;
-      
-      // Update the button icon to reflect the new state
-      updateAudioToggleIcon(video.muted);
+      try {
+        // Toggle the muted state
+        video.muted = !video.muted;
+        
+        console.log("Toggled muted state to:", video.muted);
+        
+        // Update the button icon to reflect the new state
+        updateAudioToggleIcon(video.muted);
 
-      // If the video is now unmuted, explicitly call play()
-      // This is crucial for handling browser autoplay policies.
-      if (!video.muted) {
-        video.play().catch(error => {
-          console.error("Video playback failed:", error);
-        });
+        // If unmuting, ensure video is playing and volume is up
+        if (!video.muted) {
+          // Set volume to maximum
+          video.volume = 1.0;
+          
+          // Ensure video is playing
+          if (video.paused) {
+            console.log("Video was paused, attempting to play...");
+            await video.play();
+          }
+          
+          console.log("Audio should now be playing:", {
+            muted: video.muted,
+            volume: video.volume,
+            paused: video.paused
+          });
+        } else {
+          console.log("Audio muted");
+        }
+      } catch (error) {
+        console.error("Audio toggle failed:", error);
+        // Revert the muted state if play failed
+        video.muted = !video.muted;
+        updateAudioToggleIcon(video.muted);
       }
+    });
+
+    // Add video event listeners for debugging
+    video.addEventListener('loadedmetadata', () => {
+      // Check for audio tracks
+      const audioTracks = video.audioTracks ? video.audioTracks.length : 'Unknown';
+      console.log("Video metadata loaded:", {
+        duration: video.duration,
+        audioTracks: audioTracks,
+        hasAudio: video.mozHasAudio !== false,
+        videoWidth: video.videoWidth,
+        videoHeight: video.videoHeight
+      });
+      
+      // Test if video actually has audio by checking properties
+      if (video.duration && video.duration > 0) {
+        console.log("Video loaded successfully with duration:", video.duration);
+        if (audioTracks === 0) {
+          console.warn("⚠️ WARNING: Video file appears to have NO AUDIO TRACKS!");
+          console.log("This could be why you can't hear anything.");
+        }
+      }
+    });
+
+    video.addEventListener('canplay', () => {
+      console.log("Video can play, audio state:", {
+        muted: video.muted,
+        volume: video.volume,
+        currentTime: video.currentTime
+      });
+    });
+
+    // Test for audio presence more thoroughly
+    video.addEventListener('loadstart', () => {
+      console.log("Video loading started...");
+    });
+
+    video.addEventListener('error', (e) => {
+      console.error("Video error:", e);
     });
   }
 
