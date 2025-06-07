@@ -1012,10 +1012,28 @@
 
   function setupHeroAudioToggle() {
     if (!elements.heroAudioToggle || !elements.heroVideo) return;
+
+    // Set the initial icon state
     updateAudioToggleIcon(elements.heroVideo.muted);
+
+    // Add the click event listener
     elements.heroAudioToggle.addEventListener('click', () => {
-      elements.heroVideo.muted = !elements.heroVideo.muted;
-      updateAudioToggleIcon(elements.heroVideo.muted);
+      const video = elements.heroVideo;
+      if (!video) return;
+
+      // Toggle the muted state
+      video.muted = !video.muted;
+      
+      // Update the button icon to reflect the new state
+      updateAudioToggleIcon(video.muted);
+
+      // If the video is now unmuted, explicitly call play()
+      // This is crucial for handling browser autoplay policies.
+      if (!video.muted) {
+        video.play().catch(error => {
+          console.error("Video playback failed:", error);
+        });
+      }
     });
   }
 
