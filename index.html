@@ -39,7 +39,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Styles -->
-  <link rel="stylesheet" href="style.min.css">
+  <link rel="stylesheet" href="style.css">
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -94,67 +94,6 @@
   
   <!-- Google Analytics placeholder -->
   <!-- TODO: Add Google Analytics tracking code here -->
-  
-  <style>
-    /* Drastic CSS override to fix the hero video background.
-      This is designed to bypass the outdated style.min.css file.
-      These styles are scoped to the hero section only.
-    */
-    
-    /* 1. Forcefully remove any background image or color from the container. */
-    .hero__background {
-      background: none !important;
-      background-image: none !important;
-    }
-    
-    /* 2. Completely disable the white filter pseudo-element. */
-    .hero__background::after {
-      display: none !important;
-      content: none !important;
-    }
-    
-    /* 3. Re-apply and enforce the correct styling for the video element. */
-    .hero__background video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-      z-index: -1;
-      object-fit: cover;
-    }
-    
-    /* 4. Ensure the audio toggle button is properly styled and visible. */
-    .hero__audio-toggle {
-      position: absolute !important;
-      bottom: 2rem !important;
-      right: 2rem !important;
-      z-index: 10 !important;
-      background: rgba(0, 0, 0, 0.5) !important;
-      color: white !important;
-      border: none !important;
-      border-radius: 50% !important;
-      width: 44px !important;
-      height: 44px !important;
-      cursor: pointer !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      transition: background-color 0.2s ease !important;
-    }
-    
-    .hero__audio-toggle:hover {
-      background: rgba(0, 0, 0, 0.7) !important;
-    }
-    
-    .hero__audio-toggle svg {
-      width: 24px !important;
-      height: 24px !important;
-    }
-  </style>
 </head>
 <body>
   <!-- Skip to content link for accessibility -->

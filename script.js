@@ -77,35 +77,16 @@
    * Set up all event listeners
    */
   function setupEventListeners() {
-    // Hero audio toggle - moved to top for debugging
-    setupHeroAudioToggle();
-    
-    // Navigation smooth scrolling
     setupNavigationScrolling();
-    
-    // Modal event listeners
     setupModalEventListeners();
-    
-    // Keyboard navigation
     setupKeyboardNavigation();
-    
-    // Scroll spy for active navigation
     setupScrollSpyObserver();
-    
-    // Scroll animations
     setupScrollAnimations();
-    
-    // Back to top button
     setupBackToTopButton();
-    
-    // Cookie consent
     setupCookieConsent();
-    
-    // Language system
     setupLanguageSystem();
-    
-    // Load more functionality
     setupLoadMoreButton();
+    setupHeroAudioToggle(); // Should be last.
   }
 
   /**
@@ -288,24 +269,6 @@
     }
   }
 
-  /**
-   * Load translations from JSON file
-   */
-  async function loadTranslations() {
-    try {
-      const response = await fetch('ui-strings.json');
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      translations = await response.json();
-      
-    } catch (error) {
-      console.error('Error loading translations:', error);
-      translations = {}; // Fallback to empty object
-    }
-  }
 
   /**
    * Show loading state in projects grid
@@ -1012,112 +975,25 @@
 
   function setupHeroAudioToggle() {
     if (!elements.heroAudioToggle || !elements.heroVideo) {
-      console.error("Audio toggle setup failed: Missing elements", {
-        heroAudioToggle: !!elements.heroAudioToggle,
-        heroVideo: !!elements.heroVideo
-      });
+      // This console.error is kept intentionally for future debugging.
+      console.error("Audio toggle elements not found during setup.");
       return;
     }
 
-    const video = elements.heroVideo;
-    
-    // Debug video properties
-    console.log("Video setup:", {
-      muted: video.muted,
-      volume: video.volume,
-      paused: video.paused,
-      hasAudio: video.mozHasAudio !== false, // Firefox specific
-      readyState: video.readyState,
-      src: video.src || video.currentSrc
-    });
+    updateAudioToggleIcon(elements.heroVideo.muted);
 
-    // Set initial volume to ensure it's audible
-    video.volume = 1.0;
+    elements.heroAudioToggle.addEventListener('click', () => {
+      const video = elements.heroVideo;
+      if (!video) return;
 
-    // Set the initial icon state
-    updateAudioToggleIcon(video.muted);
+      video.muted = !video.muted;
+      updateAudioToggleIcon(video.muted);
 
-    // Add the click event listener
-    elements.heroAudioToggle.addEventListener('click', async () => {
-      console.log("Audio toggle clicked, current state:", {
-        muted: video.muted,
-        volume: video.volume,
-        paused: video.paused
-      });
-
-      try {
-        // Toggle the muted state
-        video.muted = !video.muted;
-        
-        console.log("Toggled muted state to:", video.muted);
-        
-        // Update the button icon to reflect the new state
-        updateAudioToggleIcon(video.muted);
-
-        // If unmuting, ensure video is playing and volume is up
-        if (!video.muted) {
-          // Set volume to maximum
-          video.volume = 1.0;
-          
-          // Ensure video is playing
-          if (video.paused) {
-            console.log("Video was paused, attempting to play...");
-            await video.play();
-          }
-          
-          console.log("Audio should now be playing:", {
-            muted: video.muted,
-            volume: video.volume,
-            paused: video.paused
-          });
-        } else {
-          console.log("Audio muted");
-        }
-      } catch (error) {
-        console.error("Audio toggle failed:", error);
-        // Revert the muted state if play failed
-        video.muted = !video.muted;
-        updateAudioToggleIcon(video.muted);
+      if (!video.muted) {
+        video.play().catch(error => {
+          console.error("Video playback failed on unmute:", error);
+        });
       }
-    });
-
-    // Add video event listeners for debugging
-    video.addEventListener('loadedmetadata', () => {
-      // Check for audio tracks
-      const audioTracks = video.audioTracks ? video.audioTracks.length : 'Unknown';
-      console.log("Video metadata loaded:", {
-        duration: video.duration,
-        audioTracks: audioTracks,
-        hasAudio: video.mozHasAudio !== false,
-        videoWidth: video.videoWidth,
-        videoHeight: video.videoHeight
-      });
-      
-      // Test if video actually has audio by checking properties
-      if (video.duration && video.duration > 0) {
-        console.log("Video loaded successfully with duration:", video.duration);
-        if (audioTracks === 0) {
-          console.warn("⚠️ WARNING: Video file appears to have NO AUDIO TRACKS!");
-          console.log("This could be why you can't hear anything.");
-        }
-      }
-    });
-
-    video.addEventListener('canplay', () => {
-      console.log("Video can play, audio state:", {
-        muted: video.muted,
-        volume: video.volume,
-        currentTime: video.currentTime
-      });
-    });
-
-    // Test for audio presence more thoroughly
-    video.addEventListener('loadstart', () => {
-      console.log("Video loading started...");
-    });
-
-    video.addEventListener('error', (e) => {
-      console.error("Video error:", e);
     });
   }
 
