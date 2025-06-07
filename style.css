@@ -888,6 +888,11 @@ body {
     background-attachment: scroll;
   }
   
+  .hero__audio-toggle {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  
   .modal {
     display: block !important;
     padding: 0 !important;
