@@ -94,6 +94,39 @@
   
   <!-- Google Analytics placeholder -->
   <!-- TODO: Add Google Analytics tracking code here -->
+  
+  <style>
+    /* Drastic CSS override to fix the hero video background.
+      This is designed to bypass the outdated style.min.css file.
+      These styles are scoped to the hero section only.
+    */
+    
+    /* 1. Forcefully remove any background image or color from the container. */
+    .hero__background {
+      background: none !important;
+      background-image: none !important;
+    }
+    
+    /* 2. Completely disable the white filter pseudo-element. */
+    .hero__background::after {
+      display: none !important;
+      content: none !important;
+    }
+    
+    /* 3. Re-apply and enforce the correct styling for the video element. */
+    .hero__background video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      object-fit: cover;
+    }
+  </style>
 </head>
 <body>
   <!-- Skip to content link for accessibility -->
