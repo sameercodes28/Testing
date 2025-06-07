@@ -42,5 +42,93 @@
       "https://picsum.photos/800/600?random=5",
       "https://picsum.photos/800/600?random=6"
     ]
+  },
+  {
+    "id": "lake-vast-renovation",
+    "title": {
+      "en": "Lake Vättern Vista Renovation",
+      "sv": "Renovering med Vätternutsikt"
+    },
+    "year": "2024",
+    "description": {
+      "en": "A complete renovation and extension of a 1960s house with a view over Lake Vättern. The project involved a full redesign of the interior layout to create an open-plan living space and a new extension to house a master suite. The challenge was to modernize the structure while respecting its original character.",
+      "sv": "En totalrenovering och tillbyggnad av ett 60-talshus med utsikt över Vättern. Projektet innebar en fullständig omgestaltning av den inre planlösningen för att skapa ett öppet sällskapsrum samt en ny tillbyggnad för en master suite. Utmaningen var att modernisera strukturen med respekt för dess ursprungliga karaktär."
+    },
+    "mainImage": "https://picsum.photos/800/600?random=3",
+    "altText": {
+      "en": "Renovated house with large glass extension overlooking a lake.",
+      "sv": "Renoverat hus med stor glas-tillbyggnad med utsikt över en sjö."
+    },
+    "tags": ["Residential", "Renovering", "Tillbyggnad", "Västra Götaland"],
+    "gallery": [
+      "https://picsum.photos/800/600?random=3",
+      "https://picsum.photos/800/600?random=4"
+    ]
+  },
+  {
+    "id": "gothenburg-compact-loft",
+    "title": {
+      "en": "Gothenburg Compact Loft",
+      "sv": "Kompakt etage i Göteborg"
+    },
+    "year": "2023",
+    "description": {
+      "en": "An innovative solution for a compact loft apartment in Gothenburg. This project demonstrates how intelligent, space-saving design can maximize functionality in a small footprint. Custom-built furniture and a thoughtful layout create a sense of spaciousness and calm.",
+      "sv": "En innovativ lösning för en kompakt etagelägenhet i Göteborg. Detta projekt visar hur intelligent, yteffektiv design kan maximera funktionaliteten på en liten yta. Platsbyggda möbler och en genomtänkt planlösning skapar en känsla av rymd och lugn."
+    },
+    "mainImage": "https://picsum.photos/800/600?random=9",
+    "altText": {
+      "en": "Interior of a smart, compact loft apartment in Gothenburg.",
+      "sv": "Interiör av en smart, kompakt etagelägenhet i Göteborg."
+    },
+    "tags": ["Residential", "Compact Living", "Göteborg"],
+    "gallery": [
+      "https://picsum.photos/800/600?random=9",
+      "https://picsum.photos/800/600?random=10"
+    ]
+  },
+  {
+    "id": "skovde-community-pavilion",
+    "title": {
+      "en": "Skövde Community Pavilion",
+      "sv": "Samlingspaviljong i Skövde"
+    },
+    "year": "2022",
+    "description": {
+      "en": "A public pavilion designed for a park in central Skövde, providing a flexible space for community events and gatherings. The structure uses locally sourced timber and a green roof to blend seamlessly with its natural surroundings while offering a modern public amenity.",
+      "sv": "En offentlig paviljong ritad för en park i centrala Skövde, som erbjuder ett flexibelt utrymme för lokala evenemang och sammankomster. Strukturen använder lokalt virke och ett sedumtak för att smälta in i den omgivande naturen samtidigt som den erbjuder en modern offentlig anläggning."
+    },
+    "mainImage": "https://picsum.photos/800/600?random=13",
+    "altText": {
+      "en": "A modern wooden pavilion in a public park in Skövde.",
+      "sv": "En modern träpaviljong i en offentlig park i Skövde."
+    },
+    "tags": ["Public", "Commercial", "Skövde"],
+    "gallery": [
+      "https://picsum.photos/800/600?random=13",
+      "https://picsum.photos/800/600?random=14"
+    ]
+  },
+  {
+    "id": "hjo-house-extension",
+    "title": {
+      "en": "Hjo House Extension",
+      "sv": "Tillbyggnad Villa Hjo"
+    },
+    "year": "2024",
+    "description": {
+      "en": "A sensitive extension to a classic wooden house in the charming town of Hjo. The goal was to add a modern kitchen and dining area while respecting the original building's historical aesthetic. The result is a seamless transition between old and new, using similar materials but with a contemporary form.",
+      "sv": "En varsam tillbyggnad till ett klassiskt trähus i den charmiga staden Hjo. Målet var att addera ett modernt kök och matplats med respekt för den ursprungliga byggnadens historiska estetik. Resultatet är en sömlös övergång mellan gammalt och nytt, med liknande material men i en samtida form."
+    },
+    "mainImage": "https://picsum.photos/800/600?random=11",
+    "altText": {
+      "en": "A modern extension on a classic Swedish wooden house.",
+      "sv": "En modern tillbyggnad på ett klassiskt svenskt trähus."
+    },
+    "tags": ["Residential", "Tillbyggnad", "Hjo"],
+    "gallery": [
+      "https://picsum.photos/800/600?random=11",
+      "https://picsum.photos/800/600?random=12"
+    ]
   }
 ]
