@@ -77,6 +77,9 @@
    * Set up all event listeners
    */
   function setupEventListeners() {
+    // Hero audio toggle - moved to top for debugging
+    setupHeroAudioToggle();
+    
     // Navigation smooth scrolling
     setupNavigationScrolling();
     
@@ -103,9 +106,6 @@
     
     // Load more functionality
     setupLoadMoreButton();
-    
-    // Hero audio toggle
-    setupHeroAudioToggle();
   }
 
   /**
