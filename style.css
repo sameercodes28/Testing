@@ -1213,12 +1213,15 @@ body.modal-open {
 */
 @media (min-width: 768px) {
   .hero__background video {
-    /* This combination mathematically centers the element's box */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-
-    /* Use min-width/height for this centering method on desktop */
+    /* This is the key fix:
+      - scale(1.2) zooms the video by 20%.
+      - translate(-50%, -55%) centers it horizontally and shifts it UP vertically
+        to hide the black bar at the bottom.
+      - You can tweak the -55% value (e.g., to -53% or -57%) for perfect placement.
+    */
+    transform: translate(-50%, -55%) scale(1.2);
     min-width: 100%;
     min-height: 100%;
     width: auto;
