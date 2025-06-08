@@ -1187,7 +1187,7 @@ body.modal-open {
 .hero-text__tagline.is-typing {
   width: 100%;
   animation:
-    typing 2.5s steps(var(--typing-steps, 30), end),
+    typing 2.5s steps(var(--typing-steps, 30), end) forwards, /* Add 'forwards' here */
     blink-caret .75s step-end infinite;
 }
 
@@ -1199,6 +1199,7 @@ body.modal-open {
 /* State 4: Hides the cursor after typing is done */
 .hero-text__tagline.typing-done {
   border-right-color: transparent;
+  animation: none; /* Add this to stop the blinking */
 }
 
 /*
@@ -1207,12 +1208,14 @@ body.modal-open {
 */
 @media (min-width: 768px) {
   .hero__background video {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -55%) scale(1.2);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    /*
+      This is the new fix. We remove the complex transform.
+      By making the video taller than its container (e.g., 120%),
+      'object-fit: cover' will center it and crop the excess from the top
+      and bottom equally, effectively hiding the black bars.
+      Tweak the height value if needed.
+    */
+    width: 100%;
+    height: 120%; 
   }
 }
