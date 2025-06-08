@@ -1203,8 +1203,7 @@ body.modal-open {
 
 /* State 4: Hides the cursor after typing is done */
 .hero-text__tagline.typing-done {
-  border-right-color: transparent;
-  animation: none; /* Stop all animations on this element */
+  border-right-color: transparent; /* This correctly hides the cursor */
 }
 }
 
