@@ -1134,8 +1134,8 @@ body.modal-open {
   transform: translate(-50%, -50%);
   z-index: 1;
   text-align: center;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.95); /* Slightly brighter white */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); /* This is the new line */
   pointer-events: none;
 }
 
