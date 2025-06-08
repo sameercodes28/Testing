@@ -9,6 +9,7 @@
   'use strict';
 
   // -- CONFIGURATION --
+  const HERO_TEXT_ANIMATION_DELAY = 4000; // Delay in milliseconds (4000ms = 4 seconds)
 
   // Application state
   let projects = [];
@@ -980,57 +981,16 @@
   }
 
   /**
-   * Sets up a multi-stage timed animation for the hero text.
-   * 1. A cursor appears and blinks.
-   * 2. The tagline "types" out.
-   * 3. The brand name fades in.
+   * Sets up a timed fade-in animation for the hero text container.
    */
   function setupHeroTextAnimation() {
-    if (!elements.heroTagline || !elements.heroBrandName) return;
+    // We only need the container now
+    if (!elements.heroTextContainer) return; 
 
-    const CURSOR_DELAY = 3000; // Cursor appears after 3 seconds
-    const TYPING_DELAY = 4000; // Typing starts after 4 seconds
-
-    const tagline = elements.heroTagline;
-    const brandName = elements.heroBrandName;
-
-    // Stage 1: Make the cursor appear and blink
+    // Use the configurable constant to add the trigger class after a delay
     setTimeout(() => {
-      tagline.classList.add('cursor-visible');
-    }, CURSOR_DELAY);
-
-    // Stage 2: Start the typing animation
-    setTimeout(() => {
-      // Get the correct text to determine the number of animation steps
-      const textToType = getTranslation('sections.heroTagline');
-      const characterCount = textToType.length;
-
-      // Set the CSS variable for the steps() function
-      tagline.style.setProperty('--typing-steps', characterCount);
-
-      // Add the typing class and remove the cursor-only class
-      tagline.classList.remove('cursor-visible');
-      tagline.classList.add('is-typing');
-
-      // Stage 3: Listen for when the typing animation ends
-      tagline.addEventListener('animationend', function handler(e) {
-        // Ensure we only act when the 'typing' animation is the one that ended
-        if (e.animationName === 'typing') {
-          // Remove the typing class and add the 'done' class to hide the cursor
-          tagline.classList.remove('is-typing');
-          tagline.classList.add('typing-done');
-
-          // Trigger the fade-in for the brand name after a brief pause
-          setTimeout(() => {
-            brandName.classList.add('is-visible');
-          }, 500);
-
-          // Clean up the event listener so it doesn't fire again
-          tagline.removeEventListener('animationend', handler);
-        }
-      });
-
-    }, TYPING_DELAY);
+      elements.heroTextContainer.classList.add('is-visible');
+    }, HERO_TEXT_ANIMATION_DELAY);
   }
 
   function setupHeroAudioToggle() {
