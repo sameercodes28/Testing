@@ -981,16 +981,44 @@
   }
 
   /**
-   * Sets up the timed fade-in animation for the hero text.
+   * Sets up the timed "typing" animation for the hero text,
+   * followed by a fade-in for the brand name.
    */
   function setupHeroTextAnimation() {
     if (!elements.heroTagline || !elements.heroBrandName) return;
 
-    // Use the configurable constant to trigger the animations
+    const START_DELAY = 4000; // 4 seconds
+
     setTimeout(() => {
-      elements.heroTagline.classList.add('is-visible');
-      elements.heroBrandName.classList.add('is-visible');
-    }, HERO_TEXT_ANIMATION_DELAY);
+      const tagline = elements.heroTagline;
+      const brandName = elements.heroBrandName;
+
+      // Get the correct text based on the current language to set animation steps
+      const textToType = getTranslation('sections.heroTagline');
+      const characterCount = textToType.length;
+
+      // Set the number of steps for the CSS animation
+      tagline.style.setProperty('--typing-steps', characterCount);
+
+      // Start the typing animation
+      tagline.classList.add('is-typing');
+
+      // Listen for when the typing animation ends
+      tagline.addEventListener('animationend', function handler(e) {
+        // Ensure we only listen to the 'typing' animation
+        if (e.animationName === 'typing') {
+          // Make the cursor solid (or remove it)
+          tagline.style.borderRight = 'none';
+
+          // Trigger the fade-in for the brand name
+          brandName.classList.add('is-visible');
+
+          // Remove the event listener so it doesn't fire again
+          tagline.removeEventListener('animationend', handler);
+        }
+      });
+
+    }, START_DELAY);
   }
 
   function setupHeroAudioToggle() {
