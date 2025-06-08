@@ -1200,4 +1200,29 @@ body.modal-open {
 .hero-text__brand.is-visible {
   animation: fadeIn 1.5s ease-out forwards;
 }
+
+/* State 4: Hides the cursor after typing is done */
+.hero-text__tagline.typing-done {
+  border-right-color: transparent;
+  animation: none; /* Stop all animations on this element */
+}
+}
+
+/*
+  Apply robust centering ONLY on desktop screens to avoid changing the
+  already-perfect mobile view.
+*/
+@media (min-width: 768px) {
+  .hero__background video {
+    /* This combination mathematically centers the element's box */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Use min-width/height for this centering method on desktop */
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+  }
 }

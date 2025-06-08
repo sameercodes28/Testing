@@ -1014,17 +1014,18 @@
 
       // Stage 3: Listen for when the typing animation ends
       tagline.addEventListener('animationend', function handler(e) {
+        // Ensure we only act when the 'typing' animation is the one that ended
         if (e.animationName === 'typing') {
-          // Stop the blinking cursor by making the border solid
-          tagline.style.borderRightColor = 'rgba(255, 255, 255, 0.75)';
-          tagline.style.animation = 'none'; // Stop all animations on this element
+          // Remove the typing class and add the 'done' class to hide the cursor
+          tagline.classList.remove('is-typing');
+          tagline.classList.add('typing-done');
 
-          // Trigger the fade-in for the brand name
+          // Trigger the fade-in for the brand name after a brief pause
           setTimeout(() => {
             brandName.classList.add('is-visible');
-          }, 500); // A brief half-second pause after typing
+          }, 500);
 
-          // Clean up the event listener
+          // Clean up the event listener so it doesn't fire again
           tagline.removeEventListener('animationend', handler);
         }
       });
