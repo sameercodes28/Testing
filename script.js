@@ -8,6 +8,9 @@
 (function() {
   'use strict';
 
+  // -- CONFIGURATION --
+  const HERO_TEXT_ANIMATION_DELAY = 4000; // Delay in milliseconds (4000ms = 4 seconds)
+
   // Application state
   let projects = [];
   let focusableElements = [];
@@ -69,6 +72,9 @@
     elements.cookieAcceptBtn = document.getElementById('cookie-accept-btn');
     elements.languageToggle = document.getElementById('language-toggle');
     elements.loadMoreBtn = document.getElementById('load-more-btn');
+    elements.heroTextContainer = document.getElementById('hero-text-container');
+    elements.heroTagline = document.querySelector('.hero-text__tagline');
+    elements.heroBrandName = document.querySelector('.hero-text__brand');
     elements.heroAudioToggle = document.getElementById('hero-audio-toggle');
     elements.heroVideo = document.querySelector('.hero__video');
   }
@@ -77,6 +83,7 @@
    * Set up all event listeners
    */
   function setupEventListeners() {
+    setupHeroTextAnimation(); // Add this line
     setupNavigationScrolling();
     setupModalEventListeners();
     setupKeyboardNavigation();
@@ -971,6 +978,19 @@
       // Update button visibility
       updateLoadMoreButton();
     });
+  }
+
+  /**
+   * Sets up the timed fade-in animation for the hero text.
+   */
+  function setupHeroTextAnimation() {
+    if (!elements.heroTagline || !elements.heroBrandName) return;
+
+    // Use the configurable constant to trigger the animations
+    setTimeout(() => {
+      elements.heroTagline.classList.add('is-visible');
+      elements.heroBrandName.classList.add('is-visible');
+    }, HERO_TEXT_ANIMATION_DELAY);
   }
 
   function setupHeroAudioToggle() {

@@ -49,6 +49,14 @@
     "aboutServices": {
       "en": "Karin offers a comprehensive range of services to guide clients through this dialogue, including conceptual design, building permit documentation, and full project management for new builds, renovations, and extensions.",
       "sv": "Karin erbjuder ett komplett utbud av tjänster för att vägleda kunder genom denna dialog, inklusive konceptutveckling, framtagning av bygglovsritningar och fullständig projektledning för nybyggnation, renovering och tillbyggnader."
+    },
+    "heroTagline": {
+      "en": "Your vision, shaped with care.",
+      "sv": "Din vision, formad med omsorg."
+    },
+    "heroBrandName": {
+      "en": "Karin Gunnerek Architecture",
+      "sv": "Karin Gunnerek Architecture"
     }
   },
   "modal": {
