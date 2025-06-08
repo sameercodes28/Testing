@@ -9,7 +9,6 @@
   'use strict';
 
   // -- CONFIGURATION --
-  const HERO_TEXT_ANIMATION_DELAY = 4000; // Delay in milliseconds (4000ms = 4 seconds)
 
   // Application state
   let projects = [];
@@ -981,44 +980,56 @@
   }
 
   /**
-   * Sets up the timed "typing" animation for the hero text,
-   * followed by a fade-in for the brand name.
+   * Sets up a multi-stage timed animation for the hero text.
+   * 1. A cursor appears and blinks.
+   * 2. The tagline "types" out.
+   * 3. The brand name fades in.
    */
   function setupHeroTextAnimation() {
     if (!elements.heroTagline || !elements.heroBrandName) return;
 
-    const START_DELAY = 4000; // 4 seconds
+    const CURSOR_DELAY = 3000; // Cursor appears after 3 seconds
+    const TYPING_DELAY = 4000; // Typing starts after 4 seconds
 
+    const tagline = elements.heroTagline;
+    const brandName = elements.heroBrandName;
+
+    // Stage 1: Make the cursor appear and blink
     setTimeout(() => {
-      const tagline = elements.heroTagline;
-      const brandName = elements.heroBrandName;
+      tagline.classList.add('cursor-visible');
+    }, CURSOR_DELAY);
 
-      // Get the correct text based on the current language to set animation steps
+    // Stage 2: Start the typing animation
+    setTimeout(() => {
+      // Get the correct text to determine the number of animation steps
       const textToType = getTranslation('sections.heroTagline');
       const characterCount = textToType.length;
 
-      // Set the number of steps for the CSS animation
+      // Set the CSS variable for the steps() function
       tagline.style.setProperty('--typing-steps', characterCount);
 
-      // Start the typing animation
+      // Add the typing class and remove the cursor-only class
+      tagline.classList.remove('cursor-visible');
       tagline.classList.add('is-typing');
 
-      // Listen for when the typing animation ends
+      // Stage 3: Listen for when the typing animation ends
       tagline.addEventListener('animationend', function handler(e) {
-        // Ensure we only listen to the 'typing' animation
         if (e.animationName === 'typing') {
-          // Make the cursor solid (or remove it)
-          tagline.style.borderRight = 'none';
+          // Stop the blinking cursor by making the border solid
+          tagline.style.borderRightColor = 'rgba(255, 255, 255, 0.75)';
+          tagline.style.animation = 'none'; // Stop all animations on this element
 
           // Trigger the fade-in for the brand name
-          brandName.classList.add('is-visible');
+          setTimeout(() => {
+            brandName.classList.add('is-visible');
+          }, 500); // A brief half-second pause after typing
 
-          // Remove the event listener so it doesn't fire again
+          // Clean up the event listener
           tagline.removeEventListener('animationend', handler);
         }
       });
 
-    }, START_DELAY);
+    }, TYPING_DELAY);
   }
 
   function setupHeroAudioToggle() {
