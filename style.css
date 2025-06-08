@@ -1199,7 +1199,6 @@ body.modal-open {
 /* State 4: Hides the cursor after typing is done */
 .hero-text__tagline.typing-done {
   border-right-color: transparent;
-  animation: none; /* Add this to stop the blinking */
 }
 
 /*
@@ -1209,13 +1208,13 @@ body.modal-open {
 @media (min-width: 768px) {
   .hero__background video {
     /*
-      This is the new fix. We remove the complex transform.
-      By making the video taller than its container (e.g., 120%),
-      'object-fit: cover' will center it and crop the excess from the top
-      and bottom equally, effectively hiding the black bars.
-      Tweak the height value if needed.
+      This new fix makes the video taller than its container (130%).
+      'object-fit: cover' will then center this oversized video vertically,
+      cropping the excess from the top and bottom equally.
+      This pushes the black bar at the bottom out of the visible frame.
+      You can tweak the height value (e.g., 125% or 135%) for perfect placement.
     */
     width: 100%;
-    height: 120%; 
+    height: 130%; 
   }
 }
