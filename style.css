@@ -368,88 +368,6 @@ body {
   padding: var(--space-4xl) 0;
 }
 
-.projects__intro {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-2xl);
-  margin-bottom: var(--space-4xl);
-}
-
-@media (min-width: 768px) {
-  .projects__intro {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4xl);
-    padding: 0 var(--space-2xl);
-    align-items: start;
-  }
-}
-
-@media (min-width: 1200px) {
-  .projects__intro {
-    grid-template-columns: 1fr 1fr;
-    padding: 0 var(--space-3xl);
-    gap: 7rem;
-  }
-}
-
-.projects__intro-left {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.projects__main-title {
-  font-family: var(--font-family-heading);
-  font-size: clamp(2.5rem, 5vw, 5.5rem);
-  font-weight: var(--font-weight-bold);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  color: var(--color-primary);
-  margin: 0 0 var(--space-md) 0;
-  text-align: left;
-}
-
-.projects__text-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.projects__paragraph {
-  font-family: var(--font-family);
-  font-size: clamp(0.875rem, 0.9vw, 0.9rem);
-  font-weight: var(--font-weight-light);
-  line-height: 1.6;
-  color: var(--color-secondary);
-  margin: 0 0 var(--space-md) 0;
-}
-
-.projects__paragraph:last-of-type {
-  margin-bottom: 0;
-}
-
-.projects__intro-right {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.projects__intro-image {
-  width: 100%;
-  height: auto;
-}
-
-.projects__workspace-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  border-radius: var(--border-radius-lg);
-}
-
 .projects__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1025,31 +943,6 @@ body {
   
   .projects {
     padding: var(--space-2xl) 0;
-  }
-
-  .projects__intro {
-    padding: 0 var(--space-md);
-    grid-template-columns: 1fr !important;
-    gap: var(--space-xl);
-    margin-bottom: var(--space-2xl);
-  }
-
-  .projects__main-title {
-    font-size: 2.5rem;
-    margin-bottom: var(--space-md);
-  }
-
-  .projects__intro-left {
-    gap: var(--space-md);
-  }
-
-  .projects__intro-right {
-    order: 2;
-  }
-
-  .projects__workspace-image {
-    width: 100%;
-    max-width: 100%;
   }
   
   .about {
