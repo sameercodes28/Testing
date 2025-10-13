@@ -366,7 +366,7 @@ body {
    ========================================================================== */
 
 .projects {
-  padding: var(--space-4xl) 0;
+  padding: var(--space-3xl) 0;
 }
 
 .projects .container {
@@ -490,7 +490,7 @@ body {
    ========================================================================== */
 
 .about {
-  padding: var(--space-4xl) 0;
+  padding: var(--space-3xl) 0;
   background-color: var(--color-background);
 }
 
@@ -594,7 +594,7 @@ body {
    ========================================================================== */
 
 .booking {
-  padding: var(--space-4xl) 0;
+  padding: var(--space-3xl) 0;
 }
 
 .booking .container {
