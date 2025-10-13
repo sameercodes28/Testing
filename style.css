@@ -554,42 +554,20 @@ body {
 
 .about__right {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
 }
 
 .about__image {
   width: 100%;
-  max-width: 100%;
   height: auto;
 }
 
 .about__headshot {
   width: 100%;
-  max-width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
-}
-
-@media (min-width: 768px) {
-  .about__image {
-    max-width: 85%;
-  }
-
-  .about__headshot {
-    max-width: 85%;
-  }
-}
-
-@media (min-width: 1200px) {
-  .about__image {
-    max-width: 80%;
-  }
-
-  .about__headshot {
-    max-width: 80%;
-  }
 }
 
 
