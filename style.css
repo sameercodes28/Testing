@@ -212,7 +212,7 @@ body {
   color: var(--color-primary);
   text-decoration: none;
   font-size: 1rem;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   transition: opacity var(--transition-fast);
   display: flex;
   align-items: center;
