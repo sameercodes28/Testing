@@ -1029,23 +1029,30 @@
       return;
     }
 
-    let hasScrolled = false;
-
     const handleScroll = () => {
-      if (!hasScrolled && window.scrollY > 20) {
-        hasScrolled = true;
+      if (window.scrollY > 20) {
         scrollIndicator.classList.add('hidden');
-        console.log('Hiding scroll indicator');
+      } else {
+        scrollIndicator.classList.remove('hidden');
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Also hide on touchmove for mobile
-    window.addEventListener('touchmove', () => {
-      if (!hasScrolled) {
-        hasScrolled = true;
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchY;
+
+      if (deltaY > 10 && window.scrollY > 20) {
         scrollIndicator.classList.add('hidden');
+      } else if (window.scrollY <= 20) {
+        scrollIndicator.classList.remove('hidden');
       }
     }, { passive: true });
   }
