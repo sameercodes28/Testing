@@ -352,6 +352,35 @@ body {
   height: 24px;
 }
 
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: white;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+}
+
+.hero__scroll-indicator svg {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
 /* ==========================================================================
    Section Titles
    ========================================================================== */
@@ -1032,6 +1061,10 @@ body {
   .hero__audio-toggle {
     bottom: 1.5rem;
     right: 1.5rem;
+  }
+
+  .hero__scroll-indicator {
+    bottom: 1.5rem;
   }
   
   .modal {
