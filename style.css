@@ -468,48 +468,87 @@ body {
 
 .about {
   padding: var(--space-4xl) 0;
-  background-color: var(--color-surface);
+  background-color: var(--color-background);
 }
 
-.about__content {
+.about__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-2xl);
-  align-items: center;
+  gap: var(--space-3xl);
 }
 
-@media (min-width: 768px) {
-  .about__content {
-    grid-template-columns: 1fr 1.5fr;
-    gap: var(--space-3xl);
+@media (min-width: 1024px) {
+  .about__container {
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-4xl);
+    padding: 0 var(--space-2xl);
   }
 }
 
-.about__image {
-  justify-self: center;
+.about__left {
+  display: flex;
+  align-items: flex-start;
 }
 
-.about__headshot {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-lg);
+.about__main-title {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  margin: 0;
+  text-align: left;
 }
 
-.about__text {
-  max-width: 600px;
+@media (min-width: 1024px) {
+  .about__main-title {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-lg));
+  }
 }
 
-.about__bio {
-  font-size: var(--font-size-lg);
-  line-height: 1.7;
+.about__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl);
+}
+
+.about__text-content {
+  max-width: 700px;
+}
+
+.about__section-heading {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: var(--font-weight-normal);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--color-primary);
+  margin-bottom: var(--space-xl);
+}
+
+.about__paragraph {
+  font-size: var(--font-size-base);
+  line-height: 1.8;
   color: var(--color-secondary);
   margin-bottom: var(--space-lg);
 }
 
-.about__bio:last-child {
+.about__paragraph:last-child {
   margin-bottom: 0;
+}
+
+.about__image {
+  width: 100%;
+  max-width: 600px;
+}
+
+.about__headshot {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 
@@ -890,16 +929,23 @@ body {
   .about {
     padding: var(--space-2xl) 0;
   }
-  
+
   .booking {
     padding: var(--space-2xl) 0;
   }
-  
+
+  .about__container {
+    padding: 0 var(--space-md);
+  }
+
+  .about__main-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-lg);
+  }
+
   .about__headshot {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
+    width: 100%;
+    max-width: 100%;
   }
   
   .hero__background {
