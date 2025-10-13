@@ -1,18 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage - Swedish -->
   <url>
-    <loc>https://karingunnerek.com/</loc>
-    <lastmod>2025-06-07</lastmod>
-    <priority>1.00</priority>
+    <loc>https://karingunnerek.se/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://karingunnerek.se/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://karingunnerek.se/en/" />
   </url>
+
+  <!-- Projects Section -->
   <url>
-    <loc>https://karingunnerek.com/privacy.html</loc>
-    <lastmod>2025-06-07</lastmod>
-    <priority>0.80</priority>
+    <loc>https://karingunnerek.se/#projects</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
+
+  <!-- About Section -->
   <url>
-    <loc>https://karingunnerek.com/terms.html</loc>
-    <lastmod>2025-06-07</lastmod>
-    <priority>0.80</priority>
+    <loc>https://karingunnerek.se/#about</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
+
+  <!-- Booking Section -->
+  <url>
+    <loc>https://karingunnerek.se/#booking</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://karingunnerek.se/privacy.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://karingunnerek.se/terms.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>

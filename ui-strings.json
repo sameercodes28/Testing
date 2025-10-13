@@ -31,16 +31,16 @@
       "sv": "Om mig."
     },
     "aboutSubheading1": {
-      "en": "A Skövde-based architect committed to creating beautiful, sustainable buildings that serve the local community.",
-      "sv": "En Skövde-baserad arkitekt engagerad i att skapa vackra, hållbara byggnader som tjänar lokalsamhället."
+      "en": "Architect in Skövde specializing in villa drawings, building permit drawings, and sustainable architecture for Västra Götaland and Skaraborg.",
+      "sv": "Arkitekt i Skövde med specialisering på villaritningar, bygglovsritningar och hållbar arkitektur för Västra Götaland och Skaraborg."
     },
     "aboutBio1": {
-      "en": "Karin Gunnerek is an architect rooted in Skövde, specializing in thoughtful design for residential and commercial projects across Västra Götaland. After completing her bachelor's degree at KTH School of Architecture in Stockholm and her master's at The Bartlett School of Architecture, UCL in London, Karin founded her practice in 2025 with a vision to bring world-class architectural thinking to her hometown region.",
-      "sv": "Karin Gunnerek är en arkitekt rotad i Skövde, specialiserad på genomtänkt design för bostads- och kommersiella projekt över hela Västra Götaland. Efter att ha avslutat sin kandidatexamen vid KTH Arkitekturskola i Stockholm och sin master vid The Bartlett School of Architecture, UCL i London, grundade Karin sin praktik 2025 med en vision att föra världsklass arkitektoniskt tänkande till sin hembygd."
+      "en": "Karin Gunnerek is an architect in Skövde, specializing in villa drawings, building permit drawings, and sustainable design for residential and commercial projects across Västra Götaland. After completing her bachelor's degree at KTH School of Architecture in Stockholm and her master's at The Bartlett School of Architecture, UCL in London, Karin founded her architecture practice in 2025 to serve clients in Skövde, Skaraborg, and throughout Västra Götaland with expert architectural services.",
+      "sv": "Karin Gunnerek är en arkitekt i Skövde, specialiserad på villaritningar, bygglovsritningar och hållbar design för bostads- och kommersiella projekt över hela Västra Götaland. Efter att ha avslutat sin kandidatexamen vid KTH Arkitekturskola i Stockholm och sin master vid The Bartlett School of Architecture, UCL i London, grundade Karin sin arkitektpraktik 2025 för att tjäna kunder i Skövde, Skaraborg och hela Västra Götaland med expertarkitekttjänster."
     },
     "aboutBio2": {
-      "en": "Working closely with clients throughout Skaraborg, Karin's approach emphasizes deep connection to place, sustainability, and functional beauty. She believes that exceptional architecture should be accessible to local communities, creating spaces where people can thrive for generations to come.",
-      "sv": "Genom att arbeta nära kunder över hela Skaraborg betonar Karins tillvägagångssätt djup koppling till plats, hållbarhet och funktionell skönhet. Hon tror att exceptionell arkitektur ska vara tillgänglig för lokalsamhällen och skapa utrymmen där människor kan blomstra i generationer framöver."
+      "en": "Working closely with clients throughout Skaraborg and Västra Götaland, Karin offers comprehensive architectural services including new construction, renovations, extensions, and complete project management from concept to building permit. Her approach emphasizes sustainability, functionality, and deep connection to the local Skövde region.",
+      "sv": "Genom att arbeta nära kunder över hela Skaraborg och Västra Götaland erbjuder Karin omfattande arkitekttjänster inklusive nybyggnad, renovering, tillbyggnad och fullständig projektledning från koncept till bygglov. Hennes tillvägagångssätt betonar hållbarhet, funktionalitet och djup koppling till Skövde-regionen."
     },
     "aboutBio3": {
       "en": "From concept sketches to construction drawings, from planning applications to project completion, Karin guides each project with meticulous attention to detail and genuine care for the built environment and those who inhabit it.",
@@ -49,6 +49,14 @@
     "aboutBio4": {
       "en": "Whether designing a family home in Skövde, a community center in Skaraborg, or a commercial space in Västra Götaland, Karin's work reflects a commitment to architecture that enriches daily life and stands the test of time.",
       "sv": "Oavsett om det gäller att designa ett familjehem i Skövde, ett community center i Skaraborg eller en kommersiell lokal i Västra Götaland, speglar Karins arbete ett engagemang för arkitektur som berikar vardagen och står emot tidens tand."
+    },
+    "servicesTitle": {
+      "en": "Architecture Services in Skövde",
+      "sv": "Arkitekttjänster i Skövde"
+    },
+    "servicesDescription": {
+      "en": "Karin Gunnerek Architecture offers comprehensive architectural services including villa drawings, building permit drawings, renovations, extensions, and complete project management for residential and commercial projects in Skövde, Skaraborg, and throughout Västra Götaland.",
+      "sv": "Karin Gunnerek Arkitektur erbjuder omfattande arkitekttjänster inklusive villaritningar, bygglovsritningar, renoveringar, tillbyggnader och fullständig projektledning för bostads- och kommersiella projekt i Skövde, Skaraborg och hela Västra Götaland."
     },
     "bookingTitle": {
       "en": "Book a Consultation.",
