@@ -7,11 +7,11 @@
   --color-primary: #000000;
   --color-secondary: #333333;
   --color-tertiary: #666666;
-  --color-background: #ffffff;
-  --color-surface: #f8f9fa;
-  --color-accent: #007aff;
-  --color-accent-hover: #0056cc;
-  --color-border: #e9ecef;
+  --color-background: #f5f3ed;
+  --color-surface: #e8e6df;
+  --color-accent: #2d5016;
+  --color-accent-hover: #1f3810;
+  --color-border: #d9d7d0;
   --color-text-light: #8e8e93;
   
   /* Typography */
@@ -366,7 +366,7 @@ body {
    ========================================================================== */
 
 .projects {
-  padding: var(--space-3xl) 0;
+  padding: var(--space-2xl) 0;
 }
 
 .projects .container {
@@ -490,7 +490,7 @@ body {
    ========================================================================== */
 
 .about {
-  padding: var(--space-3xl) 0;
+  padding: var(--space-2xl) 0;
   background-color: var(--color-background);
 }
 
@@ -594,7 +594,7 @@ body {
    ========================================================================== */
 
 .booking {
-  padding: var(--space-3xl) 0;
+  padding: var(--space-2xl) 0;
 }
 
 .booking .container {
@@ -975,19 +975,19 @@ body {
   }
   
   .projects {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-xl) 0;
   }
 
   .projects .container {
     padding: 0 var(--space-md);
   }
-  
+
   .about {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-xl) 0;
   }
 
   .booking {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-xl) 0;
   }
 
   .booking .container {
