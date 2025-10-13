@@ -7,11 +7,11 @@
   --color-primary: #000000;
   --color-secondary: #333333;
   --color-tertiary: #666666;
-  --color-background: #ebe6d9;
-  --color-surface: #e0dbc9;
+  --color-background: #e9e4d4;
+  --color-surface: #ddd8c4;
   --color-accent: #2d5016;
   --color-accent-hover: #1f3810;
-  --color-border: #d4cfc0;
+  --color-border: #d1ccba;
   --color-text-light: #8e8e93;
   
   /* Typography */
@@ -558,7 +558,7 @@ body {
   font-weight: var(--font-weight-light);
   line-height: 1.6;
   color: var(--color-secondary);
-  margin: 0 0 var(--space-md) 0;
+  margin: 0 0 var(--space-sm) 0;
 }
 
 .about__paragraph:last-of-type {
