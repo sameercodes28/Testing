@@ -4,13 +4,13 @@
 
 :root {
   /* Color palette */
-  --color-primary: #2b2b2b;
-  --color-secondary: #4a4a4a;
+  --color-primary: #3d3d3d;
+  --color-secondary: #5a5a5a;
   --color-tertiary: #666666;
   --color-background: #f5f3ed;
   --color-surface: #e8e6df;
-  --color-accent: #2d5016;
-  --color-accent-hover: #1f3810;
+  --color-accent: #8b9d83;
+  --color-accent-hover: #6d7d67;
   --color-border: #d9d7d0;
   --color-text-light: #8e8e93;
   
