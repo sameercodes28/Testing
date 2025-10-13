@@ -93,6 +93,7 @@
     setupCookieConsent();
     setupLanguageSystem();
     setupLoadMoreButton();
+    setupScrollIndicator();
     setupHeroAudioToggle(); // Should be last.
   }
 
@@ -1014,6 +1015,23 @@
         video.play().catch(error => {
           console.error("Video playback failed on unmute:", error);
         });
+      }
+    });
+  }
+
+  /**
+   * Setup scroll indicator to hide on scroll
+   */
+  function setupScrollIndicator() {
+    const scrollIndicator = document.querySelector('.hero__scroll-indicator');
+    if (!scrollIndicator) return;
+
+    let hasScrolled = false;
+
+    window.addEventListener('scroll', () => {
+      if (!hasScrolled && window.scrollY > 50) {
+        hasScrolled = true;
+        scrollIndicator.classList.add('hidden');
       }
     });
   }
