@@ -1023,17 +1023,31 @@
    * Setup scroll indicator to hide on scroll
    */
   function setupScrollIndicator() {
-    const scrollIndicator = document.querySelector('.hero__scroll-indicator');
-    if (!scrollIndicator) return;
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    if (!scrollIndicator) {
+      console.log('Scroll indicator not found');
+      return;
+    }
 
     let hasScrolled = false;
 
-    window.addEventListener('scroll', () => {
-      if (!hasScrolled && window.scrollY > 50) {
+    const handleScroll = () => {
+      if (!hasScrolled && window.scrollY > 20) {
+        hasScrolled = true;
+        scrollIndicator.classList.add('hidden');
+        console.log('Hiding scroll indicator');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Also hide on touchmove for mobile
+    window.addEventListener('touchmove', () => {
+      if (!hasScrolled) {
         hasScrolled = true;
         scrollIndicator.classList.add('hidden');
       }
-    });
+    }, { passive: true });
   }
 
   function updateAudioToggleIcon(isMuted) {
