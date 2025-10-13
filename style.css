@@ -822,7 +822,7 @@ body {
    ========================================================================== */
 
 .footer {
-  background-color: var(--color-surface);
+  background-color: #ffffff;
   padding: var(--space-2xl) 0;
   border-top: 1px solid var(--color-border);
 }
@@ -963,9 +963,9 @@ body {
   .nav__logo {
     font-size: 1rem;
   }
-  
+
   .nav {
-    background: var(--color-background);
+    background: #ffffff;
     backdrop-filter: none;
   }
   
