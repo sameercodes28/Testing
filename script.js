@@ -320,20 +320,21 @@
    */
   function renderProjects() {
     if (!elements.projectsGrid || !projects.length) return;
-    
+
     // Get the projects to show (sliced array)
     const projectsToShow = projects.slice(0, visibleProjectsCount);
-    
+
     const projectsHTML = projectsToShow.map(project => {
       const title = getLocalizedText(project.title);
       const altText = getLocalizedText(project.altText);
-      
+      const projectUrl = `projekt/${project.id}.html`;
+
       return `
-        <button type="button" 
-                class="project-card" 
-                data-project-id="${project.id}"
-                aria-label="View details for ${title}">
-          <img src="${project.mainImage}" 
+        <a href="${projectUrl}"
+           class="project-card"
+           data-project-id="${project.id}"
+           aria-label="View details for ${title}">
+          <img src="${project.mainImage}"
                alt="${altText}"
                class="project-card__image"
                loading="lazy"
@@ -341,14 +342,11 @@
                height="300">
           <h3 class="project-card__title">${escapeHtml(title)}</h3>
           <p class="project-card__year">${escapeHtml(project.year)}</p>
-        </button>
+        </a>
       `;
     }).join('');
-    
+
     elements.projectsGrid.innerHTML = projectsHTML;
-    
-    // Add click listeners to project cards
-    setupProjectCardListeners();
   }
 
   /**
@@ -356,21 +354,22 @@
    */
   function appendProjects() {
     if (!elements.projectsGrid || !projects.length) return;
-    
+
     const startIndex = Math.max(0, visibleProjectsCount - projectsIncrement);
     const endIndex = visibleProjectsCount;
     const newProjects = projects.slice(startIndex, endIndex);
-    
+
     const projectsHTML = newProjects.map(project => {
       const title = getLocalizedText(project.title);
       const altText = getLocalizedText(project.altText);
-      
+      const projectUrl = `projekt/${project.id}.html`;
+
       return `
-        <button type="button" 
-                class="project-card" 
-                data-project-id="${project.id}"
-                aria-label="View details for ${title}">
-          <img src="${project.mainImage}" 
+        <a href="${projectUrl}"
+           class="project-card"
+           data-project-id="${project.id}"
+           aria-label="View details for ${title}">
+          <img src="${project.mainImage}"
                alt="${altText}"
                class="project-card__image"
                loading="lazy"
@@ -378,50 +377,20 @@
                height="300">
           <h3 class="project-card__title">${escapeHtml(title)}</h3>
           <p class="project-card__year">${escapeHtml(project.year)}</p>
-        </button>
+        </a>
       `;
     }).join('');
-    
+
     elements.projectsGrid.insertAdjacentHTML('beforeend', projectsHTML);
-    
-    // Add click listeners to new project cards
-    setupProjectCardListeners();
   }
 
   /**
    * Set up event listeners for project cards using event delegation
-   * Uses event delegation pattern for better performance with dynamic content
+   * No longer needed since project cards link directly to individual pages
    */
   function setupProjectCardListeners() {
-    // Use event delegation for better performance
-    if (elements.projectsGrid) {
-      elements.projectsGrid.removeEventListener('click', handleProjectGridClick);
-      elements.projectsGrid.addEventListener('click', handleProjectGridClick);
-    }
-  }
-
-  /**
-   * Handle clicks on project grid using event delegation
-   * @param {Event} event - Click event
-   */
-  function handleProjectGridClick(event) {
-    const projectCard = event.target.closest('.project-card');
-    if (projectCard) {
-      handleProjectCardClick({ currentTarget: projectCard });
-    }
-  }
-
-  /**
-   * Handle project card click
-   * @param {Event} event - Click event
-   */
-  function handleProjectCardClick(event) {
-    const projectId = event.currentTarget.getAttribute('data-project-id');
-    const project = projects.find(p => p.id === projectId);
-    
-    if (project) {
-      openModal(project);
-    }
+    // Project cards now use <a> tags and link directly to individual pages
+    // No JavaScript click handlers needed
   }
 
   /**

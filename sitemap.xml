@@ -52,4 +52,59 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- Project Pages -->
+  <url>
+    <loc>https://karingunnerek.se/projekt/villa-sommaro-skovde.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://karingunnerek.se/projekt/villa-sommaro-skovde.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://karingunnerek.se/en/projekt/villa-sommaro-skovde.html" />
+  </url>
+
+  <url>
+    <loc>https://karingunnerek.se/projekt/kanalparken-mariestad.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://karingunnerek.se/projekt/kanalparken-mariestad.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://karingunnerek.se/en/projekt/kanalparken-mariestad.html" />
+  </url>
+
+  <url>
+    <loc>https://karingunnerek.se/projekt/lake-vast-renovation.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://karingunnerek.se/projekt/lake-vast-renovation.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://karingunnerek.se/en/projekt/lake-vast-renovation.html" />
+  </url>
+
+  <url>
+    <loc>https://karingunnerek.se/projekt/gothenburg-compact-loft.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://karingunnerek.se/projekt/gothenburg-compact-loft.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://karingunnerek.se/en/projekt/gothenburg-compact-loft.html" />
+  </url>
+
+  <url>
+    <loc>https://karingunnerek.se/projekt/skovde-community-pavilion.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://karingunnerek.se/projekt/skovde-community-pavilion.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://karingunnerek.se/en/projekt/skovde-community-pavilion.html" />
+  </url>
+
+  <url>
+    <loc>https://karingunnerek.se/projekt/hjo-house-extension.html</loc>
+    <lastmod>2025-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://karingunnerek.se/projekt/hjo-house-extension.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://karingunnerek.se/en/projekt/hjo-house-extension.html" />
+  </url>
+
 </urlset>
