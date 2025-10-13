@@ -559,7 +559,7 @@ body {
   line-height: 1.6;
   color: var(--color-secondary);
   margin: 0;
-  margin-bottom: 1em;
+  margin-bottom: 0.25em;
 }
 
 .about__paragraph:last-of-type {
