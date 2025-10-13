@@ -163,8 +163,30 @@
     
     <!-- Projects section -->
     <section id="projects" class="projects" aria-labelledby="projects-title">
+      <div class="projects__intro">
+        <div class="projects__intro-left">
+          <h2 id="projects-title" class="projects__main-title" data-i18n-key="sections.projectsTitle">Projects</h2>
+          <div class="projects__text-content">
+            <p class="projects__paragraph" data-i18n-key="sections.projectsIntro1">
+              Our portfolio showcases a diverse range of architectural projects across Västra Götaland, from residential homes to commercial spaces.
+            </p>
+            <p class="projects__paragraph" data-i18n-key="sections.projectsIntro2">
+              Each project reflects our commitment to sustainable design, thoughtful integration with the local landscape, and creating spaces that enhance the lives of those who use them.
+            </p>
+          </div>
+        </div>
+        <div class="projects__intro-right">
+          <div class="projects__intro-image">
+            <img src="https://picsum.photos/800/600?random=5"
+                 alt="Architecture workspace"
+                 class="projects__workspace-image"
+                 loading="lazy"
+                 width="800"
+                 height="600">
+          </div>
+        </div>
+      </div>
       <div class="container">
-        <h2 id="projects-title" class="section__title" data-i18n-key="sections.projectsTitle">Projects</h2>
         <div id="projects-grid" class="projects__grid" role="region" aria-label="Project portfolio">
           <!-- Projects will be populated by JavaScript -->
         </div>

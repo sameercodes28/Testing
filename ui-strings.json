@@ -23,8 +23,16 @@
       "sv": "Arkitektur i Skövde – Designar Hållbara Utrymmen"
     },
     "projectsTitle": {
-      "en": "Projects",
-      "sv": "Utvalda Projekt"
+      "en": "Our Work.",
+      "sv": "Vårt Arbete."
+    },
+    "projectsIntro1": {
+      "en": "Our portfolio showcases a diverse range of architectural projects across Västra Götaland, from residential homes to commercial spaces.",
+      "sv": "Vår portfölj visar ett brett utbud av arkitektoniska projekt över hela Västra Götaland, från bostadshus till kommersiella lokaler."
+    },
+    "projectsIntro2": {
+      "en": "Each project reflects our commitment to sustainable design, thoughtful integration with the local landscape, and creating spaces that enhance the lives of those who use them.",
+      "sv": "Varje projekt speglar vårt engagemang för hållbar design, genomtänkt integration med det lokala landskapet och att skapa utrymmen som förbättrar livet för dem som använder dem."
     },
     "aboutTitle": {
       "en": "About me.",
