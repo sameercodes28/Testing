@@ -487,7 +487,7 @@ body {
 
 @media (min-width: 768px) {
   .about__container {
-    grid-template-columns: 0.7fr 1.8fr;
+    grid-template-columns: 40fr 60fr;
     gap: var(--space-4xl);
     padding: 0 var(--space-2xl);
     align-items: start;
@@ -496,7 +496,7 @@ body {
 
 @media (min-width: 1200px) {
   .about__container {
-    grid-template-columns: 0.6fr 2fr;
+    grid-template-columns: 40fr 60fr;
     padding: 0 var(--space-3xl);
     gap: 7rem;
   }
@@ -527,7 +527,7 @@ body {
 
 .about__section-heading {
   font-family: var(--font-family);
-  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  font-size: clamp(1.125rem, 1.3vw, 1.375rem);
   font-weight: var(--font-weight-medium);
   font-style: normal;
   line-height: 1.5;
