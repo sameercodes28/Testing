@@ -482,8 +482,8 @@ body {
 
 @media (min-width: 1024px) {
   .about__container {
-    grid-template-columns: 0.8fr 1.2fr 1fr;
-    gap: var(--space-3xl);
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-4xl);
     padding: 0 var(--space-3xl);
     align-items: start;
   }
@@ -491,45 +491,40 @@ body {
 
 .about__left {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space-2xl);
 }
 
 .about__main-title {
-  font-size: clamp(3rem, 6vw, 6.5rem);
+  font-size: clamp(2.5rem, 5vw, 5rem);
   font-weight: var(--font-weight-bold);
-  line-height: 0.9;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   color: var(--color-primary);
-  margin: 0;
+  margin: 0 0 var(--space-lg) 0;
   text-align: left;
 }
 
-@media (min-width: 1024px) {
-  .about__main-title {
-    position: sticky;
-    top: calc(var(--nav-height) + var(--space-lg));
-  }
-}
-
-.about__middle {
+.about__text-content {
   display: flex;
   flex-direction: column;
+  gap: var(--space-md);
 }
 
 .about__section-heading {
-  font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
   font-weight: var(--font-weight-normal);
   font-style: italic;
   line-height: 1.6;
   color: var(--color-primary);
-  margin-bottom: var(--space-xl);
+  margin: 0 0 var(--space-md) 0;
 }
 
 .about__paragraph {
-  font-size: clamp(0.9rem, 1vw, 1rem);
-  line-height: 1.75;
+  font-size: clamp(0.875rem, 0.95vw, 0.95rem);
+  line-height: 1.7;
   color: var(--color-secondary);
-  margin-bottom: var(--space-lg);
+  margin: 0 0 var(--space-md) 0;
 }
 
 .about__paragraph:last-child {
@@ -538,7 +533,8 @@ body {
 
 .about__right {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .about__image {
@@ -943,16 +939,16 @@ body {
   }
 
   .about__main-title {
-    font-size: 3rem;
-    margin-bottom: 0;
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
   }
 
-  .about__middle {
-    order: 2;
+  .about__left {
+    gap: var(--space-md);
   }
 
   .about__right {
-    order: 3;
+    order: 2;
   }
 
   .about__headshot {
