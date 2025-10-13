@@ -232,14 +232,15 @@
    */
   async function loadTranslations() {
     try {
-      const response = await fetch('ui-strings.json');
-      
+      // Add cache busting parameter
+      const response = await fetch(`ui-strings.json?v=${Date.now()}`);
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       translations = await response.json();
-      
+
     } catch (error) {
       console.error('Error loading translations:', error);
       translations = {}; // Fallback to empty object
