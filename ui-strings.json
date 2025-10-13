@@ -30,13 +30,25 @@
       "en": "About me.",
       "sv": "Om mig."
     },
+    "aboutSubheading1": {
+      "en": "A Skövde-based architect committed to creating beautiful, sustainable buildings that serve the local community.",
+      "sv": "En Skövde-baserad arkitekt engagerad i att skapa vackra, hållbara byggnader som tjänar lokalsamhället."
+    },
     "aboutBio1": {
-      "en": "Karin Gunnerek is a Skövde-based architect specializing in sustainable design for residential and commercial projects across Västra Götaland. After graduating with honors from the KTH School of Architecture, Karin founded her practice in 2015 with a vision to create thoughtful spaces that harmonize with the local landscape and community needs.",
-      "sv": "Karin Gunnerek är en Skövde-baserad arkitekt som specialiserar sig på hållbar design för bostads- och kommersiella projekt över hela Västra Götaland. Efter att ha tagit examen med utmärkelser från KTH:s arkitekturskola grundade Karin sin praktik 2015 med en vision att skapa genomtänkta utrymmen som harmoniserar med det lokala landskapet och samhällets behov."
+      "en": "Karin Gunnerek is an architect rooted in Skövde, specializing in thoughtful design for residential and commercial projects across Västra Götaland. After completing her bachelor's degree at KTH School of Architecture in Stockholm and her master's at The Bartlett School of Architecture, UCL in London, Karin founded her practice in 2025 with a vision to bring world-class architectural thinking to her hometown region.",
+      "sv": "Karin Gunnerek är en arkitekt rotad i Skövde, specialiserad på genomtänkt design för bostads- och kommersiella projekt över hela Västra Götaland. Efter att ha avslutat sin kandidatexamen vid KTH Arkitekturskola i Stockholm och sin master vid The Bartlett School of Architecture, UCL i London, grundade Karin sin praktik 2025 med en vision att föra världsklass arkitektoniskt tänkande till sin hembygd."
     },
     "aboutBio2": {
-      "en": "Working closely with clients throughout Skaraborg and beyond, Karin's approach emphasizes sustainability, functionality, and connection to place. From initial concept development to building permits and project management, she guides each project with attention to environmental impact and long-term value.",
-      "sv": "Genom att arbeta nära kunder över hela Skaraborg och därutöver, betonar Karins tillvägagångssätt hållbarhet, funktionalitet och koppling till plats. Från första konceptutveckling till bygglov och projektledning vägleder hon varje projekt med uppmärksamhet på miljöpåverkan och långsiktigt värde."
+      "en": "Working closely with clients throughout Skaraborg, Karin's approach emphasizes deep connection to place, sustainability, and functional beauty. She believes that exceptional architecture should be accessible to local communities, creating spaces where people can thrive for generations to come.",
+      "sv": "Genom att arbeta nära kunder över hela Skaraborg betonar Karins tillvägagångssätt djup koppling till plats, hållbarhet och funktionell skönhet. Hon tror att exceptionell arkitektur ska vara tillgänglig för lokalsamhällen och skapa utrymmen där människor kan blomstra i generationer framöver."
+    },
+    "aboutBio3": {
+      "en": "From concept sketches to construction drawings, from planning applications to project completion, Karin guides each project with meticulous attention to detail and genuine care for the built environment and those who inhabit it.",
+      "sv": "Från konceptskisser till bygghandlingar, från planansökningar till projektavslut, vägleder Karin varje projekt med noggrann uppmärksamhet på detaljer och genuint omsorg för den byggda miljön och de som bor i den."
+    },
+    "aboutBio4": {
+      "en": "Whether designing a family home in Skövde, a community center in Skaraborg, or a commercial space in Västra Götaland, Karin's work reflects a commitment to architecture that enriches daily life and stands the test of time.",
+      "sv": "Oavsett om det gäller att designa ett familjehem i Skövde, ett community center i Skaraborg eller en kommersiell lokal i Västra Götaland, speglar Karins arbete ett engagemang för arkitektur som berikar vardagen och står emot tidens tand."
     },
     "bookingTitle": {
       "en": "Book a Consultation",
