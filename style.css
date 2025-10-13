@@ -586,6 +586,7 @@ body {
   height: auto;
   display: block;
   object-fit: cover;
+  border-radius: var(--border-radius-lg);
 }
 
 
