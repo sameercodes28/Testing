@@ -357,7 +357,7 @@ body {
   line-height: 0.95;
   letter-spacing: -0.02em;
   margin-bottom: var(--space-2xl);
-  text-align: center;
+  text-align: left;
 }
 
 /* ==========================================================================
@@ -366,6 +366,23 @@ body {
 
 .projects {
   padding: var(--space-4xl) 0;
+}
+
+.projects .container {
+  max-width: 1600px;
+  padding: 0 var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .projects .container {
+    padding: 0 var(--space-2xl);
+  }
+}
+
+@media (min-width: 1200px) {
+  .projects .container {
+    padding: 0 var(--space-3xl);
+  }
 }
 
 .projects__grid {
@@ -943,6 +960,10 @@ body {
   
   .projects {
     padding: var(--space-2xl) 0;
+  }
+
+  .projects .container {
+    padding: 0 var(--space-md);
   }
   
   .about {
