@@ -1001,25 +1001,41 @@ body {
    ========================================================================== */
 
 @media (max-width: 767px) {
-  .nav__menu {
-    gap: var(--space-xs);
-  }
-  
-  .nav__link--cta {
-    padding: var(--space-xs) 0.75rem;
-  }
-  
-  .nav__link {
-    font-size: 0.85rem;
-  }
-  
-  .nav__logo {
-    font-size: 1rem;
-  }
-
+  /* Mobile navigation improvements */
   .nav {
     background: #ffffff;
     backdrop-filter: none;
+    min-height: var(--nav-height);
+    height: auto;
+  }
+
+  .nav__container {
+    padding: var(--space-sm) var(--space-md);
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .nav__logo {
+    font-size: 0.9rem;
+    flex: 1 1 auto;
+  }
+
+  .nav__menu {
+    width: 100%;
+    order: 3;
+    gap: var(--space-xs);
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .nav__link {
+    font-size: 0.8rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .nav__link--cta {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.8rem;
   }
   
   .hero {
