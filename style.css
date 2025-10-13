@@ -823,7 +823,7 @@ body {
 
 .footer {
   background-color: #ffffff;
-  padding: var(--space-2xl) 0;
+  padding: var(--space-md) 0;
   border-top: 1px solid var(--color-border);
 }
 
