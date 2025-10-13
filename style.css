@@ -554,7 +554,7 @@ body {
 }
 
 .about__paragraph {
-  font-family: var(--font-family);
+  font-family: 'Georgia', 'Times New Roman', serif;
   font-size: clamp(0.875rem, 0.9vw, 0.9rem);
   font-weight: var(--font-weight-light);
   line-height: 1.6;
@@ -586,7 +586,6 @@ body {
   height: auto;
   display: block;
   object-fit: cover;
-  border-radius: var(--border-radius-lg);
 }
 
 
