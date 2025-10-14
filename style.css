@@ -258,7 +258,7 @@ body {
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-sm);
   transition: color var(--transition-fast);
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
   border-radius: var(--border-radius);
   min-height: 44px;
   display: flex;
