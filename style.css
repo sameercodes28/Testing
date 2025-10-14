@@ -222,6 +222,8 @@ body {
   transition: opacity var(--transition-fast);
   display: flex;
   align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
 .nav__logo:hover {
