@@ -196,7 +196,7 @@ body {
   max-width: 1600px;
   height: 100%;
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 var(--space-lg);
   display: flex;
   align-items: center;
   justify-content: space-between;
