@@ -241,6 +241,18 @@ body {
   align-items: center;
 }
 
+@media (min-width: 768px) {
+  .nav__menu {
+    gap: var(--space-2xl);
+  }
+}
+
+@media (min-width: 1200px) {
+  .nav__menu {
+    gap: var(--space-3xl);
+  }
+}
+
 .nav__link {
   color: var(--color-secondary);
   text-decoration: none;
