@@ -670,7 +670,7 @@ body {
 .about__right {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; /* Change to this */
 }
 
 .about__image {
