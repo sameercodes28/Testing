@@ -11,7 +11,34 @@
   // -- CONFIGURATION --
   const HERO_TEXT_ANIMATION_DELAY = 4000; // Delay in milliseconds (4000ms = 4 seconds)
 
-  // ... (Application state and elements object remain the same) ...
+  // Application state
+  let projects = [];
+  let focusableElements = [];
+  let lastFocusedElement = null;
+  let currentProject = null;
+  let currentImageIndex = 0;
+  let translations = {};
+  let currentLanguage = 'sv'; // Default to Swedish
+  
+  // Pagination state
+  let visibleProjectsCount = 0;
+  const projectsToShowDesktop = 9;
+  const projectsToShowMobile = 4;
+  let projectsIncrement = 0;
+
+  // DOM element references (cached for performance)
+  const elements = {
+    projectsGrid: null,
+    modal: null,
+    modalTitle: null,
+    modalImage: null,
+    modalYear: null,
+    modalTags: null,
+    modalDescription: null,
+    modalGallery: null,
+    closeButton: null,
+    navLinks: null
+  };
 
   /**
    * Initialize the application when DOM is ready
@@ -22,40 +49,566 @@
     loadProjects();
   }
 
-  // ... (cacheElements function remains the same) ...
-  
-  // ... (setupEventListeners function remains the same) ...
-
-  // ... (setupNavigationScrolling and handleNavClick functions remain the same) ...
-
-  // ... (All other functions from openModal to setupScrollIndicator remain the same) ...
+  /**
+   * Cache DOM elements for better performance
+   */
+  function cacheElements() {
+    elements.projectsGrid = document.getElementById('projects-grid');
+    elements.modal = document.getElementById('project-modal');
+    elements.modalTitle = document.getElementById('modal-title');
+    elements.modalImage = document.getElementById('modal-image');
+    elements.modalYear = document.getElementById('modal-year');
+    elements.modalDescription = document.getElementById('modal-description');
+    elements.modalGallery = document.getElementById('modal-gallery');
+    elements.closeButton = document.querySelector('[data-close-modal]');
+    elements.navLinks = document.querySelectorAll('.nav__link');
+    elements.carouselImage = document.getElementById('carousel-image');
+    elements.carouselDots = document.getElementById('carousel-dots');
+    elements.carouselPrev = document.querySelector('.carousel-btn--prev');
+    elements.carouselNext = document.querySelector('.carousel-btn--next');
+    elements.backToTopBtn = document.getElementById('back-to-top-btn');
+    elements.footer = document.querySelector('.footer');
+    elements.cookieBanner = document.getElementById('cookie-consent-banner');
+    elements.cookieAcceptBtn = document.getElementById('cookie-accept-btn');
+    elements.languageToggle = document.getElementById('language-toggle');
+    elements.loadMoreBtn = document.getElementById('load-more-btn');
+    elements.heroTextContainer = document.getElementById('hero-text-container');
+    elements.heroTagline = document.querySelector('.hero-text__tagline');
+    elements.heroBrandName = document.querySelector('.hero-text__brand');
+    elements.heroAudioToggle = document.getElementById('hero-audio-toggle');
+    elements.heroVideo = document.querySelector('.hero__video');
+  }
 
   /**
-   * NEW FUNCTION TO FIX THE BUG
+   * Set up all event listeners
+   */
+  function setupEventListeners() {
+    setupHeroTextAnimation();
+    setupNavigationScrolling();
+    setupModalEventListeners();
+    setupKeyboardNavigation();
+    setupScrollSpyObserver();
+    setupScrollAnimations();
+    setupBackToTopButton();
+    setupCookieConsent();
+    setupLanguageSystem();
+    setupLoadMoreButton();
+    setupScrollIndicator();
+    setupHeroAudioToggle();
+  }
+
+  /**
+   * Set up smooth scrolling for navigation links
+   */
+  function setupNavigationScrolling() {
+    elements.navLinks.forEach(link => {
+      link.addEventListener('click', handleNavClick);
+    });
+  }
+
+  /**
+   * Handle navigation link clicks with smooth scrolling
+   * @param {Event} event - Click event
+   */
+  function handleNavClick(event) {
+    event.preventDefault();
+    
+    const href = event.currentTarget.getAttribute('href');
+    const targetId = href.substring(1); // Remove the #
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      targetElement.focus({ preventScroll: true });
+    }
+  }
+
+  /**
+   * Set up modal-related event listeners
+   */
+  function setupModalEventListeners() {
+    if (elements.closeButton) {
+      elements.closeButton.addEventListener('click', closeModal);
+    }
+    
+    if (elements.modal) {
+      elements.modal.addEventListener('click', handleModalBackdropClick);
+    }
+    
+    if (elements.carouselPrev) {
+      elements.carouselPrev.addEventListener('click', () => navigateCarousel(-1));
+    }
+    
+    if (elements.carouselNext) {
+      elements.carouselNext.addEventListener('click', () => navigateCarousel(1));
+    }
+    
+    if (elements.carouselDots) {
+      elements.carouselDots.addEventListener('click', handleDotClick);
+    }
+  }
+
+  /**
+   * Set up keyboard navigation
+   */
+  function setupKeyboardNavigation() {
+    document.addEventListener('keydown', handleKeyDown);
+  }
+
+  /**
+   * Handle keyboard events globally
+   * @param {KeyboardEvent} event - Keyboard event
+   */
+  function handleKeyDown(event) {
+    if (event.key === 'Escape' && elements.modal && elements.modal.open) {
+      closeModal();
+      return;
+    }
+    
+    if (elements.modal && elements.modal.open && currentProject) {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        navigateCarousel(-1);
+        return;
+      }
+      
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        navigateCarousel(1);
+        return;
+      }
+    }
+    
+    if (event.key === 'Tab' && elements.modal && elements.modal.open) {
+      handleTabKeyInModal(event);
+    }
+  }
+
+  /**
+   * Handle tab key navigation within modal (focus trapping)
+   * @param {KeyboardEvent} event - Keyboard event
+   */
+  function handleTabKeyInModal(event) {
+    if (focusableElements.length === 0) return;
+    
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    if (event.shiftKey) {
+      if (document.activeElement === firstElement) {
+        lastElement.focus();
+        event.preventDefault();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        firstElement.focus();
+        event.preventDefault();
+      }
+    }
+  }
+
+  /**
+   * Check if current device is mobile
+   * @returns {boolean} - Whether device is mobile
+   */
+  function isMobile() {
+    return window.innerWidth < 768;
+  }
+
+  /**
+   * Load translations from JSON file for multi-language support
+   * @returns {Promise<void>}
+   */
+  async function loadTranslations() {
+    try {
+      const response = await fetch(`ui-strings.json?v=${Date.now()}`);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      translations = await response.json();
+    } catch (error) {
+      console.error('Error loading translations:', error);
+      translations = {};
+    }
+  }
+
+  /**
+   * Load projects from JSON file with pagination support
+   */
+  async function loadProjects() {
+    try {
+      showLoadingState();
+      const response = await fetch('projects.json');
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      projects = await response.json();
+      
+      const initialCount = isMobile() ? projectsToShowMobile : projectsToShowDesktop;
+      projectsIncrement = isMobile() ? projectsToShowMobile : projectsToShowDesktop;
+      visibleProjectsCount = Math.min(initialCount, projects.length);
+      
+      renderProjects();
+      updateLoadMoreButton();
+      hideLoadingState();
+    } catch (error) {
+      console.error('Error loading projects:', error);
+      showErrorState();
+    }
+  }
+
+  function showLoadingState() {
+    if (elements.projectsGrid) {
+      elements.projectsGrid.innerHTML = `<div class="loading-state" style="grid-column: 1 / -1; text-align: center; padding: 2rem;"><p style="color: var(--color-text-light);">Loading projects...</p></div>`;
+    }
+  }
+
+  function showErrorState() {
+    if (elements.projectsGrid) {
+      elements.projectsGrid.innerHTML = `<div class="error-state" style="grid-column: 1 / -1; text-align: center; padding: 2rem;"><p style="color: var(--color-text-light);">Unable to load projects. Please try again later.</p></div>`;
+    }
+  }
+
+  function hideLoadingState() {
+    const loadingState = document.querySelector('.loading-state');
+    if (loadingState) loadingState.remove();
+  }
+
+  function renderProjects() {
+    if (!elements.projectsGrid || !projects.length) return;
+    const projectsToShow = projects.slice(0, visibleProjectsCount);
+    const projectsHTML = projectsToShow.map(project => {
+      const title = getLocalizedText(project.title);
+      const altText = getLocalizedText(project.altText);
+      const projectUrl = `projekt/${project.id}.html`;
+      return `<a href="${projectUrl}" class="project-card" data-project-id="${project.id}" aria-label="View details for ${title}"><img src="${project.mainImage}" alt="${altText}" class="project-card__image" loading="lazy" width="400" height="300"><h3 class="project-card__title">${escapeHtml(title)}</h3><p class="project-card__year">${escapeHtml(project.year)}</p></a>`;
+    }).join('');
+    elements.projectsGrid.innerHTML = projectsHTML;
+  }
+
+  function appendProjects() {
+    if (!elements.projectsGrid || !projects.length) return;
+    const startIndex = elements.projectsGrid.querySelectorAll('.project-card').length;
+    const endIndex = visibleProjectsCount;
+    const newProjects = projects.slice(startIndex, endIndex);
+    const projectsHTML = newProjects.map(project => {
+      const title = getLocalizedText(project.title);
+      const altText = getLocalizedText(project.altText);
+      const projectUrl = `projekt/${project.id}.html`;
+      return `<a href="${projectUrl}" class="project-card" data-project-id="${project.id}" aria-label="View details for ${title}"><img src="${project.mainImage}" alt="${altText}" class="project-card__image" loading="lazy" width="400" height="300"><h3 class="project-card__title">${escapeHtml(title)}</h3><p class="project-card__year">${escapeHtml(project.year)}</p></a>`;
+    }).join('');
+    elements.projectsGrid.insertAdjacentHTML('beforeend', projectsHTML);
+  }
+
+  function openModal(project) {
+    if (!elements.modal) return;
+    lastFocusedElement = document.activeElement;
+    currentProject = project;
+    currentImageIndex = 0;
+    populateModalContent(project);
+    initializeCarousel(project);
+    document.body.classList.add('modal-open');
+    elements.modal.showModal();
+    setupFocusTrapping();
+    if (focusableElements.length > 0) focusableElements[0].focus();
+    document.body.setAttribute('aria-hidden', 'true');
+    elements.modal.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function populateModalContent(project) {
+    if (elements.modalTitle) elements.modalTitle.textContent = getLocalizedText(project.title);
+    if (elements.modalYear) elements.modalYear.textContent = project.year;
+    if (elements.modalDescription) elements.modalDescription.textContent = getLocalizedText(project.description);
+  }
+
+  function setupFocusTrapping() {
+    if (!elements.modal) return;
+    const focusableSelectors = ['button', '[href]', 'input', 'select', 'textarea', '[tabindex]:not([tabindex="-1"])'];
+    focusableElements = Array.from(elements.modal.querySelectorAll(focusableSelectors.join(','))).filter(el => !el.disabled);
+  }
+
+  function closeModal() {
+    if (!elements.modal) return;
+    document.body.classList.remove('modal-open');
+    elements.modal.close();
+    currentProject = null;
+    currentImageIndex = 0;
+    if (lastFocusedElement) {
+      lastFocusedElement.focus();
+      lastFocusedElement = null;
+    }
+    document.body.removeAttribute('aria-hidden');
+    elements.modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    focusableElements = [];
+  }
+
+  function handleModalBackdropClick(event) {
+    if (event.target === elements.modal) closeModal();
+  }
+
+  function initializeCarousel(project) {
+    if (!project.gallery?.length) return;
+    updateCarouselImage();
+    generateCarouselDots(project.gallery.length);
+  }
+
+  function navigateCarousel(direction) {
+    if (!currentProject?.gallery?.length) return;
+    const totalImages = currentProject.gallery.length;
+    currentImageIndex = (currentImageIndex + direction + totalImages) % totalImages;
+    updateCarouselImage();
+    updateCarouselDots();
+  }
+
+  function updateCarouselImage() {
+    if (!currentProject || !elements.carouselImage) return;
+    const imageUrl = currentProject.gallery[currentImageIndex];
+    const projectTitle = getLocalizedText(currentProject.title);
+    const imageLabel = getTranslation('accessibility.imageAltPrefix') || 'Image';
+    elements.carouselImage.src = imageUrl;
+    elements.carouselImage.alt = `${projectTitle} - ${imageLabel} ${currentImageIndex + 1}`;
+  }
+
+  function generateCarouselDots(totalImages) {
+    if (!elements.carouselDots) return;
+    const dotLabel = getTranslation('modal.dotButton') || 'Go to image';
+    const dotsHTML = Array.from({ length: totalImages }, (_, index) => `<button class="carousel-dot ${index === 0 ? 'active-dot' : ''}" data-index="${index}" aria-label="${dotLabel} ${index + 1}"></button>`).join('');
+    elements.carouselDots.innerHTML = dotsHTML;
+  }
+
+  function updateCarouselDots() {
+    if (!elements.carouselDots) return;
+    const dots = elements.carouselDots.querySelectorAll('.carousel-dot');
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active-dot', index === currentImageIndex);
+    });
+  }
+
+  function handleDotClick(event) {
+    if (event.target.classList.contains('carousel-dot')) {
+      const index = parseInt(event.target.dataset.index, 10);
+      if (!isNaN(index)) {
+        currentImageIndex = index;
+        updateCarouselImage();
+        updateCarouselDots();
+      }
+    }
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function isModernBrowser() {
+    return 'fetch' in window && 'Promise' in window;
+  }
+
+  function showBrowserFallback() {
+    if (elements.projectsGrid) {
+      elements.projectsGrid.innerHTML = `<div style="background: #f8f9fa; padding: 1rem; margin: 1rem; border-radius: 8px; text-align: center;"><p style="color: #666;">Your browser doesn't support some modern features. Please update your browser for the best experience.</p></div>`;
+    }
+  }
+
+  function setupScrollSpyObserver() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav__link');
+    if (!sections.length || !navLinks.length) return;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          navLinks.forEach(link => link.classList.remove('active-nav-link'));
+          const activeLink = document.querySelector(`.nav__link[href="#${sectionId}"]`);
+          if (activeLink) activeLink.classList.add('active-nav-link');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+    sections.forEach(section => observer.observe(section));
+  }
+
+  function setupScrollAnimations() {
+    const animatedSections = document.querySelectorAll('section');
+    if (!animatedSections.length) return;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    animatedSections.forEach(section => observer.observe(section));
+  }
+
+  function setupBackToTopButton() {
+    if (!elements.backToTopBtn || !elements.footer) return;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        elements.backToTopBtn.classList.toggle('is-visible', entry.isIntersecting);
+        elements.backToTopBtn.classList.toggle('is-above-footer', entry.isIntersecting);
+      });
+    }, { root: null, rootMargin: '0px', threshold: 0.1 });
+    observer.observe(elements.footer);
+    elements.backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  function setupCookieConsent() {
+    if (!elements.cookieBanner || !elements.cookieAcceptBtn) return;
+    if (!getCookie('karin_cookie_consent')) {
+      setTimeout(() => elements.cookieBanner.classList.add('is-visible'), 1000);
+    }
+    elements.cookieAcceptBtn.addEventListener('click', () => {
+      setCookie('karin_cookie_consent', 'true', 365);
+      elements.cookieBanner.classList.remove('is-visible');
+    });
+  }
+
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+  }
+
+  function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/;SameSite=Lax`;
+  }
+
+  function getCurrentLanguage() {
+    return localStorage.getItem('karin_language') || 'sv';
+  }
+
+  function setLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('karin_language', lang);
+  }
+
+  function getLocalizedText(textObj) {
+    if (typeof textObj === 'string') return textObj;
+    return textObj?.[currentLanguage] ?? textObj?.['en'] ?? '';
+  }
+
+  function getTranslation(key) {
+    return getLocalizedText(key.split('.').reduce((o, i) => o?.[i], translations));
+  }
+
+  function renderPage() {
+    document.querySelectorAll('[data-i18n-key]').forEach(el => {
+      const key = el.dataset.i18nKey;
+      const text = getTranslation(key);
+      if (text) el.textContent = text;
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.dataset.i18nAria;
+      const text = getTranslation(key);
+      if (text) el.setAttribute('aria-label', text);
+    });
+    if (elements.languageToggle) {
+      elements.languageToggle.textContent = (currentLanguage === 'sv' ? 'en' : 'sv').toUpperCase();
+    }
+    if (projects.length > 0) {
+      renderProjects();
+      updateLoadMoreButton();
+    }
+    if (currentProject && elements.modal?.open) {
+      populateModalContent(currentProject);
+      if (currentProject.gallery?.length) {
+        updateCarouselImage();
+        generateCarouselDots(currentProject.gallery.length);
+        updateCarouselDots();
+      }
+    }
+  }
+
+  function setupLanguageSystem() {
+    currentLanguage = getCurrentLanguage();
+    if (elements.languageToggle) {
+      elements.languageToggle.addEventListener('click', () => {
+        setLanguage(currentLanguage === 'sv' ? 'en' : 'sv');
+        renderPage();
+      });
+    }
+  }
+
+  function updateLoadMoreButton() {
+    if (elements.loadMoreBtn) {
+      elements.loadMoreBtn.classList.toggle('is-visible', visibleProjectsCount < projects.length);
+    }
+  }
+
+  function setupLoadMoreButton() {
+    if (!elements.loadMoreBtn) return;
+    elements.loadMoreBtn.addEventListener('click', () => {
+      const remaining = projects.length - visibleProjectsCount;
+      visibleProjectsCount += Math.min(projectsIncrement, remaining);
+      appendProjects();
+      updateLoadMoreButton();
+    });
+  }
+
+  function setupHeroTextAnimation() {
+    if (elements.heroTextContainer) {
+      setTimeout(() => elements.heroTextContainer.classList.add('is-visible'), HERO_TEXT_ANIMATION_DELAY);
+    }
+  }
+
+  function setupScrollIndicator() {
+    const indicator = document.getElementById('scroll-indicator');
+    if (!indicator) return;
+    const handleScroll = () => indicator.classList.toggle('hidden', window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  }
+
+  /**
+   * REVISED FUNCTION TO FIX NAVIGATION BUG
    * Handles scrolling to a section specified in the URL hash on page load.
+   * This version is more robust to prevent conflicts with other scripts and CSS smooth scrolling.
    */
   function handlePageLoadScroll() {
     const hash = window.location.hash;
     if (hash) {
-      // We use a small timeout to ensure the page has finished laying out
-      // before we try to scroll. This prevents race conditions with other scripts.
+      // The timeout ensures that this code runs after the browser's initial (and buggy)
+      // scroll attempt, and after other scripts have potentially run.
       setTimeout(() => {
-        const targetElement = document.getElementById(hash.substring(1));
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        const targetId = hash.substring(1);
+        const targetElement = document.getElementById(targetId);
+        const navElement = document.querySelector('.nav');
+
+        if (targetElement && navElement) {
+          // Calculate the target position, accounting for the fixed navigation bar height.
+          const navHeight = navElement.offsetHeight;
+          const targetPosition = targetElement.offsetTop - navHeight;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
           });
         }
-      }, 100); // 100ms delay
+      }, 100); // A 100ms delay is usually enough to avoid race conditions.
     }
   }
 
+  function setupHeroAudioToggle() {
+    if (!elements.heroAudioToggle || !elements.heroVideo) return;
+    updateAudioToggleIcon(elements.heroVideo.muted);
+    elements.heroAudioToggle.addEventListener('click', () => {
+      elements.heroVideo.muted = !elements.heroVideo.muted;
+      updateAudioToggleIcon(elements.heroVideo.muted);
+      if (!elements.heroVideo.muted) {
+        elements.heroVideo.play().catch(console.error);
+      }
+    });
+  }
+  
   function updateAudioToggleIcon(isMuted) {
     if (!elements.heroAudioToggle) return;
-    const icon = isMuted ? 
-      `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>` : 
-      `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const icon = isMuted ? `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>` : `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     const label = isMuted ? 'Unmute video' : 'Mute video';
     elements.heroAudioToggle.innerHTML = icon;
     elements.heroAudioToggle.setAttribute('aria-label', label);
@@ -63,7 +616,6 @@
 
   /**
    * Simplified and robust initialization.
-   * This ensures all code runs only after the HTML is fully parsed.
    */
   document.addEventListener('DOMContentLoaded', async () => {
     if (isModernBrowser()) {
@@ -71,10 +623,10 @@
         await loadTranslations();
         init();
         renderPage();
-        handlePageLoadScroll(); // <-- ADDED THIS LINE TO CALL THE NEW FUNCTION
+        handlePageLoadScroll(); // Bug fix: Call the function on page load
       } catch (error) {
         console.error("Initialization failed:", error);
-        showErrorState(); // Or some other UI feedback
+        showErrorState();
       }
     } else {
       showBrowserFallback();
