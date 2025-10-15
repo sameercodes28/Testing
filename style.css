@@ -605,7 +605,7 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-4xl);
     padding: 0 var(--space-2xl);
-    align-items: start;
+    align-items: center; /* To this */
   }
 }
 
