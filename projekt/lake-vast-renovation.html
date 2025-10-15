@@ -5,94 +5,127 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Renovering Vättern | Tillbyggnad Västra Götaland | Arkitekt Karin Gunnerek</title>
-  <meta name="description" content="Totalrenovering och tillbyggnad av 60-talshus med Vätternutsikt. Expert arkitekt på renovering och tillbyggnad i Västra Götaland.">
+  <meta name="description" content="En fallstudie om totalrenovering och tillbyggnad av ett 60-talshus med Vätternutsikt, presenterad som en visuell resa av arkitekt Karin Gunnerek.">
   
   <link rel="canonical" href="https://karingunnerek.se/projekt/lake-vast-renovation.html">
   <link rel="alternate" hreflang="sv" href="https://karingunnerek.se/projekt/lake-vast-renovation.html">
   <link rel="alternate" hreflang="en" href="https://karingunnerek.se/en/projekt/lake-vast-renovation.html">
   <link rel="icon" type="image/x-icon" href="../favicon.ico">
-  <link rel="stylesheet" href="../style.css?v=112">
+  
+  <link rel="stylesheet" href="../style.css?v=113">
   
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    "name": "Renovering med Vätternutsikt",
+    "name": "Renovering med Vätternutsikt - En Fallstudie",
     "description": "En totalrenovering och tillbyggnad av ett 60-talshus med utsikt över Vättern, fokuserad på att öppna upp planlösningen och maximera den natursköna utsikten.",
     "creator": { "@type": "Person", "name": "Karin Gunnerek", "url": "https://karingunnerek.se" },
     "image": "https://picsum.photos/1200/800?random=3",
-    "dateCreated": "2024",
-    "genre": ["Residential Architecture", "Renovation", "Extension"]
+    "dateCreated": "2024"
   }
   </script>
 
   <style>
-    .full-width-image-section {
+    /* Reset padding for a full-bleed layout */
+    .project-hero, .project-content {
       padding: var(--space-xl) 0;
     }
-    .full-width-image {
-      width: 100vw;
-      height: 60vh;
-      object-fit: cover;
-      margin-left: 50%;
-      transform: translateX(-50%);
-      max-width: 1600px;
-    }
-    .project-intro-grid {
+
+    /* Main split-screen container */
+    .journal-container {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-xl);
-      padding: var(--space-2xl) 0;
-      align-items: center;
+      grid-template-columns: 1fr; /* Mobile-first: single column */
+      margin: 0 auto;
+      max-width: 1600px;
+      background-color: #ffffff;
     }
-    @media (min-width: 768px) {
-      .project-intro-grid {
-        grid-template-columns: 1fr 1.5fr;
-      }
+
+    /* Left column (sticky image) */
+    .journal-image-pane {
+      position: sticky;
+      top: var(--nav-height); /* Sticks below the nav bar */
+      height: calc(100vh - var(--nav-height));
+      overflow: hidden;
+      display: none; /* Hidden on mobile */
     }
-    .project-intro-grid h2 {
-        font-size: var(--font-size-2xl);
-        font-weight: var(--font-weight-semibold);
-        line-height: 1.3;
-        margin-bottom: var(--space-md);
+    
+    .journal-image-pane .image-wrapper {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 400ms ease-in-out;
+        background-size: cover;
+        background-position: center center;
     }
-    .project-intro-grid p {
-        font-size: var(--font-size-base);
-        color: var(--color-secondary);
+
+    .journal-image-pane .image-wrapper.is-active {
+        opacity: 1;
     }
-    .key-transformations {
-        background-color: #ffffff;
-        padding: var(--space-2xl) 0;
-        border-top: 1px solid var(--color-border);
-        border-bottom: 1px solid var(--color-border);
+
+    /* Right column (scrolling text) */
+    .journal-text-pane {
+      padding: var(--space-lg);
     }
-    .transformations-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--space-lg);
+
+    /* Journal Entry Section */
+    .journal-entry {
+      min-height: 80vh; /* Gives each section space */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-bottom: var(--space-4xl);
+      border-left: 2px solid var(--color-border);
+      padding-left: var(--space-xl);
     }
-    @media (min-width: 768px) {
-        .transformations-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-2xl);
-        }
+    
+    .journal-entry.is-active {
+        border-left-color: var(--color-accent);
     }
-    .transformation-item h3 {
-        font-size: var(--font-size-lg);
-        margin-bottom: var(--space-sm);
+
+    .journal-entry h2 {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-md);
+      line-height: 1.2;
+    }
+
+    .journal-entry p {
+      font-size: var(--font-size-base);
+      line-height: 1.7;
+      color: var(--color-secondary);
+      max-width: 60ch; /* Optimal reading width */
+    }
+    
+    /* Mobile image styling */
+    .journal-entry-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: var(--border-radius);
+        margin-bottom: var(--space-lg);
+    }
+    
+    .journal-final-cta {
+        min-height: 70vh;
         display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
+        text-align: center;
     }
-    .transformation-item h3::before {
-        content: '→';
-        color: var(--color-accent);
-        margin-right: var(--space-sm);
-        font-size: 1.5em;
-    }
-    .transformation-item p {
-        font-size: var(--font-size-sm);
-        color: var(--color-secondary);
-        padding-left: calc(var(--space-sm) + 24px); /* Align with text */
+
+    /* Desktop layout (split-screen) */
+    @media (min-width: 1024px) {
+      .journal-container {
+        grid-template-columns: 1fr 1fr; /* 50/50 split */
+      }
+      .journal-image-pane {
+        display: block; /* Show image pane on desktop */
+      }
+      .journal-entry-image {
+          display: none; /* Hide mobile images on desktop */
+      }
     }
   </style>
 </head>
@@ -110,7 +143,7 @@
     </div>
   </nav>
 
-  <main id="main-content" style="padding-top: var(--nav-height);">
+  <main id="main-content">
     
     <section class="project-hero">
       <div class="container">
@@ -125,101 +158,95 @@
       </div>
     </section>
 
-    <section class="full-width-image-section">
-        <picture>
-          <source srcset="https://picsum.photos/1600/900?random=3" media="(min-width: 800px)">
-          <img src="https://picsum.photos/800/600?random=3"
-               alt="Panoramautsikt från det renoverade huset över Vättern."
-               class="full-width-image" loading="eager" width="1600" height="900">
-        </picture>
-    </section>
+    <div class="journal-container">
+      
+      <div class="journal-image-pane">
+        <div class="image-wrapper is-active" style="background-image: url('https://picsum.photos/1200/1600?random=3');"></div>
+        <div class="image-wrapper" style="background-image: url('https://picsum.photos/1200/1600?random=4');"></div>
+        <div class="image-wrapper" style="background-image: url('https://picsum.photos/1200/1600?random=5');"></div>
+      </div>
 
-    <section class="project-intro">
-        <div class="container">
-            <div class="project-intro-grid">
-                <div class="project-intro-text">
-                    <h2>The Challenge</h2>
-                    <p>To breathe new life into a classic 1960s house, transforming its closed-off layout into an open, light-filled home that fully embraces its spectacular lakeside setting.</p>
-                </div>
-                <div class="project-intro-details">
-                    <dl class="project-info-list">
-                        <dt>År:</dt><dd>2024</dd>
-                        <dt>Typ:</dt><dd>Renovering, Tillbyggnad</dd>
-                        <dt>Plats:</dt><dd>Vättern, Västra Götaland</dd>
-                        <dt>Tjänster:</dt><dd>Arkitektritning, Bygglovsritningar, Projektering</dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="journal-text-pane">
 
-    <section class="key-transformations">
-        <div class="container">
-            <div class="transformations-grid">
-                <div class="transformation-item">
-                    <h3>Opened the Core</h3>
-                    <p>Removed interior walls to create a 60m² social hub, combining kitchen, dining, and living areas with an uninterrupted view of the lake.</p>
-                </div>
-                <div class="transformation-item">
-                    <h3>Added a Modern Wing</h3>
-                    <p>Designed a seamless extension for a private master suite, giving it a secluded view and a direct connection to the surrounding nature.</p>
-                </div>
-                <div class="transformation-item">
-                    <h3>Bridged Inside and Out</h3>
-                    <p>Installed floor-to-ceiling glass doors that slide away, dissolving the barrier between the interior and a new, expansive terrace.</p>
-                </div>
-                <div class="transformation-item">
-                    <h3>Boosted Efficiency</h3>
-                    <p>Upgraded the entire building envelope and installed modern systems, resulting in a 70% improvement in energy efficiency.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="full-width-image-section">
-        <picture>
-            <source srcset="https://picsum.photos/1600/900?random=4" media="(min-width: 800px)">
-            <img src="https://picsum.photos/800/600?random=4" alt="Interiör av det nya köket och vardagsrummet." class="full-width-image" loading="lazy" width="1600" height="900">
-        </picture>
-    </section>
-    
-    <section class="project-content">
-        <div class="container">
-             <div class="project-content__grid">
-                <div class="project-content__main">
-                    <h2>The Result</h2>
-                    <p>The result is a home reborn. It retains the soul of its 1960s origins but now functions for modern life, with spaces that are both expansive and intimate. The connection to the lake is no longer just a view; it's an integral part of the daily living experience. This project stands as a testament to how thoughtful renovation can honor the past while designing for the future.</p>
-                </div>
-                <aside class="project-content__sidebar">
-                     <div class="project-cta-box">
-                        <h3>Start Your Transformation</h3>
-                        <p>Whether it's a renovation or a new build, every project begins with a conversation. Book a complimentary consultation to discuss your vision.</p>
-                        <a href="../index.html#booking" class="cta-button">Book a Consultation</a>
-                    </div>
-                    <div class="project-related-box">
-                      <h3>Liknande projekt</h3>
-                      <ul class="related-projects-list">
-                        <li><a href="villa-sommaro-skovde.html">Villa Sommarro Skövde</a></li>
-                        <li><a href="hjo-house-extension.html">Tillbyggnad Villa Hjo</a></li>
-                      </ul>
-                    </div>
-                </aside>
-            </div>
-        </div>
-    </section>
+        <section class="journal-entry" data-image-index="0">
+          <img src="https://picsum.photos/800/600?random=3" alt="Panoramautsikt över Vättern från huset före renovering." class="journal-entry-image" loading="lazy">
+          <h2>The Vision</h2>
+          <p>This project began not with a blueprint, but with a feeling. The clients wanted to transform their dated 1960s house into a sanctuary that honored its spectacular view of Lake Vättern. The challenge was to open up a compartmentalized layout while respecting the home's original character.</p>
+        </section>
 
-    <footer class="footer">
-        <div class="container">
-          <div class="footer__content">
-            <p class="footer__copyright">© 2025 Karin Gunnerek. Alla rättigheter förbehållna.</p>
-            <nav class="footer__nav" aria-label="Juridisk navigering">
-              <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
-              <a href="../terms.html" class="footer__link">Användarvillkor</a>
-            </nav>
-          </div>
-        </div>
-    </footer>
-    <script src="../project-page.js"></script>
+        <section class="journal-entry" data-image-index="1">
+          <img src="https://picsum.photos/800/600?random=4" alt="Interiör av det öppna vardagsrummet och köket efter renoveringen." class="journal-entry-image" loading="lazy">
+          <h2>The Transformation</h2>
+          <p>By removing key interior walls, we created a single, light-filled space that combines the kitchen, dining, and living areas. Floor-to-ceiling glass doors now frame the lake, turning the view from a simple backdrop into the heart of the home. A new, seamless extension houses a private master suite, creating a dialogue between the original structure and its modern counterpart.</p>
+        </section>
+        
+        <section class="journal-entry" data-image-index="2">
+          <img src="https://picsum.photos/800/600?random=5" alt="Utsikt från den nya terrassen som kopplar samman inomhus och utomhus." class="journal-entry-image" loading="lazy">
+          <h2>The Result</h2>
+          <p>The home is reborn. It is a space that breathes, connected to the shifting light and seasons of the lake. The renovation improved energy efficiency by over 70%, but more importantly, it created a home that enhances daily life. It proves that thoughtful architecture can bridge the past and the future, creating something both timeless and new.</p>
+        </section>
+
+        <section class="journal-final-cta">
+            <div class="project-cta-box">
+                <h3>Start Your Transformation</h3>
+                <p>Every great project begins with a conversation. Book a complimentary consultation to discuss your vision.</p>
+                <a href="../index.html#booking" class="cta-button">Book a Consultation</a>
+            </div>
+        </section>
+
+      </div>
+    </div>
   </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <p class="footer__copyright">© 2025 Karin Gunnerek. All rights reserved.</p>
+        <nav class="footer__nav" aria-label="Juridisk navigering">
+          <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
+          <a href="../terms.html" class="footer__link">Användarvillkor</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Only run this script on desktop
+      if (window.innerWidth < 1024) return;
+
+      const imageWrappers = document.querySelectorAll('.journal-image-pane .image-wrapper');
+      const journalEntries = document.querySelectorAll('.journal-entry');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const imageIndex = entry.target.getAttribute('data-image-index');
+            
+            // Highlight the active text section
+            journalEntries.forEach(section => section.classList.remove('is-active'));
+            entry.target.classList.add('is-active');
+
+            // Switch the active image
+            imageWrappers.forEach((wrapper, index) => {
+              if (index == imageIndex) {
+                wrapper.classList.add('is-active');
+              } else {
+                wrapper.classList.remove('is-active');
+              }
+            });
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0.5 // Trigger when 50% of the text section is visible
+      });
+
+      journalEntries.forEach(entry => {
+        observer.observe(entry);
+      });
+    });
+  </script>
+
 </body>
 </html>
