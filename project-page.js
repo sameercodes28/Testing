@@ -1,7 +1,7 @@
 /**
  * Karin Gunnerek Portfolio - Project Page JavaScript
  * Minimal script for project detail pages
- * Handles only back-to-top button and cookie consent functionality
+ * Handles back-to-top button, cookie consent, and scroll animations
  */
 
 (function() {
@@ -86,6 +86,35 @@
       elements.cookieBanner.classList.remove('is-visible');
     });
   }
+  
+  /**
+   * Set up scroll animations with intersection observer
+   */
+  function setupScrollAnimations() {
+    const animatedSections = document.querySelectorAll('section');
+
+    if (!animatedSections.length) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -10% 0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // Stop observing once animated to prevent re-animation on scroll up
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    animatedSections.forEach(section => {
+      observer.observe(section);
+    });
+  }
 
   /**
    * Get cookie value by name
@@ -120,6 +149,7 @@
     cacheElements();
     setupBackToTopButton();
     setupCookieConsent();
+    setupScrollAnimations(); // Bug fix: Added this line
   }
 
   /**
