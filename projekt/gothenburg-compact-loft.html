@@ -110,41 +110,25 @@
   <!-- Skip to main content for accessibility -->
   <a href="#main-content" class="skip-to-content">Hoppa till huvudinnehåll</a>
 
-  <!-- Header Navigation -->
-  <header class="header">
-    <div class="header__container">
-      <div class="header__left">
-        <a href="../index.html" class="logo">
-          <strong>Karin Gunnerek Architecture</strong>
-        </a>
-      </div>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__container">
+      <a href="../index.html" class="nav__logo" aria-label="Karin Gunnerek, Architect - Return to homepage">Karin Gunnerek Architecture</a>
 
-      <nav class="nav" aria-label="Huvudnavigering">
-        <a href="../index.html#projects" class="nav__link">Projekt</a>
-        <a href="../index.html#about" class="nav__link">Om mig</a>
-        <a href="../index.html#booking" class="nav__link">Boka konsultation</a>
-      </nav>
-
-      <div class="header__right">
-        <button class="language-toggle" aria-label="Växla språk">
-          <a href="../index.html">SV</a>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Breadcrumb Navigation -->
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <div class="container">
-      <ol class="breadcrumb__list">
-        <li class="breadcrumb__item"><a href="../index.html">Hem</a></li>
-        <li class="breadcrumb__item"><a href="../index.html#projects">Projekt</a></li>
-        <li class="breadcrumb__item" aria-current="page">Kompakt etage i Göteborg</li>
-      </ol>
+      <ul class="nav__menu">
+        <li>
+          <a href="../index.html#projects" class="nav__link">Projekt</a>
+        </li>
+        <li>
+          <a href="../index.html#about" class="nav__link">Om mig</a>
+        </li>
+        <li>
+          <a href="../index.html#booking" class="nav__link nav__link--cta">Boka konsultation</a>
+        </li>
+      </ul>
     </div>
   </nav>
 
-  <main id="main-content">
+  <main id="main-content" style="padding-top: var(--nav-height);">
     <!-- Project Hero Section -->
     <section class="project-hero">
       <div class="container">
@@ -316,6 +300,17 @@
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-consent-banner">
+    <div class="cookie-banner__content">
+      <p class="cookie-banner__text">
+        <span>Denna webbplats använder cookies för att analysera webbplatsanvändning och förbättra din upplevelse.</span>
+        <a href="../privacy.html" class="cookie-banner__link">Läs mer i vår integritetspolicy</a>.
+      </p>
+      <button id="cookie-accept-btn" class="cookie-banner__accept">Acceptera</button>
+    </div>
+  </div>
 
   <script src="../project-page.js"></script>
 </body>
