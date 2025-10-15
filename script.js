@@ -355,7 +355,7 @@
   function appendProjects() {
     if (!elements.projectsGrid || !projects.length) return;
 
-    const startIndex = Math.max(0, visibleProjectsCount - projectsIncrement);
+    const startIndex = elements.projectsGrid.querySelectorAll('.project-card').length;
     const endIndex = visibleProjectsCount;
     const newProjects = projects.slice(startIndex, endIndex);
 
