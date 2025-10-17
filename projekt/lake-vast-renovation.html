@@ -26,108 +26,6 @@
   }
   </script>
 
-  <style>
-    /* Reset padding for a full-bleed layout */
-    .project-hero, .project-content {
-      padding: var(--space-xl) 0;
-    }
-
-    /* Main split-screen container */
-    .journal-container {
-      display: grid;
-      grid-template-columns: 1fr; /* Mobile-first: single column */
-      margin: 0 auto;
-      max-width: 1600px;
-      background-color: #ffffff;
-    }
-
-    /* Left column (sticky image) */
-    .journal-image-pane {
-      position: sticky;
-      top: var(--nav-height); /* Sticks below the nav bar */
-      height: calc(100vh - var(--nav-height));
-      overflow: hidden;
-      display: none; /* Hidden on mobile */
-    }
-    
-    .journal-image-pane .image-wrapper {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        transition: opacity 400ms ease-in-out;
-        background-size: cover;
-        background-position: center center;
-    }
-
-    .journal-image-pane .image-wrapper.is-active {
-        opacity: 1;
-    }
-
-    /* Right column (scrolling text) */
-    .journal-text-pane {
-      padding: var(--space-lg);
-    }
-
-    /* Journal Entry Section */
-    .journal-entry {
-      min-height: 80vh; /* Gives each section space */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-bottom: var(--space-4xl);
-      border-left: 2px solid var(--color-border);
-      padding-left: var(--space-xl);
-    }
-    
-    .journal-entry.is-active {
-        border-left-color: var(--color-accent);
-    }
-
-    .journal-entry h2 {
-      font-size: var(--font-size-3xl);
-      font-weight: var(--font-weight-bold);
-      margin-bottom: var(--space-md);
-      line-height: 1.2;
-    }
-
-    .journal-entry p {
-      font-size: var(--font-size-base);
-      line-height: 1.7;
-      color: var(--color-secondary);
-      max-width: 60ch; /* Optimal reading width */
-    }
-    
-    /* Mobile image styling */
-    .journal-entry-image {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        border-radius: var(--border-radius);
-        margin-bottom: var(--space-lg);
-    }
-    
-    .journal-final-cta {
-        min-height: 70vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-
-    /* Desktop layout (split-screen) */
-    @media (min-width: 1024px) {
-      .journal-container {
-        grid-template-columns: 1fr 1fr; /* 50/50 split */
-      }
-      .journal-image-pane {
-        display: block; /* Show image pane on desktop */
-      }
-      .journal-entry-image {
-          display: none; /* Hide mobile images on desktop */
-      }
-    }
-  </style>
 </head>
 
 <body>
@@ -143,59 +41,102 @@
     </div>
   </nav>
 
-  <main id="main-content">
-    
+  <main id="main-content" style="padding-top: var(--nav-height);">
     <section class="project-hero">
       <div class="container">
         <div class="project-hero__content">
           <h1 class="project-hero__title">Renovering med Vätternutsikt</h1>
           <div class="project-hero__meta">
-            <span>2024</span><span class="project-hero__separator">•</span>
-            <span>Renovering • Tillbyggnad</span><span class="project-hero__separator">•</span>
-            <span>Vättern, Västra Götaland</span>
+            <span class="project-hero__year">2024</span>
+            <span class="project-hero__separator">•</span>
+            <span class="project-hero__type">Renovering • Tillbyggnad</span>
+            <span class="project-hero__separator">•</span>
+            <span class="project-hero__location">Vättern, Västra Götaland</span>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="journal-container">
-      
-      <div class="journal-image-pane">
-        <div class="image-wrapper is-active" style="background-image: url('https://picsum.photos/1200/1600?random=3');"></div>
-        <div class="image-wrapper" style="background-image: url('https://picsum.photos/1200/1600?random=4');"></div>
-        <div class="image-wrapper" style="background-image: url('https://picsum.photos/1200/1600?random=5');"></div>
+    <section class="project-image-hero">
+      <div class="container">
+        <picture>
+          <source srcset="https://picsum.photos/1200/800?random=3" media="(min-width: 800px)">
+          <source srcset="https://picsum.photos/800/600?random=3" media="(min-width: 400px)">
+          <img src="https://picsum.photos/400/300?random=3"
+               alt="Renoverat hus med stor glas-tillbyggnad med utsikt över en sjö"
+               class="project-image-hero__img"
+               loading="eager"
+               width="1200" height="800">
+        </picture>
       </div>
+    </section>
 
-      <div class="journal-text-pane">
-
-        <section class="journal-entry" data-image-index="0">
-          <img src="https://picsum.photos/800/600?random=3" alt="Panoramautsikt över Vättern från huset före renovering." class="journal-entry-image" loading="lazy">
-          <h2>The Vision</h2>
-          <p>This project began not with a blueprint, but with a feeling. The clients wanted to transform their dated 1960s house into a sanctuary that honored its spectacular view of Lake Vättern. The challenge was to open up a compartmentalized layout while respecting the home's original character.</p>
-        </section>
-
-        <section class="journal-entry" data-image-index="1">
-          <img src="https://picsum.photos/800/600?random=4" alt="Interiör av det öppna vardagsrummet och köket efter renoveringen." class="journal-entry-image" loading="lazy">
-          <h2>The Transformation</h2>
-          <p>By removing key interior walls, we created a single, light-filled space that combines the kitchen, dining, and living areas. Floor-to-ceiling glass doors now frame the lake, turning the view from a simple backdrop into the heart of the home. A new, seamless extension houses a private master suite, creating a dialogue between the original structure and its modern counterpart.</p>
-        </section>
-        
-        <section class="journal-entry" data-image-index="2">
-          <img src="https://picsum.photos/800/600?random=5" alt="Utsikt från den nya terrassen som kopplar samman inomhus och utomhus." class="journal-entry-image" loading="lazy">
-          <h2>The Result</h2>
-          <p>The home is reborn. It is a space that breathes, connected to the shifting light and seasons of the lake. The renovation improved energy efficiency by over 70%, but more importantly, it created a home that enhances daily life. It proves that thoughtful architecture can bridge the past and the future, creating something both timeless and new.</p>
-        </section>
-
-        <section class="journal-final-cta">
-            <div class="project-cta-box">
-                <h3>Start Your Transformation</h3>
-                <p>Every great project begins with a conversation. Book a complimentary consultation to discuss your vision.</p>
-                <a href="../index.html#booking" class="cta-button">Book a Consultation</a>
+    <section class="project-snapshot">
+        <div class="container">
+            <div class="snapshot-grid">
+                <div class="snapshot-item">
+                    <h3>Client Goal</h3>
+                    <p>To transform a dated 1960s house into a modern sanctuary that maximizes the spectacular Lake Vättern views while respecting the home's original character.</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Architectural Solution</h3>
+                    <p>An open-plan redesign combined with a seamless glass extension to create light-filled spaces with floor-to-ceiling views of the lake.</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Complete interior redesign</li>
+                        <li>70% improvement in energy efficiency</li>
+                        <li>Floor-to-ceiling glass partitions</li>
+                        <li>New master suite extension</li>
+                    </ul>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
+    <section class="project-content">
+      <div class="container">
+        <div class="project-content__grid">
+          <div class="project-content__main">
+            <h2>The Vision</h2>
+            <p>This project began not with a blueprint, but with a feeling. The clients wanted to transform their dated 1960s house into a sanctuary that honored its spectacular view of Lake Vättern. The challenge was to open up a compartmentalized layout while respecting the home's original character.</p>
+            <picture>
+                <source srcset="https://picsum.photos/1200/800?random=4" media="(min-width: 800px)">
+                <img src="https://picsum.photos/800/600?random=4" alt="Interiör av det öppna vardagsrummet och köket efter renoveringen" class="story-image" loading="lazy" width="1200" height="800">
+            </picture>
+
+            <h2>The Transformation</h2>
+            <p>By removing key interior walls, we created a single, light-filled space that combines the kitchen, dining, and living areas. Floor-to-ceiling glass doors now frame the lake, turning the view from a simple backdrop into the heart of the home. A new, seamless extension houses a private master suite, creating a dialogue between the original structure and its modern counterpart.</p>
+            <picture>
+                <source srcset="https://picsum.photos/1200/800?random=5" media="(min-width: 800px)">
+                <img src="https://picsum.photos/800/600?random=5" alt="Utsikt från den nya terrassen som kopplar samman inomhus och utomhus" class="story-image" loading="lazy" width="1200" height="800">
+            </picture>
+
+            <h2>The Result</h2>
+            <p>The home is reborn. It is a space that breathes, connected to the shifting light and seasons of the lake. The renovation improved energy efficiency by over 70%, but more importantly, it created a home that enhances daily life. It proves that thoughtful architecture can bridge the past and the future, creating something both timeless and new.</p>
+          </div>
+
+          <aside class="project-content__sidebar">
+            <div class="project-info-box">
+              <h3>Projektinformation</h3>
+              <dl class="project-info-list">
+                <dt>År:</dt><dd>2024</dd>
+                <dt>Typ:</dt><dd>Renovering, Tillbyggnad</dd>
+                <dt>Plats:</dt><dd>Vättern, Västra Götaland</dd>
+                <dt>Tjänster:</dt><dd>Renovering, Tillbyggnad, Energieffektivisering</dd>
+                <dt>Kategori:</dt><dd>Residential, Renovering, Tillbyggnad</dd>
+              </dl>
+            </div>
+            <div class="project-cta-box">
+              <h3>Intresserad av liknande projekt?</h3>
+              <p>Letar du efter en arkitekt för renovering och tillbyggnad? Boka ett kostnadsfritt konsultationsmöte.</p>
+              <a href="../index.html#booking" class="cta-button">Boka konsultation</a>
+            </div>
+          </aside>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer class="footer">
@@ -216,43 +157,15 @@
     </svg>
   </button>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Only run this script on desktop
-      if (window.innerWidth < 1024) return;
-
-      const imageWrappers = document.querySelectorAll('.journal-image-pane .image-wrapper');
-      const journalEntries = document.querySelectorAll('.journal-entry');
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const imageIndex = entry.target.getAttribute('data-image-index');
-            
-            // Highlight the active text section
-            journalEntries.forEach(section => section.classList.remove('is-active'));
-            entry.target.classList.add('is-active');
-
-            // Switch the active image
-            imageWrappers.forEach((wrapper, index) => {
-              if (index == imageIndex) {
-                wrapper.classList.add('is-active');
-              } else {
-                wrapper.classList.remove('is-active');
-              }
-            });
-          }
-        });
-      }, {
-        root: null,
-        threshold: 0.5 // Trigger when 50% of the text section is visible
-      });
-
-      journalEntries.forEach(entry => {
-        observer.observe(entry);
-      });
-    });
-  </script>
+  <div id="cookie-consent-banner">
+    <div class="cookie-banner__content">
+      <p class="cookie-banner__text">
+        <span>Denna webbplats använder cookies för att analysera webbplatsanvändning och förbättra din upplevelse.</span>
+        <a href="../privacy.html" class="cookie-banner__link">Läs mer i vår integritetspolicy</a>.
+      </p>
+      <button id="cookie-accept-btn" class="cookie-banner__accept">Acceptera</button>
+    </div>
+  </div>
 
   <script src="../project-page.js"></script>
 
