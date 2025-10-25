@@ -8,7 +8,8 @@
   <link rel="alternate" hreflang="sv" href="https://karingunnerek.se/" />
   <link rel="alternate" hreflang="en" href="https://karingunnerek.se/en/" />
   <link rel="alternate" hreflang="x-default" href="https://karingunnerek.se/" />
-  
+  <link rel="canonical" href="https://karingunnerek.se/">
+
   <title>Arkitekt Skövde | Karin Gunnerek Arkitektur | Villaritning & Bygglovsritningar</title>
   <meta name="description" content="Arkitekt i Skövde med specialisering på hållbar arkitektur, villaritningar och bygglovsritningar. Tjänar Västra Götaland och Skaraborg. Kontakta oss för din byggprojekt.">
   
@@ -33,9 +34,13 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css?v=110" as="style">
+  <link rel="preload" href="script.js" as="script">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="style.css?v=110">
   
   <script type="application/ld+json">
@@ -219,44 +224,7 @@
       </div>
     </section>
   </main>
-  
-  <dialog id="project-modal" class="modal" aria-labelledby="modal-title" aria-describedby="modal-description">
-    <div class="modal__content">
-      <header class="modal__header">
-        <h3 id="modal-title" class="modal__title"></h3>
-        <button type="button" class="modal__close" data-i18n-aria="modal.closeButton" aria-label="Close project details" data-close-modal>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18 6L6 18M6 6l12 12"/>
-          </svg>
-        </button>
-      </header>
-      
-      <div class="modal__body">
-        <div class="modal__details">
-          <p id="modal-year" class="modal__year"></p>
-          <p id="modal-description" class="modal__description"></p>
-        </div>
-        
-        <div class="carousel-container">
-          <div class="carousel-main-image">
-            <img id="carousel-image" src="" alt="" loading="lazy" width="800" height="600">
-            <button class="carousel-btn carousel-btn--prev" data-i18n-aria="modal.prevButton" aria-label="Previous image">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/>
-              </svg>
-            </button>
-            <button class="carousel-btn carousel-btn--next" data-i18n-aria="modal.nextButton" aria-label="Next image">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
-              </svg>
-            </button>
-          </div>
-          <div class="carousel-dots" id="carousel-dots"></div>
-        </div>
-      </div>
-    </div>
-  </dialog>
-  
+
   <footer class="footer">
     <div class="container">
       <div class="footer__content">
