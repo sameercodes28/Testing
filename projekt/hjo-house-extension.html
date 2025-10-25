@@ -148,11 +148,40 @@
     <!-- Project Image -->
     <section class="project-image-hero">
       <div class="container">
-        <img src="https://picsum.photos/800/600?random=11"
-             alt="Tillbyggnad av klassiskt trähus i Hjo - arkitekt Karin Gunnerek"
-             class="project-image-hero__img"
-             loading="eager">
+        <picture>
+          <source srcset="https://picsum.photos/1200/800?random=11" media="(min-width: 800px)">
+          <source srcset="https://picsum.photos/800/600?random=11" media="(min-width: 400px)">
+          <img src="https://picsum.photos/400/300?random=11"
+               alt="Tillbyggnad av klassiskt trähus i Hjo - arkitekt Karin Gunnerek"
+               class="project-image-hero__img"
+               loading="eager"
+               width="1200" height="800">
+        </picture>
       </div>
+    </section>
+
+    <section class="project-snapshot">
+        <div class="container">
+            <div class="snapshot-grid">
+                <div class="snapshot-item">
+                    <h3>Client Goal</h3>
+                    <p>To add a modern kitchen and dining area to a classic early 1900s wooden house in Hjo while preserving its historical charm and character.</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Architectural Solution</h3>
+                    <p>A contemporary 35m² extension with floor-to-ceiling glass sliding doors, using traditional wood cladding in a subtle gray tone to distinguish new from old respectfully.</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Open-plan kitchen with central island</li>
+                        <li>Large glass partitions to garden</li>
+                        <li>Gotland limestone countertops</li>
+                        <li>Seamless indoor-outdoor connection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Project Content -->
@@ -233,12 +262,6 @@
             <p>Familjen uttrycker stor glädje över att vi lyckades behålla husets själ och historiska karaktär samtidigt som de nu har all modern bekvämlighet de önskat sig. Grannarna och andra Hjobor har också varit mycket positiva och uppskattar hur tillbyggnaden respekterar stadsmiljön.</p>
 
             <p>Projektet visar att tillbyggnad av äldre hus kan göras med respekt och kvalitet. Som arkitekt i Hjo och Västra Götaland är detta typen av projekt vi brinner för - där vi får kombinera historiskt bevarande med modern funktionalitet och skapa hem som fungerar för dagens familjer samtidigt som de bevarar sin unika karaktär.</p>
-
-            <h2>Projektgalleri</h2>
-            <div class="project-gallery">
-              <img src="https://picsum.photos/800/600?random=11" alt="Tillbyggnad klassiskt trähus Hjo exteriör - arkitekt Västra Götaland" class="project-gallery__img" loading="lazy">
-              <img src="https://picsum.photos/800/600?random=12" alt="Nytt kök i tillbyggnad Hjo - renovering arkitekt" class="project-gallery__img" loading="lazy">
-            </div>
           </div>
 
           <!-- Sidebar -->
@@ -273,47 +296,18 @@
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="project-cta-section">
-      <div class="container">
-        <h2>Planerar du en tillbyggnad eller renovering i Hjo?</h2>
-        <p>Som erfaren arkitekt specialiserad på tillbyggnad och renovering av äldre hus i Hjo och Västra Götaland hjälper jag dig genom hela processen - från första skissen till färdigt bygglov och projektering. Kontakta mig för ett kostnadsfritt konsultationsmöte.</p>
-        <a href="../index.html#booking" class="cta-button-large">Boka gratis konsultation</a>
-      </div>
-    </section>
+    <footer class="footer">
+        <div class="container">
+          <div class="footer__content">
+            <p class="footer__copyright">© 2025 Karin Gunnerek. Alla rättigheter förbehållna.</p>
+            <nav class="footer__nav" aria-label="Juridisk navigering">
+              <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
+              <a href="../terms.html" class="footer__link">Användarvillkor</a>
+            </nav>
+          </div>
+        </div>
+    </footer>
+    <script src="../project-page.js"></script>
   </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__content">
-        <p class="footer__copyright">© 2025 Karin Gunnerek. Alla rättigheter förbehållna.</p>
-        <nav class="footer__nav" aria-label="Juridisk navigering">
-          <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
-          <a href="../terms.html" class="footer__link">Användarvillkor</a>
-        </nav>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Back to Top Button -->
-  <button id="back-to-top-btn" class="back-to-top" aria-label="Tillbaka till toppen">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
-
-  <!-- Cookie Consent Banner -->
-  <div id="cookie-consent-banner">
-    <div class="cookie-banner__content">
-      <p class="cookie-banner__text">
-        <span>Denna webbplats använder cookies för att analysera webbplatsanvändning och förbättra din upplevelse.</span>
-        <a href="../privacy.html" class="cookie-banner__link">Läs mer i vår integritetspolicy</a>.
-      </p>
-      <button id="cookie-accept-btn" class="cookie-banner__accept">Acceptera</button>
-    </div>
-  </div>
-
-  <script src="../project-page.js"></script>
 </body>
 </html>

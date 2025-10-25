@@ -148,11 +148,40 @@
     <!-- Project Image -->
     <section class="project-image-hero">
       <div class="container">
-        <img src="https://picsum.photos/800/600?random=13"
-             alt="Offentlig samlingspaviljong i Skövde - arkitekt Karin Gunnerek"
-             class="project-image-hero__img"
-             loading="eager">
+        <picture>
+          <source srcset="https://picsum.photos/1200/800?random=13" media="(min-width: 800px)">
+          <source srcset="https://picsum.photos/800/600?random=13" media="(min-width: 400px)">
+          <img src="https://picsum.photos/400/300?random=13"
+               alt="Offentlig samlingspaviljong i Skövde - arkitekt Karin Gunnerek"
+               class="project-image-hero__img"
+               loading="eager"
+               width="1200" height="800">
+        </picture>
       </div>
+    </section>
+
+    <section class="project-snapshot">
+        <div class="container">
+            <div class="snapshot-grid">
+                <div class="snapshot-item">
+                    <h3>Client Goal</h3>
+                    <p>To create a flexible public gathering space in a central Skövde park that serves the community for events, concerts, and social gatherings year-round.</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Architectural Solution</h3>
+                    <p>An open-air pavilion with no fixed walls, using locally sourced timber construction and a living sedum roof that integrates seamlessly with the park environment.</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Six massive laminated timber pillars</li>
+                        <li>Green sedum roof for biodiversity</li>
+                        <li>100% locally sourced timber from Skaraborg</li>
+                        <li>Universal accessibility design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Project Content -->
@@ -229,12 +258,6 @@
             <p>Som arkitekt i Skövde har detta projekt varit oerhört lärorikt och givande. Det visar hur offentlig arkitektur kan skapa värde för hela samhället och hur hållbarhet och funktionalitet kan gå hand i hand med god design. De enkla, tidlösa formerna och naturliga materialen skapar en byggnad som kommer åldras vackert och vara användbar i många år framöver.</p>
 
             <p>Projektet har även lett till fortsatta uppdrag för liknande offentliga strukturer i Västra Götaland. Vi har fått förfrågningar från flera kommuner som vill ha hjälp med att designa paviljonger, uteserveringar och andra offentliga mötesplatser med fokus på hållbarhet och tillgänglighet.</p>
-
-            <h2>Projektgalleri</h2>
-            <div class="project-gallery">
-              <img src="https://picsum.photos/800/600?random=13" alt="Samlingspaviljong Skövde exteriör med sedumtak - hållbar arkitektur" class="project-gallery__img" loading="lazy">
-              <img src="https://picsum.photos/800/600?random=14" alt="Paviljong i parkmiljö Skövde - offentlig arkitektur" class="project-gallery__img" loading="lazy">
-            </div>
           </div>
 
           <!-- Sidebar -->
@@ -269,47 +292,18 @@
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="project-cta-section">
-      <div class="container">
-        <h2>Planerar du ett offentligt byggnadsprojekt i Skövde?</h2>
-        <p>Som erfaren arkitekt i Skövde och Västra Götaland specialiserad på offentlig och hållbar arkitektur hjälper jag dig genom hela processen. Kontakta mig för ett kostnadsfritt konsultationsmöte.</p>
-        <a href="../index.html#booking" class="cta-button-large">Boka gratis konsultation</a>
-      </div>
-    </section>
+    <footer class="footer">
+        <div class="container">
+          <div class="footer__content">
+            <p class="footer__copyright">© 2025 Karin Gunnerek. Alla rättigheter förbehållna.</p>
+            <nav class="footer__nav" aria-label="Juridisk navigering">
+              <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
+              <a href="../terms.html" class="footer__link">Användarvillkor</a>
+            </nav>
+          </div>
+        </div>
+    </footer>
+    <script src="../project-page.js"></script>
   </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__content">
-        <p class="footer__copyright">© 2025 Karin Gunnerek. Alla rättigheter förbehållna.</p>
-        <nav class="footer__nav" aria-label="Juridisk navigering">
-          <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
-          <a href="../terms.html" class="footer__link">Användarvillkor</a>
-        </nav>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Back to Top Button -->
-  <button id="back-to-top-btn" class="back-to-top" aria-label="Tillbaka till toppen">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
-
-  <!-- Cookie Consent Banner -->
-  <div id="cookie-consent-banner">
-    <div class="cookie-banner__content">
-      <p class="cookie-banner__text">
-        <span>Denna webbplats använder cookies för att analysera webbplatsanvändning och förbättra din upplevelse.</span>
-        <a href="../privacy.html" class="cookie-banner__link">Läs mer i vår integritetspolicy</a>.
-      </p>
-      <button id="cookie-accept-btn" class="cookie-banner__accept">Acceptera</button>
-    </div>
-  </div>
-
-  <script src="../project-page.js"></script>
 </body>
 </html>
