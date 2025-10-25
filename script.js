@@ -308,11 +308,11 @@
     populateModalContent(project);
     initializeCarousel(project);
     document.body.classList.add('modal-open');
+    elements.modal.setAttribute('aria-modal', 'true');
+    elements.modal.setAttribute('role', 'dialog');
     elements.modal.showModal();
     setupFocusTrapping();
     if (focusableElements.length > 0) focusableElements[0].focus();
-    document.body.setAttribute('aria-hidden', 'true');
-    elements.modal.removeAttribute('aria-hidden');
     document.body.style.overflow = 'hidden';
   }
 
@@ -338,8 +338,8 @@
       lastFocusedElement.focus();
       lastFocusedElement = null;
     }
-    document.body.removeAttribute('aria-hidden');
-    elements.modal.setAttribute('aria-hidden', 'true');
+    elements.modal.removeAttribute('aria-modal');
+    elements.modal.removeAttribute('role');
     document.body.style.overflow = '';
     focusableElements = [];
   }
@@ -620,6 +620,7 @@
   document.addEventListener('DOMContentLoaded', async () => {
     if (isModernBrowser()) {
       try {
+        document.documentElement.classList.add('js-enabled');
         await loadTranslations();
         init();
         renderPage();
