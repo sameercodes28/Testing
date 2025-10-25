@@ -13,10 +13,6 @@
 
   // Application state
   let projects = [];
-  let focusableElements = [];
-  let lastFocusedElement = null;
-  let currentProject = null;
-  let currentImageIndex = 0;
   let translations = {};
   let currentLanguage = 'sv'; // Default to Swedish
   
@@ -54,18 +50,7 @@
    */
   function cacheElements() {
     elements.projectsGrid = document.getElementById('projects-grid');
-    elements.modal = document.getElementById('project-modal');
-    elements.modalTitle = document.getElementById('modal-title');
-    elements.modalImage = document.getElementById('modal-image');
-    elements.modalYear = document.getElementById('modal-year');
-    elements.modalDescription = document.getElementById('modal-description');
-    elements.modalGallery = document.getElementById('modal-gallery');
-    elements.closeButton = document.querySelector('[data-close-modal]');
     elements.navLinks = document.querySelectorAll('.nav__link');
-    elements.carouselImage = document.getElementById('carousel-image');
-    elements.carouselDots = document.getElementById('carousel-dots');
-    elements.carouselPrev = document.querySelector('.carousel-btn--prev');
-    elements.carouselNext = document.querySelector('.carousel-btn--next');
     elements.backToTopBtn = document.getElementById('back-to-top-btn');
     elements.footer = document.querySelector('.footer');
     elements.cookieBanner = document.getElementById('cookie-consent-banner');
@@ -85,7 +70,6 @@
   function setupEventListeners() {
     setupHeroTextAnimation();
     setupNavigationScrolling();
-    setupModalEventListeners();
     setupKeyboardNavigation();
     setupScrollSpyObserver();
     setupScrollAnimations();
@@ -128,31 +112,6 @@
   }
 
   /**
-   * Set up modal-related event listeners
-   */
-  function setupModalEventListeners() {
-    if (elements.closeButton) {
-      elements.closeButton.addEventListener('click', closeModal);
-    }
-    
-    if (elements.modal) {
-      elements.modal.addEventListener('click', handleModalBackdropClick);
-    }
-    
-    if (elements.carouselPrev) {
-      elements.carouselPrev.addEventListener('click', () => navigateCarousel(-1));
-    }
-    
-    if (elements.carouselNext) {
-      elements.carouselNext.addEventListener('click', () => navigateCarousel(1));
-    }
-    
-    if (elements.carouselDots) {
-      elements.carouselDots.addEventListener('click', handleDotClick);
-    }
-  }
-
-  /**
    * Set up keyboard navigation
    */
   function setupKeyboardNavigation() {
@@ -164,51 +123,7 @@
    * @param {KeyboardEvent} event - Keyboard event
    */
   function handleKeyDown(event) {
-    if (event.key === 'Escape' && elements.modal && elements.modal.open) {
-      closeModal();
-      return;
-    }
-    
-    if (elements.modal && elements.modal.open && currentProject) {
-      if (event.key === 'ArrowLeft') {
-        event.preventDefault();
-        navigateCarousel(-1);
-        return;
-      }
-      
-      if (event.key === 'ArrowRight') {
-        event.preventDefault();
-        navigateCarousel(1);
-        return;
-      }
-    }
-    
-    if (event.key === 'Tab' && elements.modal && elements.modal.open) {
-      handleTabKeyInModal(event);
-    }
-  }
-
-  /**
-   * Handle tab key navigation within modal (focus trapping)
-   * @param {KeyboardEvent} event - Keyboard event
-   */
-  function handleTabKeyInModal(event) {
-    if (focusableElements.length === 0) return;
-    
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
-    
-    if (event.shiftKey) {
-      if (document.activeElement === firstElement) {
-        lastElement.focus();
-        event.preventDefault();
-      }
-    } else {
-      if (document.activeElement === lastElement) {
-        firstElement.focus();
-        event.preventDefault();
-      }
-    }
+    // Reserved for future keyboard shortcuts
   }
 
   /**
@@ -298,103 +213,6 @@
       return `<a href="${projectUrl}" class="project-card" data-project-id="${project.id}" aria-label="View details for ${title}"><img src="${project.mainImage}" alt="${altText}" class="project-card__image" loading="lazy" width="400" height="300"><h3 class="project-card__title">${escapeHtml(title)}</h3><p class="project-card__year">${escapeHtml(project.year)}</p></a>`;
     }).join('');
     elements.projectsGrid.insertAdjacentHTML('beforeend', projectsHTML);
-  }
-
-  function openModal(project) {
-    if (!elements.modal) return;
-    lastFocusedElement = document.activeElement;
-    currentProject = project;
-    currentImageIndex = 0;
-    populateModalContent(project);
-    initializeCarousel(project);
-    document.body.classList.add('modal-open');
-    elements.modal.setAttribute('aria-modal', 'true');
-    elements.modal.setAttribute('role', 'dialog');
-    elements.modal.showModal();
-    setupFocusTrapping();
-    if (focusableElements.length > 0) focusableElements[0].focus();
-    document.body.style.overflow = 'hidden';
-  }
-
-  function populateModalContent(project) {
-    if (elements.modalTitle) elements.modalTitle.textContent = getLocalizedText(project.title);
-    if (elements.modalYear) elements.modalYear.textContent = project.year;
-    if (elements.modalDescription) elements.modalDescription.textContent = getLocalizedText(project.description);
-  }
-
-  function setupFocusTrapping() {
-    if (!elements.modal) return;
-    const focusableSelectors = ['button', '[href]', 'input', 'select', 'textarea', '[tabindex]:not([tabindex="-1"])'];
-    focusableElements = Array.from(elements.modal.querySelectorAll(focusableSelectors.join(','))).filter(el => !el.disabled);
-  }
-
-  function closeModal() {
-    if (!elements.modal) return;
-    document.body.classList.remove('modal-open');
-    elements.modal.close();
-    currentProject = null;
-    currentImageIndex = 0;
-    if (lastFocusedElement) {
-      lastFocusedElement.focus();
-      lastFocusedElement = null;
-    }
-    elements.modal.removeAttribute('aria-modal');
-    elements.modal.removeAttribute('role');
-    document.body.style.overflow = '';
-    focusableElements = [];
-  }
-
-  function handleModalBackdropClick(event) {
-    if (event.target === elements.modal) closeModal();
-  }
-
-  function initializeCarousel(project) {
-    if (!project.gallery?.length) return;
-    updateCarouselImage();
-    generateCarouselDots(project.gallery.length);
-  }
-
-  function navigateCarousel(direction) {
-    if (!currentProject?.gallery?.length) return;
-    const totalImages = currentProject.gallery.length;
-    currentImageIndex = (currentImageIndex + direction + totalImages) % totalImages;
-    updateCarouselImage();
-    updateCarouselDots();
-  }
-
-  function updateCarouselImage() {
-    if (!currentProject || !elements.carouselImage) return;
-    const imageUrl = currentProject.gallery[currentImageIndex];
-    const projectTitle = getLocalizedText(currentProject.title);
-    const imageLabel = getTranslation('accessibility.imageAltPrefix') || 'Image';
-    elements.carouselImage.src = imageUrl;
-    elements.carouselImage.alt = `${projectTitle} - ${imageLabel} ${currentImageIndex + 1}`;
-  }
-
-  function generateCarouselDots(totalImages) {
-    if (!elements.carouselDots) return;
-    const dotLabel = getTranslation('modal.dotButton') || 'Go to image';
-    const dotsHTML = Array.from({ length: totalImages }, (_, index) => `<button class="carousel-dot ${index === 0 ? 'active-dot' : ''}" data-index="${index}" aria-label="${dotLabel} ${index + 1}"></button>`).join('');
-    elements.carouselDots.innerHTML = dotsHTML;
-  }
-
-  function updateCarouselDots() {
-    if (!elements.carouselDots) return;
-    const dots = elements.carouselDots.querySelectorAll('.carousel-dot');
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active-dot', index === currentImageIndex);
-    });
-  }
-
-  function handleDotClick(event) {
-    if (event.target.classList.contains('carousel-dot')) {
-      const index = parseInt(event.target.dataset.index, 10);
-      if (!isNaN(index)) {
-        currentImageIndex = index;
-        updateCarouselImage();
-        updateCarouselDots();
-      }
-    }
   }
 
   function escapeHtml(text) {
@@ -515,14 +333,6 @@
     if (projects.length > 0) {
       renderProjects();
       updateLoadMoreButton();
-    }
-    if (currentProject && elements.modal?.open) {
-      populateModalContent(currentProject);
-      if (currentProject.gallery?.length) {
-        updateCarouselImage();
-        generateCarouselDots(currentProject.gallery.length);
-        updateCarouselDots();
-      }
     }
   }
 
