@@ -144,11 +144,40 @@
 
     <section class="project-image-hero">
       <div class="container">
-        <img src="https://picsum.photos/800/600?random=5"
-             alt="Arkitektskiss av nya bostäder i Kanalparken, Mariestad - arkitekt Karin Gunnerek"
-             class="project-image-hero__img"
-             loading="eager">
+        <picture>
+          <source srcset="https://picsum.photos/1200/800?random=5" media="(min-width: 800px)">
+          <source srcset="https://picsum.photos/800/600?random=5" media="(min-width: 400px)">
+          <img src="https://picsum.photos/400/300?random=5"
+               alt="Arkitektskiss av nya bostäder i Kanalparken, Mariestad - arkitekt Karin Gunnerek"
+               class="project-image-hero__img"
+               loading="eager"
+               width="1200" height="800">
+        </picture>
       </div>
+    </section>
+
+    <section class="project-snapshot">
+        <div class="container">
+            <div class="snapshot-grid">
+                <div class="snapshot-item">
+                    <h3>Client Goal</h3>
+                    <p>To create attractive, sustainable housing in Mariestad's Kanalparken area that positively contributes to the local community and respects the city's historical character.</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Architectural Solution</h3>
+                    <p>A mixed development of apartments and townhouses using Nordic materials like wood, brick, and plaster in muted earth tones, designed for energy efficiency and modern living.</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Solar panels and heat pump systems</li>
+                        <li>Locally produced, eco-friendly materials</li>
+                        <li>Flexible floor plans for modern families</li>
+                        <li>Car-free courtyards with green spaces</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="project-content">
@@ -192,12 +221,6 @@
             <p>Kanalparken är för närvarande i byggfas och de första bostäderna förväntas vara klara inom kort. Intresset från både köpare och lokalbefolkningen har varit stort, vilket visar på behovet av attraktiva och hållbara bostäder i Mariestad och Skaraborg.</p>
 
             <p>Projektet är ett exempel på hur modern arkitektur kan bidra till att utveckla mindre städer och skapa livskvalitet för invånarna. Som arkitekt är det oerhört tillfredsställande att få vara med och forma framtidens bostadsmiljöer i regionen.</p>
-
-            <h2>Projektgalleri</h2>
-            <div class="project-gallery">
-              <img src="https://picsum.photos/800/600?random=5" alt="Kanalparken Mariestad exteriör - arkitekt Skaraborg" class="project-gallery__img" loading="lazy">
-              <img src="https://picsum.photos/800/600?random=6" alt="Kanalparken Mariestad gemensam innergård" class="project-gallery__img" loading="lazy">
-            </div>
           </div>
 
           <aside class="project-content__sidebar">
@@ -231,44 +254,18 @@
       </div>
     </section>
 
-    <section class="project-cta-section">
-      <div class="container">
-        <h2>Planerar du ett bostadsprojekt i Skaraborg?</h2>
-        <p>Som erfaren arkitekt i Skaraborg och Västra Götaland hjälper jag dig genom hela processen - från första skissen till färdigt bygglov och projektering. Kontakta mig för ett kostnadsfritt konsultationsmöte.</p>
-        <a href="../index.html#booking" class="cta-button-large">Boka gratis konsultation</a>
-      </div>
-    </section>
+    <footer class="footer">
+        <div class="container">
+          <div class="footer__content">
+            <p class="footer__copyright">© 2025 Karin Gunnerek. Alla rättigheter förbehållna.</p>
+            <nav class="footer__nav" aria-label="Juridisk navigering">
+              <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
+              <a href="../terms.html" class="footer__link">Användarvillkor</a>
+            </nav>
+          </div>
+        </div>
+    </footer>
+    <script src="../project-page.js"></script>
   </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__content">
-        <p class="footer__copyright">© 2025 Karin Gunnerek. Alla rättigheter förbehållna.</p>
-        <nav class="footer__nav" aria-label="Juridisk navigering">
-          <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
-          <a href="../terms.html" class="footer__link">Användarvillkor</a>
-        </nav>
-      </div>
-    </div>
-  </footer>
-
-  <button id="back-to-top-btn" class="back-to-top" aria-label="Tillbaka till toppen">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
-
-  <!-- Cookie Consent Banner -->
-  <div id="cookie-consent-banner">
-    <div class="cookie-banner__content">
-      <p class="cookie-banner__text">
-        <span>Denna webbplats använder cookies för att analysera webbplatsanvändning och förbättra din upplevelse.</span>
-        <a href="../privacy.html" class="cookie-banner__link">Läs mer i vår integritetspolicy</a>.
-      </p>
-      <button id="cookie-accept-btn" class="cookie-banner__accept">Acceptera</button>
-    </div>
-  </div>
-
-  <script src="../project-page.js"></script>
 </body>
 </html>

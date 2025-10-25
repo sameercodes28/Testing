@@ -148,11 +148,40 @@
     <!-- Project Image -->
     <section class="project-image-hero">
       <div class="container">
-        <img src="https://picsum.photos/800/600?random=9"
-             alt="Kompakt loft interiör i Göteborg - arkitekt Karin Gunnerek"
-             class="project-image-hero__img"
-             loading="eager">
+        <picture>
+          <source srcset="https://picsum.photos/1200/800?random=9" media="(min-width: 800px)">
+          <source srcset="https://picsum.photos/800/600?random=9" media="(min-width: 400px)">
+          <img src="https://picsum.photos/400/300?random=9"
+               alt="Kompakt loft interiör i Göteborg - arkitekt Karin Gunnerek"
+               class="project-image-hero__img"
+               loading="eager"
+               width="1200" height="800">
+        </picture>
       </div>
+    </section>
+
+    <section class="project-snapshot">
+        <div class="container">
+            <div class="snapshot-grid">
+                <div class="snapshot-item">
+                    <h3>Client Goal</h3>
+                    <p>To transform a compact 38m² loft apartment in Gothenburg into a fully functional and beautiful home that maximizes every square meter.</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Architectural Solution</h3>
+                    <p>An open-plan design with custom-built multifunctional furniture, smart storage systems, and flexible partitions to create spaciousness in a small footprint.</p>
+                </div>
+                <div class="snapshot-item">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Wall-to-wall integrated storage system</li>
+                        <li>Foldable home office workspace</li>
+                        <li>Sliding frosted glass partition</li>
+                        <li>Open-plan kitchen and living area</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Project Content -->
@@ -222,12 +251,6 @@
             <p>Detta projekt visar att kompakt boende inte behöver innebära kompromisser. Med rätt designstrategier och smart planering kan även en liten yta erbjuda hög livskvalitet. Som arkitekt i Göteborg ser vi en växande efterfrågan på denna typ av lösningar i takt med att stadsboende blir allt mer populärt och bostadsytor mindre.</p>
 
             <p>Projektet har blivit en showcase för vad som är möjligt med yteffektiv design och har resulterat i flera nya uppdrag för liknande interiörprojekt i Göteborg och Västra Götaland. Det visar också vikten av att arbeta med en erfaren arkitekt som förstår utmaningarna och möjligheterna med kompakt boende.</p>
-
-            <h2>Projektgalleri</h2>
-            <div class="project-gallery">
-              <img src="https://picsum.photos/800/600?random=9" alt="Kompakt loft vardagsrum Göteborg - interiördesign arkitekt" class="project-gallery__img" loading="lazy">
-              <img src="https://picsum.photos/800/600?random=10" alt="Smart förvaring loft Göteborg - arkitekt interiör" class="project-gallery__img" loading="lazy">
-            </div>
           </div>
 
           <!-- Sidebar -->
@@ -262,47 +285,18 @@
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="project-cta-section">
-      <div class="container">
-        <h2>Planerar du en interiörrenovering i Göteborg?</h2>
-        <p>Som erfaren arkitekt specialiserad på interiördesign och kompakt boende i Göteborg hjälper jag dig skapa ett hem som maximerar både funktion och estetik. Kontakta mig för ett kostnadsfritt konsultationsmöte.</p>
-        <a href="../index.html#booking" class="cta-button-large">Boka gratis konsultation</a>
-      </div>
-    </section>
+    <footer class="footer">
+        <div class="container">
+          <div class="footer__content">
+            <p class="footer__copyright">© 2025 Karin Gunnerek. Alla rättigheter förbehållna.</p>
+            <nav class="footer__nav" aria-label="Juridisk navigering">
+              <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
+              <a href="../terms.html" class="footer__link">Användarvillkor</a>
+            </nav>
+          </div>
+        </div>
+    </footer>
+    <script src="../project-page.js"></script>
   </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__content">
-        <p class="footer__copyright">© 2025 Karin Gunnerek. Alla rättigheter förbehållna.</p>
-        <nav class="footer__nav" aria-label="Juridisk navigering">
-          <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
-          <a href="../terms.html" class="footer__link">Användarvillkor</a>
-        </nav>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Back to Top Button -->
-  <button id="back-to-top-btn" class="back-to-top" aria-label="Tillbaka till toppen">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15"></polyline>
-    </svg>
-  </button>
-
-  <!-- Cookie Consent Banner -->
-  <div id="cookie-consent-banner">
-    <div class="cookie-banner__content">
-      <p class="cookie-banner__text">
-        <span>Denna webbplats använder cookies för att analysera webbplatsanvändning och förbättra din upplevelse.</span>
-        <a href="../privacy.html" class="cookie-banner__link">Läs mer i vår integritetspolicy</a>.
-      </p>
-      <button id="cookie-accept-btn" class="cookie-banner__accept">Acceptera</button>
-    </div>
-  </div>
-
-  <script src="../project-page.js"></script>
 </body>
 </html>
