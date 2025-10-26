@@ -731,6 +731,11 @@ body {
   border-radius: var(--border-radius-lg);
 }
 
+.calendly-inline-widget {
+  min-width: 320px;
+  height: 700px;
+}
+
 .booking__placeholder {
   color: var(--color-text-light);
   font-size: var(--font-size-lg);
