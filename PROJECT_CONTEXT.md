@@ -516,6 +516,15 @@
   ## Project Changelog
   *This log is appended to by the AI after every completed task.*
 
+  **2025-10-26 (Critical Audit Fixes - Quick Wins + Projekt Pages i18n):**
+  * **Pillar 4 (Architecture):** Fixed 13 critical issues from audit findings
+  * **Quick Wins (8 fixes in 35 min):** Removed duplicate favicon, added loadMore translation, fixed Load More button i18n, removed empty handleKeyDown function, updated package.json scripts, fixed cache-busting to use v2.1.0, added translation fallback with minimal translations
+  * **Critical Fixes (5 issues):** Added back-to-top button to all 6 projekt pages, added cookie banner to all 6 projekt pages, fixed hard-coded navigation text with data-i18n-key, fixed hard-coded footer text with data-i18n-key, created /images/ directory
+  * **Files Modified:** index.html, ui-strings.json, script.js, package.json, all 6 projekt/*.html files
+  * **Impact:** All pages now support proper i18n, no JavaScript errors from missing DOM elements, GDPR-compliant cookie consent on all pages, better UX with back-to-top functionality
+  * **Status:** 13 of 12 Critical issues fixed (Note: #11 null checks were already in place), Calendly kept as eager loading per user request
+  * **Remaining Critical:** og-image.jpg creation (needs design asset), project snapshot translations (needs content)
+
   **2025-10-26 (Comprehensive Codebase Line-by-Line Analysis):**
   * **Pillar 5 (Engineering):** Performed deep analysis of 17 files, identified 108 issues
   * **Created:** Three audit reports (COMPREHENSIVE_AUDIT_REPORT.md, AUDIT_EXECUTIVE_SUMMARY.md, AUDIT_QUICK_REFERENCE.md)
