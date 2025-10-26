@@ -1,38 +1,42 @@
-# Karin Gunnerek - Architect Portfolio Website
+# Karin Gunnerek Architecture Portfolio
+
+A modern, bilingual (Swedish/English) portfolio website for architectural services in Skövde, Västra Götaland, and Skaraborg regions.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Content Management Guide](#content-management-guide)
+- [Site Maintenance](#site-maintenance)
+- [Deployment](#deployment)
+- [Performance Features](#performance-features)
+- [Accessibility Features](#accessibility-features)
+- [Browser Compatibility](#browser-compatibility)
+- [Core Architectural Principles](#core-architectural-principles)
+- [Changelog](#changelog)
+- [Support](#support)
 
 ## Overview
 
-A professional, bilingual (Swedish/English), single-page portfolio website showcasing the architectural work of Karin Gunnerek. The site features a data-driven project gallery, advanced UX features including smooth animations and modal interactions, multi-language support with Swedish as the default, load more pagination, cross-device modal system, and an integrated Calendly booking system. Built with modern web standards and optimized for performance, accessibility, and mobile devices.
+This website is built with performance, accessibility, and SEO in mind. It features a JSON-driven architecture that separates content from presentation, making it easy to update without touching code.
 
-**Live Site:** [karingunnerek.se](https://karingunnerek.se) *(when deployed)*
+### Key Features
 
-## Tech Stack
-
-- **HTML5** - Semantic markup with accessibility features
-- **CSS3** - Modern styling with CSS Variables, Flexbox, and Grid
-- **JavaScript (ES6+)** - Vanilla JavaScript with modern features and ES modules
-- **JSON** - Data-driven content management
-- **Calendly** - Integrated booking system
-- **GitHub Pages** - Hosting and deployment
-
-## Key Features
-
-✅ **Multi-Language Support** - Swedish (default) and English with localStorage persistence  
-✅ **Load More Pagination** - Progressive project loading for better performance  
-✅ **Cross-Device Modal System** - Centered on desktop, full-screen on mobile  
-✅ **Image Carousel** - Gallery navigation with keyboard support  
-✅ **Scroll Animations** - Intersection Observer-based fade-in effects  
-✅ **Mobile-First Design** - Optimized for all device sizes  
-✅ **Accessibility Compliant** - WCAG 2.1 AA standards with full keyboard navigation  
-✅ **Performance Optimized** - Lazy loading, minified assets, and efficient DOM manipulation  
+- **Bilingual Support:** Swedish (primary) and English translations
+- **JSON-Driven Content:** All projects and UI text managed through JSON files
+- **Performance Optimized:** Lazy loading, pagination, optimized assets
+- **SEO Ready:** Individual project pages, sitemap, structured data
+- **Accessibility:** WCAG 2.1 AA compliant
+- **Responsive Design:** Mobile-first approach with progressive enhancement
 
 ## Content Management Guide
 
+### System of Record
+
+**IMPORTANT:** Always consult `PROJECT_CONTEXT.md` before making changes. It is the central source of truth for this project.
+
 ### How to Add a New Project
 
-All projects are managed in the `projects.json` file. To add a new project:
-
-1. Open the `projects.json` file in your text editor
+1. Open `projects.json`
 2. Add a new JSON object to the main array (after the last project, before the closing `]`)
 3. Use this template and fill in your project details:
 
@@ -43,7 +47,7 @@ All projects are managed in the `projects.json` file. To add a new project:
     "en": "Your Project Title in English",
     "sv": "Ditt Projekttitel på Svenska"
   },
-  "year": "2024",
+  "year": "2025",
   "description": {
     "en": "Detailed description of your project in English. Explain the concept, materials, and architectural approach.",
     "sv": "Detaljerad beskrivning av ditt projekt på svenska. Förklara konceptet, materialen och det arkitektoniska tillvägagångssättet."
@@ -63,12 +67,14 @@ All projects are managed in the `projects.json` file. To add a new project:
 }
 ```
 
+4. Create a corresponding static HTML page in `/projekt/your-project-id.html`
+5. Update `sitemap.xml` with the new project page
+
 **Important Notes:**
 - Use a unique, lowercase `id` with hyphens (e.g., "modern-office-complex")
 - Include both English (`en`) and Swedish (`sv`) translations for title, description, and altText
 - The `mainImage` is the thumbnail shown in the project grid
-- The `gallery` array contains all images shown in the project modal
-- Add a comma after the previous project's closing `}` when adding a new project
+- The `gallery` array contains all images for the project detail page
 
 ### How to Update UI Text and Translations
 
@@ -94,53 +100,35 @@ All interface text is managed in the `ui-strings.json` file:
 #### Hero Image
 The hero background image is controlled in the `style.css` file:
 1. Open `style.css`
-2. Find the `.hero__background` class (around line 282)
+2. Find the `.hero__background` class
 3. Change the `background-image: url('...')` property to your new image path
-
-```css
-.hero__background {
-  background-image: url('path/to/your/new/hero-image.jpg');
-}
-```
 
 #### About Me Photo
 The profile photo is in the `index.html` file:
 1. Open `index.html`
-2. Find the "About" section (around line 154)
+2. Find the "About" section
 3. Change the `src` attribute of the `<img>` tag with class `about__headshot`
-
-```html
-<img src="path/to/your/new/profile-photo.jpg" 
-     alt="Professional headshot of Karin Gunnerek, architect" 
-     class="about__headshot">
-```
 
 #### Project Images
 All project images are defined in `projects.json`:
 - **Main thumbnail:** Update the `mainImage` field for each project
 - **Gallery images:** Update the `gallery` array with paths to all project images
 
-### Image Best Practices
+### Image Optimization
 
-#### Compression
-- **Always compress images** before uploading using tools like:
-  - [TinyPNG](https://tinypng.com/) - Free online compression
-  - [ImageOptim](https://imageoptim.com/) - Mac app
-  - [Squoosh](https://squoosh.app/) - Google's web app
+The project includes automated image optimization scripts:
 
-#### Recommended Dimensions
-- **Hero image:** 1920×1080px (landscape)
-- **Project images:** 1600×1200px (landscape) or 1200×1600px (portrait)
-- **Profile photo:** 400×500px (portrait)
+1. **Run optimization:**
+   ```bash
+   npm run optimize-media
+   ```
 
-#### File Formats
-- **First choice:** WebP format for best performance
-- **Fallback:** JPEG with 80-85% quality
-- **Avoid:** PNG for photos (much larger file sizes)
+2. **Update HTML with optimized images:**
+   ```bash
+   npm run update-html
+   ```
 
-#### File Naming
-- Use descriptive, lowercase names with hyphens
-- Example: `modern-office-exterior-view.webp`
+See `MEDIA_OPTIMIZATION_GUIDE.md` for detailed instructions.
 
 ## Site Maintenance
 
@@ -148,39 +136,16 @@ All project images are defined in `projects.json`:
 
 The booking system is powered by Calendly and embedded in the website:
 
-1. **To change the calendar settings:** Log into your Calendly account at [calendly.com](https://calendly.com)
+1. **To change calendar settings:** Log into your Calendly account at [calendly.com](https://calendly.com)
 2. **If the event URL changes:** Update the embed code in `index.html`
-   - Find the `calendly-widget` div (around line 180)
+   - Find the `calendly-inline-widget` div
    - Replace the `data-url` attribute with your new Calendly event URL
-
-```html
-<div class="calendly-inline-widget" data-url="https://calendly.com/your-new-url/30min" style="min-width:320px;height:700px;"></div>
-```
 
 ### Updating Legal Text
 
 Legal pages can be edited directly:
-
 - **Privacy Policy:** Edit content in `privacy.html`
 - **Terms of Service:** Edit content in `terms.html`
-
-These are simple HTML files with standard text content that can be modified with any text editor.
-
-### Multi-Language Content
-
-To update UI text and translations:
-
-1. **Static text:** Edit `ui-strings.json` to modify navigation, buttons, and interface text
-2. **Project content:** Edit `projects.json` to update project titles and descriptions
-3. **Both files use the format:**
-   ```json
-   {
-     "textKey": {
-       "en": "English text",
-       "sv": "Svensk text"
-     }
-   }
-   ```
 
 ## Deployment
 
@@ -236,20 +201,20 @@ git push
 - **Lazy loading:** Images load only when entering viewport
 - **Responsive images:** Optimized sizing for different screen sizes
 - **Format optimization:** WebP preferred, JPEG fallback
+- **Compression:** Automated scripts for image and video optimization
 
-### Cross-Device Modal System
-- **Desktop:** Centered modal with backdrop blur (900px max-width)
-- **Mobile:** Full-screen modal with app-like interface
-- **Accessibility:** Focus trapping, keyboard navigation, screen reader support
-- **Performance:** Scroll lock prevents body scrolling
+### Performance Metrics
+- **JavaScript Bundle:** ~11KB (optimized)
+- **Target Page Size:** <1.5MB with optimized media
+- **Lighthouse Target:** >95 in all categories
+- **Load Time Target:** <3s on 3G connection
 
 ## Accessibility Features
 
 ### Keyboard Navigation
 - **Tab navigation:** All interactive elements accessible via keyboard
-- **Modal focus trapping:** Focus stays within modal when open
 - **Skip links:** Jump to main content for screen readers
-- **Arrow key navigation:** Carousel images can be navigated with left/right arrows
+- **Focus indicators:** Clear visual focus states for all interactive elements
 
 ### Screen Reader Support
 - **Semantic HTML:** Proper heading structure and landmark roles
@@ -280,22 +245,21 @@ git push
 - **Scalability:** Easy to add unlimited projects without code changes
 - **Maintainability:** Non-technical users can update content without touching code
 
-### User Experience (Minimalist, Complete Features, Animations)
+### User Experience (Minimalist, Complete Features)
 - **Minimalist design:** Clean, professional aesthetic focusing on architectural work
-- **Complete feature set:** Project gallery, modal details, carousel, smooth scrolling, back-to-top
+- **Complete feature set:** Project gallery with pagination, smooth scrolling, back-to-top
 - **Smooth animations:** CSS transitions, scroll-triggered animations, hover effects
 - **Intuitive navigation:** Single-page flow with smooth scrolling between sections
-- **Professional interactions:** Modal overlays, image carousels, keyboard navigation
 - **Mobile-first approach:** Optimized mobile experience with progressive enhancement
 
 ### Performance (Lighthouse >95, Lazy Loading)
-- **Target:** Lighthouse scores >95 in all categories (Performance, Accessibility, Best Practices, SEO)
+- **Target:** Lighthouse scores >95 in all categories
 - **Optimization techniques:**
   - Image lazy loading with `loading="lazy"`
   - Load more pagination system for large project collections
   - Efficient DOM manipulation and event delegation
   - Progressive enhancement approach
-  - Minified CSS and JavaScript assets
+  - Optimized and minified assets
   - Compressed images and optimized file formats
 
 ### Accessibility (WCAG 2.1 AA)
@@ -303,84 +267,46 @@ git push
 - **Screen reader support:** Semantic HTML, ARIA labels, focus management
 - **Visual accessibility:** High contrast ratios, scalable text, focus indicators
 - **Motor accessibility:** Large touch targets (44px minimum), reduced motion support
-- **Mobile accessibility:** Optimized touch interfaces and readable text sizes
-
-### Security (Strict CSP)
-- **Content Security Policy:** Prevents XSS attacks and unauthorized script execution
-- **Input sanitization:** All user-facing content properly escaped
-- **External dependencies:** Minimal third-party scripts, all from trusted sources
-- **HTTPS enforcement:** Secure connections for all resources
-
-### Legal & Privacy (GDPR/Cookies)
-- **Cookie consent:** Compliant banner with user choice
-- **Privacy policy:** Clear data handling disclosure
-- **GDPR compliance:** User rights respected, minimal data collection
-- **Terms of service:** Usage terms and liability limitations
-
-### Code Quality (Commenting, Readability)
-- **Comprehensive comments:** All functions documented with purpose and parameters
-- **Readable structure:** Logical organization, consistent naming conventions
-- **Error handling:** Graceful degradation for missing content or failed requests
-- **Browser compatibility:** Modern standards with progressive enhancement
-- **Mobile-first responsive design:** Optimized for all device sizes
-- **Event delegation:** Efficient event handling for dynamic content
-
-### Multi-Language Support
-- **Swedish default:** Primary language for target audience
-- **English support:** Full translation capability
-- **Language persistence:** User preference stored in localStorage
-- **Seamless switching:** No page reload required for language changes
-- **Professional translations:** Native-level Swedish architectural terminology
-- **Cross-device consistency:** Language preferences maintained across all screen sizes
-
-### Modal System Architecture
-- **Responsive design:** Desktop-centered vs mobile full-screen approach
-- **Scroll lock:** Robust body scroll prevention system
-- **Focus management:** Proper keyboard navigation and focus trapping
-- **Sticky headers:** Mobile modal headers remain visible during scrolling
-- **Image galleries:** Smooth carousel navigation with keyboard support
-- **Cross-device optimization:** Different interaction patterns for desktop and mobile
-
----
-
-**Last Updated:** January 2025  
-**Version:** 2.0 - Production Ready  
-**Maintained by:** Karin Gunnerek Architecture
+- **Mobile accessibility:** Optimized touch interfaces and readable text
 
 ## Changelog
 
-### Version 2.0 (January 2025) - Production Ready
+### Version 2.1.0 (October 2025) - Codebase Optimization
+- ✅ Created PROJECT_CONTEXT.md as System of Record
+- ✅ Removed 150+ lines of unused modal/carousel JavaScript
+- ✅ Added build configuration (package.json, ESLint, Prettier)
+- ✅ Created media optimization scripts
+- ✅ Updated all documentation to current state
+- ✅ Improved SEO with canonical tags and updated sitemap
+
+### Version 2.0.0 (January 2025) - Production Ready
 - ✅ Complete HTML validation and accessibility improvements
-- ✅ Modern ES6+ JavaScript with event delegation and optional chaining
-- ✅ Updated comprehensive documentation and code comments
-- ✅ Minified production assets for optimal performance
+- ✅ Modern ES6+ JavaScript with event delegation
+- ✅ Comprehensive documentation and code comments
 - ✅ Cross-browser compatibility improvements
-- ✅ Final production-ready optimization pass
 
-### Version 1.1 (January 2025) - Mobile & Modal Enhancements
+### Version 1.1.0 (January 2025) - Mobile & UX Enhancements
 - ✅ Comprehensive mobile navigation optimizations
-- ✅ Cross-device modal system with desktop centering and mobile full-screen
 - ✅ Load More pagination for better performance
-- ✅ Hero section height optimization (65vh desktop, 60vh mobile)
-- ✅ Circular profile photo on mobile devices
-- ✅ Smart back-to-top button positioning
-- ✅ Active navigation state improvements
+- ✅ Hero section height optimization
 - ✅ Enhanced accessibility and keyboard navigation
-- ✅ Robust scroll lock system for modals
 
-### Version 1.0 (December 2024) - Initial Release
+### Version 1.0.0 (December 2024) - Initial Release
 - ✅ Initial bilingual portfolio website
 - ✅ Data-driven project management system
 - ✅ Multi-language support (Swedish/English)
 - ✅ Integrated Calendly booking system
-- ✅ Core accessibility features (WCAG 2.1 AA)
-- ✅ Performance optimizations (Lighthouse >95)
-- ✅ GDPR-compliant cookie system
 
 ## Support
 
 For technical support or questions about this website:
-- **Documentation:** This README file contains comprehensive guidance
+- **Documentation:** Consult PROJECT_CONTEXT.md first, then this README
 - **Issues:** Contact the developer for any technical problems
 - **Content Updates:** Follow the Content Management Guide above
-- **Legal Pages:** Consult with legal professionals for privacy policy and terms of service updates
+- **Legal Pages:** Consult with legal professionals for privacy policy and terms updates
+
+---
+
+**Last Updated:** October 26, 2025
+**Version:** 2.1.0 - Optimized
+**Maintained by:** Karin Gunnerek Architecture
