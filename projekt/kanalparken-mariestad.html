@@ -115,13 +115,13 @@
 
       <ul class="nav__menu">
         <li>
-          <a href="../index.html#projects" class="nav__link">Projekt</a>
+          <a href="../index.html#projects" class="nav__link" data-i18n-key="navigation.projects"></a>
         </li>
         <li>
-          <a href="../index.html#about" class="nav__link">Om mig</a>
+          <a href="../index.html#about" class="nav__link" data-i18n-key="navigation.about"></a>
         </li>
         <li>
-          <a href="../index.html#booking" class="nav__link nav__link--cta">Boka konsultation</a>
+          <a href="../index.html#booking" class="nav__link nav__link--cta" data-i18n-key="navigation.booking"></a>
         </li>
       </ul>
     </div>
@@ -258,14 +258,31 @@
     <footer class="footer">
         <div class="container">
           <div class="footer__content">
-            <p class="footer__copyright">© 2025 Karin Gunnerek. Alla rättigheter förbehållna.</p>
+            <p class="footer__copyright" data-i18n-key="footer.copyright"></p>
             <nav class="footer__nav" aria-label="Juridisk navigering">
-              <a href="../privacy.html" class="footer__link">Integritetspolicy</a>
-              <a href="../terms.html" class="footer__link">Användarvillkor</a>
+              <a href="../privacy.html" class="footer__link" data-i18n-key="footer.privacyPolicy"></a>
+              <a href="../terms.html" class="footer__link" data-i18n-key="footer.termsOfService"></a>
             </nav>
           </div>
         </div>
     </footer>
+
+    <button id="back-to-top-btn" data-i18n-aria="backToTop.label" aria-label="Back to top">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 15l-6-6-6 6"/>
+      </svg>
+    </button>
+
+    <div id="cookie-consent-banner">
+      <div class="cookie-banner__content">
+        <p class="cookie-banner__text">
+          <span data-i18n-key="cookieBanner.text">This website uses cookies to analyze site usage and improve your experience.</span>
+          <a href="../privacy.html" class="cookie-banner__link" data-i18n-key="cookieBanner.linkText">Learn more in our Privacy Policy</a>.
+        </p>
+        <button id="cookie-accept-btn" class="cookie-banner__accept" data-i18n-key="cookieBanner.acceptButton">Accept</button>
+      </div>
+    </div>
+
     <script src="../project-page.js"></script>
   </main>
 </body>
