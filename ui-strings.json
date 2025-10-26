@@ -12,6 +12,10 @@
       "en": "Book a Consultation",
       "sv": "Boka konsultation"
     },
+    "loadMore": {
+      "en": "Load More",
+      "sv": "Ladda fler"
+    },
     "languageToggle": {
       "en": "EN",
       "sv": "SV"
