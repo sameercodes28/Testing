@@ -62,7 +62,6 @@
   function setupEventListeners() {
     setupHeroTextAnimation();
     setupNavigationScrolling();
-    setupKeyboardNavigation();
     setupScrollSpyObserver();
     setupScrollAnimations();
     setupBackToTopButton();
@@ -104,21 +103,6 @@
   }
 
   /**
-   * Set up keyboard navigation
-   */
-  function setupKeyboardNavigation() {
-    document.addEventListener('keydown', handleKeyDown);
-  }
-
-  /**
-   * Handle keyboard events globally
-   * @param {KeyboardEvent} event - Keyboard event
-   */
-  function handleKeyDown(event) {
-    // Reserved for future keyboard shortcuts
-  }
-
-  /**
    * Check if current device is mobile
    * @returns {boolean} - Whether device is mobile
    */
@@ -132,12 +116,26 @@
    */
   async function loadTranslations() {
     try {
-      const response = await fetch(`ui-strings.json?v=${Date.now()}`);
+      const response = await fetch('ui-strings.json?v=2.1.0');
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       translations = await response.json();
     } catch (error) {
       console.error('Error loading translations:', error);
-      translations = {};
+      // Minimal fallback translations to ensure site remains functional
+      translations = {
+        navigation: {
+          projects: { en: "Projects", sv: "Projekt" },
+          about: { en: "About", sv: "Om mig" },
+          booking: { en: "Book a Consultation", sv: "Boka konsultation" },
+          loadMore: { en: "Load More", sv: "Ladda fler" }
+        },
+        sections: {
+          projectsTitle: { en: "Projects.", sv: "Utvalda Projekt." }
+        },
+        footer: {
+          copyright: { en: "© 2025 Karin Gunnerek. All rights reserved.", sv: "© 2025 Karin Gunnerek. Alla rättigheter förbehållna." }
+        }
+      };
     }
   }
 
