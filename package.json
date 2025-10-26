@@ -1,0 +1,41 @@
+{
+  "name": "karin-gunnerek-portfolio",
+  "version": "2.1.0",
+  "description": "Architect portfolio website for Karin Gunnerek - Bilingual (SV/EN) with JSON-driven content",
+  "author": "Karin Gunnerek",
+  "license": "UNLICENSED",
+  "private": true,
+  "homepage": "https://karingunnerek.se",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karingunnerek/portfolio.git"
+  },
+  "scripts": {
+    "optimize-media": "bash ./optimize-media.sh",
+    "update-html": "bash ./update-html-with-optimized-media.sh",
+    "serve": "python3 -m http.server 8000",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "lint": "eslint script.js",
+    "format": "prettier --write *.{html,css,js,json,md}",
+    "format:check": "prettier --check *.{html,css,js,json,md}"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^1.0.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.0",
+    "vitest": "^1.0.0"
+  },
+  "keywords": [
+    "architect",
+    "portfolio",
+    "skövde",
+    "västra götaland",
+    "swedish architecture",
+    "villaritningar",
+    "bygglovsritningar"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
