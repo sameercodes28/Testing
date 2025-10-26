@@ -1,8 +1,8 @@
 /**
  * Karin Gunnerek Portfolio - JavaScript
- * Handles navigation, project loading, modal interactions, multi-language system,
- * load more pagination, image carousel, scroll animations, back-to-top functionality,
- * and cookie consent system with full accessibility support and error handling
+ * Handles navigation, project loading, multi-language system, load more pagination,
+ * scroll animations, back-to-top functionality, and cookie consent system
+ * with full accessibility support and error handling
  */
 
 (function() {
@@ -25,14 +25,6 @@
   // DOM element references (cached for performance)
   const elements = {
     projectsGrid: null,
-    modal: null,
-    modalTitle: null,
-    modalImage: null,
-    modalYear: null,
-    modalTags: null,
-    modalDescription: null,
-    modalGallery: null,
-    closeButton: null,
     navLinks: null
   };
 
